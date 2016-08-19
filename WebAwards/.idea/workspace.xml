@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="574187a1-22f7-44db-aaf8-190980524d5c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Tags.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/TagsRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Projects.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/ProjectsRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WebAwards.iws" />
@@ -57,8 +57,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
-    <option name="y" value="57" />
+    <option name="x" value="-83" />
+    <option name="y" value="88" />
     <option name="width" value="1680" />
     <option name="height" value="963" />
   </component>
@@ -329,7 +329,7 @@
       <workItem from="1471535794229" duration="598000" />
       <workItem from="1471562846241" duration="3920000" />
       <workItem from="1471603578456" duration="254000" />
-      <workItem from="1471603888280" duration="925000" />
+      <workItem from="1471603888280" duration="1182000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1471458927328</created>
@@ -415,14 +415,21 @@
       <option name="project" value="LOCAL" />
       <updated>1471607824094</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Création de l'entité Tags">
+      <created>1471607916111</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1471607916111</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10112000" />
+    <option name="totallyTimeSpent" value="10369000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="57" width="1680" height="963" extended-state="0" />
+    <frame x="-83" y="88" width="1680" height="963" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26862028" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -468,7 +475,8 @@
     <MESSAGE value="Création de l'entité Winners" />
     <MESSAGE value="Création de l'entité Comments" />
     <MESSAGE value="Création de l'entité Projects_Tags" />
-    <option name="LAST_COMMIT_MESSAGE" value="Création de l'entité Projects_Tags" />
+    <MESSAGE value="Création de l'entité Tags" />
+    <option name="LAST_COMMIT_MESSAGE" value="Création de l'entité Tags" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
