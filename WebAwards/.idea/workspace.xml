@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="574187a1-22f7-44db-aaf8-190980524d5c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnerRepository.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnersRepository.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winners.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winner.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/User.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/UserRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WebAwards.iws" />
@@ -50,8 +49,8 @@
       <file leaf-file-name="WinnerRepository.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnerRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="195">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -135,8 +134,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="50" />
-    <option name="y" value="57" />
+    <option name="x" value="-42" />
+    <option name="y" value="28" />
     <option name="width" value="1680" />
     <option name="height" value="963" />
   </component>
@@ -407,7 +406,7 @@
       <workItem from="1471535794229" duration="598000" />
       <workItem from="1471562846241" duration="3920000" />
       <workItem from="1471603578456" duration="254000" />
-      <workItem from="1471603888280" duration="1883000" />
+      <workItem from="1471603888280" duration="2378000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1471458927328</created>
@@ -514,17 +513,24 @@
       <option name="project" value="LOCAL" />
       <updated>1471608793671</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Création de l'entité Winner">
+      <created>1471608884279</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1471608884279</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11070000" />
+    <option name="totallyTimeSpent" value="11565000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="57" width="1680" height="963" extended-state="0" />
-    <editor active="true" />
+    <frame x="-42" y="28" width="1680" height="963" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26862028" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26862028" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295063" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.50238097" order="7" side_tool="true" content_ui="tabs" />
@@ -570,7 +576,8 @@
     <MESSAGE value="Création de l'entité Tags" />
     <MESSAGE value="Création de l'entité Project" />
     <MESSAGE value="Update Entity Name" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Entity Name" />
+    <MESSAGE value="Création de l'entité Winner" />
+    <option name="LAST_COMMIT_MESSAGE" value="Création de l'entité Winner" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -758,8 +765,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnerRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="195">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
