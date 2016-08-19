@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="574187a1-22f7-44db-aaf8-190980524d5c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winners.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnersRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comments.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/CommentsRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WebAwards.iws" />
@@ -57,8 +57,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="88" />
-    <option name="y" value="48" />
+    <option name="x" value="86" />
+    <option name="y" value="52" />
     <option name="width" value="1680" />
     <option name="height" value="963" />
   </component>
@@ -327,7 +327,7 @@
       <workItem from="1471458558715" duration="1317000" />
       <workItem from="1471460013744" duration="3098000" />
       <workItem from="1471535794229" duration="598000" />
-      <workItem from="1471562846241" duration="2752000" />
+      <workItem from="1471562846241" duration="2972000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1471458927328</created>
@@ -392,14 +392,21 @@
       <option name="project" value="LOCAL" />
       <updated>1471601391047</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Création de l'entité Winners">
+      <created>1471601883502</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1471601883502</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7765000" />
+    <option name="totallyTimeSpent" value="7985000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="88" y="48" width="1680" height="963" extended-state="0" />
+    <frame x="86" y="52" width="1680" height="963" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26251528" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -442,7 +449,8 @@
     <MESSAGE value="Update config DataBase" />
     <MESSAGE value="Création de l'entité Users_Votes" />
     <MESSAGE value="Création de l'entité Votes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Création de l'entité Votes" />
+    <MESSAGE value="Création de l'entité Winners" />
+    <option name="LAST_COMMIT_MESSAGE" value="Création de l'entité Winners" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
