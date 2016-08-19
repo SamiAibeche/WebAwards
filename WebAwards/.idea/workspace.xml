@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="574187a1-22f7-44db-aaf8-190980524d5c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winners.php" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnerRepository.php" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnersRepository.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comments.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comment.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Projects.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Project.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Projects_Tags.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Project_Tag.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Tags.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Tag.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Users_Votes.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/User_Vote.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Votes.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Vote.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/CommentsRepository.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/CommentRepository.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/ProjectsRepository.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/ProjectRepository.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/Projects_TagsRepository.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/Project_TagRepository.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/TagsRepository.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/TagRepository.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/Users_VotesRepository.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/User_VoteRepository.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/VotesRepository.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Repository/VoteRepository.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winners.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winner.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WebAwards.iws" />
@@ -38,11 +27,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Tag.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Tag.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/Tag.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Winner.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winner.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="65" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WinnerRepository.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnerRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,13 +113,13 @@
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
-        <option value="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winners.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Projects.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Project_Tag.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Tags.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comments.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Users_Votes.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Votes.php" />
+        <option value="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winners.php" />
       </list>
     </option>
   </component>
@@ -398,7 +407,7 @@
       <workItem from="1471535794229" duration="598000" />
       <workItem from="1471562846241" duration="3920000" />
       <workItem from="1471603578456" duration="254000" />
-      <workItem from="1471603888280" duration="1791000" />
+      <workItem from="1471603888280" duration="1883000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1471458927328</created>
@@ -498,17 +507,24 @@
       <option name="project" value="LOCAL" />
       <updated>1471608175159</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Update Entity Name">
+      <created>1471608793671</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1471608793671</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10978000" />
+    <option name="totallyTimeSpent" value="11070000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="50" y="57" width="1680" height="963" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26862028" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26862028" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295063" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.50238097" order="7" side_tool="true" content_ui="tabs" />
@@ -553,7 +569,8 @@
     <MESSAGE value="Création de l'entité Projects_Tags" />
     <MESSAGE value="Création de l'entité Tags" />
     <MESSAGE value="Création de l'entité Project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Création de l'entité Project" />
+    <MESSAGE value="Update Entity Name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Entity Name" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -675,14 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winners.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="100" column="26" selection-start-line="100" selection-start-column="26" selection-end-line="100" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comment.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -735,6 +744,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/Winner.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="65" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnerRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
