@@ -5,10 +5,10 @@ namespace WebAwardsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Users_Votes
+ * User_Vote
  *
- * @ORM\Table(name="users__votes")
- * @ORM\Entity(repositoryClass="WebAwardsBundle\Repository\Users_VotesRepository")
+ * @ORM\Table(name="user__vote")
+ * @ORM\Entity(repositoryClass="WebAwardsBundle\Repository\User_VoteRepository")
  */
 class Users_Votes
 {

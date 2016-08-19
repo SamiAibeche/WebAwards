@@ -31,30 +31,30 @@ class Winners
     /**
      * @var bool
      *
-     * @ORM\Column(name="day", type="boolean")
+     * @ORM\Column(name="is_day", type="boolean")
      */
-    private $day;
+    private $isDay;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="week", type="boolean")
+     * @ORM\Column(name="is_week", type="boolean")
      */
-    private $week;
+    private $isWeek;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="month", type="boolean")
+     * @ORM\Column(name="is_month", type="boolean")
      */
-    private $month;
+    private $isMonth;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="year", type="boolean")
+     * @ORM\Column(name="is_year", type="boolean")
      */
-    private $year;
+    private $isYear;
 
 
     /**
@@ -92,99 +92,99 @@ class Winners
     }
 
     /**
-     * Set day
+     * Set isDay
      *
-     * @param boolean $day
+     * @param boolean $isDay
      *
      * @return Winners
      */
-    public function setDay($day)
+    public function setIsDay($isDay)
     {
-        $this->day = $day;
+        $this->isDay = $isDay;
 
         return $this;
     }
 
     /**
-     * Get day
+     * Get isDay
      *
      * @return bool
      */
-    public function getDay()
+    public function getIsDay()
     {
-        return $this->day;
+        return $this->isDay;
     }
 
     /**
-     * Set week
+     * Set isWeek
      *
-     * @param boolean $week
+     * @param boolean $isWeek
      *
      * @return Winners
      */
-    public function setWeek($week)
+    public function setIsWeek($isWeek)
     {
-        $this->week = $week;
+        $this->isWeek = $isWeek;
 
         return $this;
     }
 
     /**
-     * Get week
+     * Get isWeek
      *
      * @return bool
      */
-    public function getWeek()
+    public function getIsWeek()
     {
-        return $this->week;
+        return $this->isWeek;
     }
 
     /**
-     * Set month
+     * Set isMonth
      *
-     * @param boolean $month
+     * @param boolean $isMonth
      *
      * @return Winners
      */
-    public function setMonth($month)
+    public function setIsMonth($isMonth)
     {
-        $this->month = $month;
+        $this->isMonth = $isMonth;
 
         return $this;
     }
 
     /**
-     * Get month
+     * Get isMonth
      *
      * @return bool
      */
-    public function getMonth()
+    public function getIsMonth()
     {
-        return $this->month;
+        return $this->isMonth;
     }
 
     /**
-     * Set year
+     * Set isYear
      *
-     * @param boolean $year
+     * @param boolean $isYear
      *
      * @return Winners
      */
-    public function setYear($year)
+    public function setIsYear($isYear)
     {
-        $this->year = $year;
+        $this->isYear = $isYear;
 
         return $this;
     }
 
     /**
-     * Get year
+     * Get isYear
      *
      * @return bool
      */
-    public function getYear()
+    public function getIsYear()
     {
-        return $this->year;
+        return $this->isYear;
     }
 }
 

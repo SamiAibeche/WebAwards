@@ -5,10 +5,10 @@ namespace WebAwardsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Comments
+ * Comment
  *
- * @ORM\Table(name="comments")
- * @ORM\Entity(repositoryClass="WebAwardsBundle\Repository\CommentsRepository")
+ * @ORM\Table(name="comment")
+ * @ORM\Entity(repositoryClass="WebAwardsBundle\Repository\CommentRepository")
  */
 class Comments
 {

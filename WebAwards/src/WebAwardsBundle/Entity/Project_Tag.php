@@ -5,10 +5,10 @@ namespace WebAwardsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Projects_Tags
+ * Project_Tag
  *
- * @ORM\Table(name="projects__tags")
- * @ORM\Entity(repositoryClass="WebAwardsBundle\Repository\Projects_TagsRepository")
+ * @ORM\Table(name="project__tag")
+ * @ORM\Entity(repositoryClass="WebAwardsBundle\Repository\Project_TagRepository")
  */
 class Projects_Tags
 {
