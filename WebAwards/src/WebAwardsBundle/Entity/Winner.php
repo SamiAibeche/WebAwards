@@ -191,5 +191,22 @@ class Winner
     {
         return $this->isYear;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param mixed $project
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
+    }
+    
 }
 

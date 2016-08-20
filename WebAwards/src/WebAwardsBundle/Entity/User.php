@@ -420,5 +420,9 @@ class User
     {
         return $this->sexe;
     }
+    public function __toString()
+    {
+        return $this->getFirstname()." ".$this->getLastname();
+    }
 }
 

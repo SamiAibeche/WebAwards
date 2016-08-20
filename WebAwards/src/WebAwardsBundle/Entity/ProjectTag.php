@@ -89,5 +89,38 @@ class ProjectTag
     {
         return $this->tag;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param mixed $projects
+     */
+    public function setProjects($projects)
+    {
+        $this->projects = $projects;
+    }
+
 }
 

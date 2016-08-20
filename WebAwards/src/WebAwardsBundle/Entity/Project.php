@@ -362,5 +362,9 @@ class Project
     {
         return $this->dateAdd;
     }
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
 
