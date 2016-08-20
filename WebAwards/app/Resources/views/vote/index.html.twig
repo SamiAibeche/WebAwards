@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vote list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idproject</th>
+                <th>Iduser</th>
+                <th>Nbdesign</th>
+                <th>Nbfluidity</th>
+                <th>Nbconcept</th>
+                <th>Nbcontent</th>
+                <th>Nbtotal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vote in votes %}
+            <tr>
+                <td><a href="{{ path('vote_show', { 'id': vote.id }) }}">{{ vote.id }}</a></td>
+                <td>{{ vote.idProject }}</td>
+                <td>{{ vote.idUser }}</td>
+                <td>{{ vote.nbDesign }}</td>
+                <td>{{ vote.nbFluidity }}</td>
+                <td>{{ vote.nbConcept }}</td>
+                <td>{{ vote.nbContent }}</td>
+                <td>{{ vote.nbTotal }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('vote_show', { 'id': vote.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('vote_edit', { 'id': vote.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('vote_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

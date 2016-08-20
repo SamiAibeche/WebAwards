@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Project</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ project.id }}</td>
+            </tr>
+            <tr>
+                <th>Idauthor</th>
+                <td>{{ project.idAuthor }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ project.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ project.description }}</td>
+            </tr>
+            <tr>
+                <th>Imgscreen</th>
+                <td>{{ project.imgScreen }}</td>
+            </tr>
+            <tr>
+                <th>Imgmobile</th>
+                <td>{{ project.imgMobile }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ project.url }}</td>
+            </tr>
+            <tr>
+                <th>Nblike</th>
+                <td>{{ project.nbLike }}</td>
+            </tr>
+            <tr>
+                <th>Isforward</th>
+                <td>{% if project.isForward %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Isvisible</th>
+                <td>{% if project.isVisible %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dateadd</th>
+                <td>{% if project.dateAdd %}{{ project.dateAdd|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('project_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('project_edit', { 'id': project.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Project list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idauthor</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Imgscreen</th>
+                <th>Imgmobile</th>
+                <th>Url</th>
+                <th>Nblike</th>
+                <th>Isforward</th>
+                <th>Isvisible</th>
+                <th>Dateadd</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
+                <td>{{ project.idAuthor }}</td>
+                <td>{{ project.name }}</td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.imgScreen }}</td>
+                <td>{{ project.imgMobile }}</td>
+                <td>{{ project.url }}</td>
+                <td>{{ project.nbLike }}</td>
+                <td>{% if project.isForward %}Yes{% else %}No{% endif %}</td>
+                <td>{% if project.isVisible %}Yes{% else %}No{% endif %}</td>
+                <td>{% if project.dateAdd %}{{ project.dateAdd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('project_show', { 'id': project.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('project_edit', { 'id': project.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('project_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

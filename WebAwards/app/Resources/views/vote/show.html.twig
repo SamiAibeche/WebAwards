@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vote</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vote.id }}</td>
+            </tr>
+            <tr>
+                <th>Idproject</th>
+                <td>{{ vote.idProject }}</td>
+            </tr>
+            <tr>
+                <th>Iduser</th>
+                <td>{{ vote.idUser }}</td>
+            </tr>
+            <tr>
+                <th>Nbdesign</th>
+                <td>{{ vote.nbDesign }}</td>
+            </tr>
+            <tr>
+                <th>Nbfluidity</th>
+                <td>{{ vote.nbFluidity }}</td>
+            </tr>
+            <tr>
+                <th>Nbconcept</th>
+                <td>{{ vote.nbConcept }}</td>
+            </tr>
+            <tr>
+                <th>Nbcontent</th>
+                <td>{{ vote.nbContent }}</td>
+            </tr>
+            <tr>
+                <th>Nbtotal</th>
+                <td>{{ vote.nbTotal }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('vote_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('vote_edit', { 'id': vote.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

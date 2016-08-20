@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Winner list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idproject</th>
+                <th>Isday</th>
+                <th>Isweek</th>
+                <th>Ismonth</th>
+                <th>Isyear</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for winner in winners %}
+            <tr>
+                <td><a href="{{ path('winner_show', { 'id': winner.id }) }}">{{ winner.id }}</a></td>
+                <td>{{ winner.idProject }}</td>
+                <td>{% if winner.isDay %}Yes{% else %}No{% endif %}</td>
+                <td>{% if winner.isWeek %}Yes{% else %}No{% endif %}</td>
+                <td>{% if winner.isMonth %}Yes{% else %}No{% endif %}</td>
+                <td>{% if winner.isYear %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('winner_show', { 'id': winner.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('winner_edit', { 'id': winner.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('winner_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Winner</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ winner.id }}</td>
+            </tr>
+            <tr>
+                <th>Idproject</th>
+                <td>{{ winner.idProject }}</td>
+            </tr>
+            <tr>
+                <th>Isday</th>
+                <td>{% if winner.isDay %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Isweek</th>
+                <td>{% if winner.isWeek %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ismonth</th>
+                <td>{% if winner.isMonth %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Isyear</th>
+                <td>{% if winner.isYear %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('winner_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('winner_edit', { 'id': winner.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
