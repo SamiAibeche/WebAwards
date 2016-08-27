@@ -15,8 +15,8 @@ class ProjectTagType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('tags')
-            ->add('projects')
+            ->add('idTag')
+            ->add('idProject')
         ;
     }
     

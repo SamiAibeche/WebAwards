@@ -31,9 +31,9 @@ class Tag
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="ProjectTag", mappedBy="tags")
+     * @ORM\OneToMany(targetEntity="ProjectTag", mappedBy="idTag")
      */
-    private $tag;
+    private $idTags;
 
     /**
      * Get id
@@ -71,7 +71,7 @@ class Tag
 
     public function __toString()
     {
-        return $this->getName();
+        return "".$this->getId();
     }
 }
 

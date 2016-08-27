@@ -113,12 +113,12 @@ class User
     private $sexe;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="idUser")
      */
-    private $comments;
+    private $idUsers;
     
     /**
-     * @ORM\OneToMany(targetEntity="Vote", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Vote", mappedBy="idUser")
      */
     private $votes;
 
@@ -422,7 +422,7 @@ class User
     }
     public function __toString()
     {
-        return $this->getFirstname()." ".$this->getLastname();
+        return "".$this->getId();
     }
 }
 

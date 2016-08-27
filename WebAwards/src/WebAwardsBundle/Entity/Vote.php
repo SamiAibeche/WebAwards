@@ -24,15 +24,16 @@ class Vote
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="idProject", type="integer")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="votes")
+     * @ORM\JoinColumn(name="idProject", referencedColumnName="id")
      */
     private $idProject;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="idUser", type="integer")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="votes")
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      */
     private $idUser;
 
@@ -70,15 +71,7 @@ class Vote
      * @ORM\Column(name="nbTotal", type="float")
      */
     private $nbTotal;
-    /**
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="votes")
-     */
-    private $project;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="votes")
-     */
-    private $user;
 
 
     /**
@@ -257,42 +250,7 @@ class Vote
     {
         return $this->nbTotal;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getProject()
-    {
-        return $this->project;
-    }
-
-    /**
-     * @param mixed $project
-     */
-    public function setProject($project)
-    {
-        $this->project = $project;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param mixed $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-    }
-    public function __toString()
-    {
-        return $this->getName();
-    }
+    
 
 }
 

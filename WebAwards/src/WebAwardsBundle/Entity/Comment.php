@@ -24,14 +24,16 @@ class Comment
     /**
      * @var int
      *
-     * @ORM\Column(name="idUser", type="integer")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUsers")
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      */
     private $idUser;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="idProject", type="integer")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="idComments")
+     * @ORM\JoinColumn(name="idProject", referencedColumnName="id")
      */
     private $idProject;
 
@@ -56,12 +58,7 @@ class Comment
      * @ORM\Column(name="nbLike", type="integer")
      */
     private $nbLike;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
-     */
-    private $user;
-
+    
 
     /**
      * Get id
@@ -191,22 +188,6 @@ class Comment
     public function getNbLike()
     {
         return $this->nbLike;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param mixed $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
     }
 
     

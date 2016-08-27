@@ -22,15 +22,15 @@ class ProjectTag
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Tag", inversedBy="tag")
+     * @ORM\ManyToOne(targetEntity="Tag", inversedBy="idTags")
      */
-    private $tags;
+    private $idTag;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="project")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="idProjects")
      */
-    private $projects;
-    
+    private $idProject;
+
 
     /**
      * Get id
@@ -42,40 +42,17 @@ class ProjectTag
         return $this->id;
     }
 
-    /**
-     * Set project
-     *
-     * @param string $project
-     *
-     * @return ProjectTag
-     */
-    public function setProject($project)
-    {
-        $this->project = $project;
-
-        return $this;
-    }
-
-    /**
-     * Get project
-     *
-     * @return string
-     */
-    public function getProject()
-    {
-        return $this->project;
-    }
 
     /**
      * Set tag
      *
-     * @param string $tag
+     * @param string $idTag
      *
-     * @return ProjectTag
+     * @return idTag
      */
-    public function setTag($tag)
+    public function setIdTag($idTag)
     {
-        $this->tag = $tag;
+        $this->idTags = $idTag;
 
         return $this;
     }
@@ -85,41 +62,26 @@ class ProjectTag
      *
      * @return string
      */
-    public function getTag()
+    public function getIdTag()
     {
-        return $this->tag;
+        return $this->idTag;
     }
+
 
     /**
      * @return mixed
      */
-    public function getTags()
+    public function getIdProject()
     {
-        return $this->tags;
+        return $this->idProject;
     }
 
     /**
-     * @param mixed $tags
+     * @param mixed $idProject
      */
-    public function setTags($tags)
+    public function setProject($idProject)
     {
-        $this->tags = $tags;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProjects()
-    {
-        return $this->projects;
-    }
-
-    /**
-     * @param mixed $projects
-     */
-    public function setProjects($projects)
-    {
-        $this->projects = $projects;
+        $this->idProject = $idProject;
     }
 
 }

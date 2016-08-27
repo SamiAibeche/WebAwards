@@ -21,10 +21,7 @@ class VoteType extends AbstractType
             ->add('nbFluidity')
             ->add('nbConcept')
             ->add('nbContent')
-            ->add('nbTotal')
-            ->add('project')
-            ->add('user')
-        ;
+            ->add('nbTotal');
     }
     
     /**

@@ -20,7 +20,6 @@ class WinnerType extends AbstractType
             ->add('isWeek')
             ->add('isMonth')
             ->add('isYear')
-            ->add('project')
         ;
     }
     

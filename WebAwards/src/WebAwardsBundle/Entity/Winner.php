@@ -24,7 +24,8 @@ class Winner
     /**
      * @var int
      *
-     * @ORM\Column(name="idProject", type="integer")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="winners")
+     * @ORM\JoinColumn(name="idProject", referencedColumnName="id")
      */
     private $idProject;
 
@@ -55,11 +56,6 @@ class Winner
      * @ORM\Column(name="isYear", type="boolean")
      */
     private $isYear;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="winners")
-     */
-    private $project;
 
 
     /**
@@ -192,21 +188,6 @@ class Winner
         return $this->isYear;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getProject()
-    {
-        return $this->project;
-    }
-
-    /**
-     * @param mixed $project
-     */
-    public function setProject($project)
-    {
-        $this->project = $project;
-    }
     
 }
 

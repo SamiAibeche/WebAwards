@@ -97,21 +97,28 @@ class Project
     private $dateAdd;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vote", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="Vote", mappedBy="idProject")
      */
     private $votes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Winner", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="Winner", mappedBy="idProject")
      */
     private $winners;
 
     /**
      * @var string
      *
-     * @ORM\OneToMany(targetEntity="ProjectTag", mappedBy="projects")
+     * @ORM\OneToMany(targetEntity="ProjectTag", mappedBy="idProject")
      */
-    private $project;
+    private $idProjects;
+
+    /**
+     * @var string
+     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="idProject")
+     */
+    private $idComments;
 
     /**
      * Get id
@@ -364,7 +371,7 @@ class Project
     }
     public function __toString()
     {
-        return $this->getName();
+        return "".$this->getId();
     }
 }
 
