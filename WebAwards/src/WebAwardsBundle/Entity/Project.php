@@ -24,7 +24,8 @@ class Project
     /**
      * @var int
      *
-     * @ORM\Column(name="idAuthor", type="integer")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="projects")
+     * @ORM\JoinColumn(name="idAuthor", referencedColumnName="id")
      */
     private $idAuthor;
 
@@ -48,6 +49,21 @@ class Project
      * @var string
      *
      * @ORM\Column(name="imgScreen", type="string", length=255)
+     * @Assert\File(
+     *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
+     *     mimeTypesMessage="Seuls les formats png, jpg, jpeg sont acceptés."
+     * )
+     * @Assert\Image(
+     *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
+     *     minWidth = 200,
+     *     maxWidth = 400,
+     *     minHeight = 200,
+     *     maxHeight = 400,
+     *     maxWidthMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ...",
+     *     minWidthMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ..." ,
+     *     maxHeightMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ...",
+     *     minHeightMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ..."
+     * )
      * @Assert\NotBlank()
      */
     private $imgScreen;
@@ -56,7 +72,23 @@ class Project
      * @var string
      *
      * @ORM\Column(name="imgMobile", type="string", length=255)
-     * @Assert\NotBlank()
+     *
+     * @Assert\File(
+     *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
+     *     mimeTypesMessage="Seuls les formats png, jpg, jpeg sont acceptés."
+     * )
+     * @Assert\Image(
+     *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
+     *     minWidth = 100,
+     *     maxWidth = 200,
+     *     minHeight = 100,
+     *     maxHeight = 200,
+     *     maxWidthMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ...",
+     *     minWidthMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ..." ,
+     *     maxHeightMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ...",
+     *     minHeightMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ..."
+     * )
+     *
      */
     private $imgMobile;
 

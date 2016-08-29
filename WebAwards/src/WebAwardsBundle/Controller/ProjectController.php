@@ -46,6 +46,28 @@ class ProjectController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //Récupération des images
+            $fileScreen = $project->getImgScreen();
+            $fileMobile = $project->getImgMobile();
+
+            //Parse du nom de l'image -> Nom unique
+            $fileName = md5(uniqid()).'.'.$fileScreen->guessExtension();
+            $fileNameMobile = md5(uniqid()).'.'.$fileMobile->guessExtension();
+
+            //Ajout au dossier Project
+            $fileScreen->move(
+                $this->getParameter('projects_directory'),
+                $fileName
+            );
+            $fileMobile->move(
+                $this->getParameter('projects_directory'),
+                $fileNameMobile
+            );
+
+            //Paramètre les images
+            $project->setImgScreen($fileName);
+            $project->setImgMobile($fileNameMobile);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
@@ -88,6 +110,10 @@ class ProjectController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            //Récupération des images
+            $fileScreen = $project->getImgScreen();
+            $fileMobile = $project->getImgMobile();
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
@@ -114,6 +140,15 @@ class ProjectController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $screen = $project->getImgScreen();
+            $mobile = $project->getImgMobile();
+
+            //Vérification de l'existance des images
+            if(isset($screen) && isset($mobile)){
+                unlink("./../web/uploads/project/".$mobile);
+                unlink("./../web/uploads/project/".$screen);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->remove($project);
             $em->flush();
@@ -131,6 +166,7 @@ class ProjectController extends Controller
      */
     private function createDeleteForm(Project $project)
     {
+
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('project_delete', array('id' => $project->getId())))
             ->setMethod('DELETE')

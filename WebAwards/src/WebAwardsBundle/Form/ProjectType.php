@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProjectType extends AbstractType
 {
@@ -19,8 +20,10 @@ class ProjectType extends AbstractType
             ->add('idAuthor')
             ->add('name')
             ->add('description')
-            ->add('imgScreen')
-            ->add('imgMobile')
+            //->add('imgScreen')
+            ->add('imgScreen', FileType::class, array('label' => 'Image Laptop', 'data_class' => null))
+            //->add('imgMobile')
+            ->add('imgMobile', FileType::class, array('label' => 'Image Mobile', 'data_class' => null))
             ->add('url')
             ->add('nbLike')
             ->add('isForward')

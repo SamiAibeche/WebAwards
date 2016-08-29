@@ -122,6 +122,11 @@ class User
      */
     private $votes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="idAuthor")
+     */
+    private $projects;
+
 
     /**
      * Get id

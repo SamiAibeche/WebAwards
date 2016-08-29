@@ -23,11 +23,11 @@
             </tr>
             <tr>
                 <th>Imgscreen</th>
-                <td>{{ project.imgScreen }}</td>
+                <td><img src="{{ asset('uploads/project/' ~ project.imgScreen) }}" alt="Image - {{ project.name }}"/></td>
             </tr>
             <tr>
                 <th>Imgmobile</th>
-                <td>{{ project.imgMobile }}</td>
+                <td><img src="{{ asset('uploads/project/' ~ project.ImgMobile) }}" alt="Image - {{ project.name }}"/></td>
             </tr>
             <tr>
                 <th>Url</th>
