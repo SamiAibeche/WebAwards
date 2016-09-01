@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use WebAwardsBundle\Entity\User;
 use WebAwardsBundle\Form\UserType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * User controller.
@@ -16,6 +17,15 @@ use WebAwardsBundle\Form\UserType;
  */
 class UserController extends Controller
 {
+
+    /**
+     * @Route("/admin", name="admin_action")
+     */
+    public function adminAction()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
+    }
+
     /**
      * Lists all User entities.
      *
@@ -44,7 +54,7 @@ class UserController extends Controller
         $user = new User();
         $form = $this->createForm('WebAwardsBundle\Form\UserType', $user);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

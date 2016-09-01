@@ -20,7 +20,6 @@ class UserType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('birthdayAt', DateType::class, array('input'  => 'datetime','widget' => 'choice'))
-            ->add('password')
             ->add('email')
             ->add('img')
             ->add('role')

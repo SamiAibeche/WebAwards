@@ -12,6 +12,7 @@ use WebAwardsBundle\Entity\User;
 use WebAwardsBundle\Entity\Vote;
 use WebAwardsBundle\Form\ProjectType;
 
+
 /**
  * Project controller.
  *
@@ -19,6 +20,7 @@ use WebAwardsBundle\Form\ProjectType;
  */
 class ProjectController extends Controller
 {
+
     /**
      * Lists all Project entities.
      *

@@ -296,6 +296,7 @@ class User
         return $this;
     }
 
+
     /**
      * Get role
      *
@@ -429,5 +430,6 @@ class User
     {
         return "".$this->getId();
     }
+
 }
 
