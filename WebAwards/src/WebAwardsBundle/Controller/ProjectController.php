@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use WebAwardsBundle\Entity\Project;
+use WebAwardsBundle\Entity\Winner;
+use WebAwardsBundle\Entity\User;
+use WebAwardsBundle\Entity\Vote;
 use WebAwardsBundle\Form\ProjectType;
 
 /**
@@ -25,11 +28,27 @@ class ProjectController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        //Get All projects
         $projects = $em->getRepository('WebAwardsBundle:Project')->findAll();
+
+        //Get the Winner of the day
+        $winner = $em->getRepository('WebAwardsBundle:Winner')->findBy(
+            array('isDay' => '1')
+        );
+
+        foreach($winner as $win){
+            $idProject = $win->getIdProject();
+        }
+        $winner = $em->getRepository('WebAwardsBundle:Project')->findById($idProject);
+        $idUser = $winner[0]->getIdAuthor();
+        $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
+        $vote = $em->getRepository('WebAwardsBundle:Vote')->findByIdProject($idProject);
 
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
+            'winner'   => $winner,
+            'user'     => $user,
+            'vote'     => $vote,
         ));
     }
 
@@ -145,8 +164,8 @@ class ProjectController extends Controller
 
             //Vérification de l'existance des images
             if(isset($screen) && isset($mobile)){
-                unlink("./../web/uploads/project/".$mobile);
-                unlink("./../web/uploads/project/".$screen);
+               // unlink("./../web/uploads/project/".$mobile);
+               // unlink("./../web/uploads/project/".$screen);
             }
 
             $em = $this->getDoctrine()->getManager();

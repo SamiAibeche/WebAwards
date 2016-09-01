@@ -1,8 +1,8 @@
+homepage:
+  path: /
+  defaults: { _controller: WebAwardsBundle:Project:index}
+
 web_awards:
     resource: "@WebAwardsBundle/Controller/"
     type:     annotation
     prefix:   /
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation

@@ -1,57 +1,73 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Project list</h1>
+        <div class="container">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Idauthor</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Imgscreen</th>
-                <th>Imgmobile</th>
-                <th>Url</th>
-                <th>Nblike</th>
-                <th>Isforward</th>
-                <th>Isvisible</th>
-                <th>Dateadd</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for project in projects %}
-            <tr>
-                <td><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
-                <td>{{ project.idAuthor }}</td>
-                <td>{{ project.name }}</td>
-                <td>{{ project.description }}</td>
-                <td>{{ project.imgScreen }}</td>
-                <td>{{ project.imgMobile }}</td>
-                <td>{{ project.url }}</td>
-                <td>{{ project.nbLike }}</td>
-                <td>{% if project.isForward %}Yes{% else %}No{% endif %}</td>
-                <td>{% if project.isVisible %}Yes{% else %}No{% endif %}</td>
-                <td>{% if project.dateAdd %}{{ project.dateAdd|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('project_show', { 'id': project.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('project_edit', { 'id': project.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="row">
+                <div  class="col-xs-12 text-center text-uppercase divTitle">
+                    <h1> - Site du jour - </h1>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div  class="col-xs-12 col-md-6">
+                    <div class="col-xs-12">
+                        <a href=" {{ winner[0].url }}" target="_blank">
+                        <img class="img-responsive center imgProject" src="{{ asset('uploads/project/'~ winner[0].imgScreen) }}" alt="Image"/>
+                        </a>
+                    </div>
+                    <div  class="col-xs-6 text-left"><span class="glyphicon glyphicon-heart"></span> {{ winner[0].nbLike }}</div>
+                    <div  class="col-xs-6 text-right">SOCIAL</div>
+                </div>
+                <div  class="col-xs-12 col-md-6">
+                    <div class="col-xs-4">
+                        <img class="img-responsive center imgProjectMobile" src="{{ asset('uploads/project/'~ winner[0].imgMobile) }}" alt="Image"/>
+                    </div>
+                    <div  class="col-xs-8 text-center">
+                        <div><h2><strong>{{ winner[0].name | upper }}</strong></h2></div>
+                        <div>{{ winner[0].dateAdd|date("d/m/Y") }}</div>
+                        <div>{{ user[0].firstname }} {{ user[0].lastname }}</div>
+                    </div>
+                    <div  class="col-xs-12">
+                        <div class="col-xs-6 col-md-2 borderVoteContainer"><div></div><span>{{ vote[0].nbDesign }}</span></div>
+                        <div class="col-xs-6 col-md-2 borderVoteContainer"><div></div><span>{{ vote[0].nbFluidity }}</span></div>
+                        <div class="col-xs-6 col-md-2 borderVoteContainer"><div></div><span>{{ vote[0].nbConcept }}</span></div>
+                        <div class="col-xs-6 col-md-2 borderVoteContainer"><div></div><span>{{ vote[0].nbContent }}</span></div>
+                        <div class="col-xs-6 col-md-4"><div></div><span>{{ vote[0].nbTotal }}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('project_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div  class="col-xs-12 text-center text-uppercase divTitle">
+                    <h1> - les projets récents - </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            {% for project in projects %}
+                <div class="col-xs-12 col-md-4">
+                    <a href="{{ path('project_show', { 'id': project.id }) }}">
+                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" />
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <a href="{{ path('project_show', { 'id': project.id }) }}">
+                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" />
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <a href="{{ path('project_show', { 'id': project.id }) }}">
+                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" />
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}

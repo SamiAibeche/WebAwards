@@ -4,6 +4,7 @@ namespace WebAwardsBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Project
  *
@@ -56,9 +57,9 @@ class Project
      * @Assert\Image(
      *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
      *     minWidth = 200,
-     *     maxWidth = 400,
+     *     maxWidth = 4000,
      *     minHeight = 200,
-     *     maxHeight = 400,
+     *     maxHeight = 4000,
      *     maxWidthMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ...",
      *     minWidthMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ..." ,
      *     maxHeightMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ...",
@@ -80,9 +81,9 @@ class Project
      * @Assert\Image(
      *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
      *     minWidth = 100,
-     *     maxWidth = 200,
+     *     maxWidth = 2000,
      *     minHeight = 100,
-     *     maxHeight = 200,
+     *     maxHeight = 2000,
      *     maxWidthMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ...",
      *     minWidthMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ..." ,
      *     maxHeightMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ...",
@@ -129,26 +130,26 @@ class Project
     private $dateAdd;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vote", mappedBy="idProject")
+     * @ORM\OneToMany(targetEntity="Vote", mappedBy="idProject",cascade={"remove"})
      */
     private $votes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Winner", mappedBy="idProject")
+     * @ORM\OneToMany(targetEntity="Winner", mappedBy="idProject",cascade={"remove"})
      */
     private $winners;
 
     /**
      * @var string
      *
-     * @ORM\OneToMany(targetEntity="ProjectTag", mappedBy="idProject")
+     * @ORM\OneToMany(targetEntity="ProjectTag", mappedBy="idProject",cascade={"remove"})
      */
     private $idProjects;
 
     /**
      * @var string
      *
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="idProject")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="idProject",cascade={"remove"})
      */
     private $idComments;
 
