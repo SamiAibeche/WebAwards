@@ -61,9 +61,9 @@ class Vote
     /**
      * @var float
      *
-     * @ORM\Column(name="nbContent", type="float")
+     * @ORM\Column(name="nbResponsive", type="float")
      */
-    private $nbContent;
+    private $nbResponsive;
 
     /**
      * @var float
@@ -204,27 +204,27 @@ class Vote
     }
 
     /**
-     * Set nbContent
+     * Set nbResponsive
      *
      * @param float $nbContent
      *
      * @return Vote
      */
-    public function setNbContent($nbContent)
+    public function setNbResponsive($nbResponsive)
     {
-        $this->nbContent = $nbContent;
+        $this->nbResponsive = $nbResponsive;
 
         return $this;
     }
 
     /**
-     * Get nbContent
+     * Get nbResponsive
      *
      * @return float
      */
-    public function getNbContent()
+    public function getNbResponsive()
     {
-        return $this->nbContent;
+        return $this->nbResponsive;
     }
 
     /**

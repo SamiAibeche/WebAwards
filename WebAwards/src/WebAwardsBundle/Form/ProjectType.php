@@ -17,7 +17,7 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('idAuthor')
+            //->add('idAuthor')
             ->add('name')
             ->add('description')
             //->add('imgScreen')
@@ -28,7 +28,7 @@ class ProjectType extends AbstractType
             ->add('nbLike')
             ->add('isForward')
             ->add('isVisible')
-            ->add('dateAdd', DateType::class, array('input'  => 'datetime','widget' => 'choice'))
+           // ->add('dateAdd', DateType::class, array('input'  => 'datetime','widget' => 'choice'))
         ;
     }
     

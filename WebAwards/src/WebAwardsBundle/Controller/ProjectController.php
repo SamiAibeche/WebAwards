@@ -37,23 +37,32 @@ class ProjectController extends Controller
         $winner = $em->getRepository('WebAwardsBundle:Winner')->findBy(
             array('isDay' => '1')
         );
-
         foreach($winner as $win){
             $idProject = $win->getIdProject();
         }
         $winner = $em->getRepository('WebAwardsBundle:Project')->findById($idProject);
+
+        //Get the author of the project
         $idUser = $winner[0]->getIdAuthor();
         $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
+
+        //Get the vote of the project
         $vote = $em->getRepository('WebAwardsBundle:Vote')->findByIdProject($idProject);
 
+
+        //Get the last project of the Month
+
+        //All Winner of the month
+        //Recuperer dans la liste de tous les projets, le projet == meme id, order by date desc limit 1
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
             'winner'   => $winner,
             'user'     => $user,
             'vote'     => $vote,
         ));
-    }
 
+    }
+    
     /**
      * Creates a new Project entity.
      *

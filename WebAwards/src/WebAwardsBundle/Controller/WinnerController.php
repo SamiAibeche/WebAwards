@@ -103,6 +103,32 @@ class WinnerController extends Controller
     }
 
     /**
+     * @return Project of the day
+     */
+    public function winnerDayAction(){
+        $em = $this->getDoctrine()->getManager();
+        //Get All projects
+        $projects = $em->getRepository('WebAwardsBundle:Project')->findAll();
+
+        //Get the Winner of the day
+        $winner = $em->getRepository('WebAwardsBundle:Winner')->findBy(
+            array('isDay' => '1')
+        );
+        foreach($winner as $win){
+            $idProject = $win->getIdProject();
+        }
+        $winner = $em->getRepository('WebAwardsBundle:Project')->findById($idProject);
+        $userId = $winner[0]->getIdAuthor();
+        $user = $em->getRepository('WebAwardsBundle:User')->findById($userId);
+
+
+        return $this->render('footer.html.twig', array(
+            'winner'   => $winner,
+            'user'     => $user
+        ));
+    }
+
+    /**
      * Deletes a Winner entity.
      *
      * @Route("/{id}", name="winner_delete")
