@@ -49,10 +49,15 @@ class User implements UserInterface, \Serializable
     private $birthdayAt;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
-     * @Assert\NotBlank()
      */
     private $password;
 
@@ -439,6 +444,12 @@ class User implements UserInterface, \Serializable
     {
         return $this->username;
     }
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
 
     public function __toString()
     {
@@ -488,6 +499,16 @@ class User implements UserInterface, \Serializable
             // $this->salt
             ) = unserialize($serialized);
     }
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
 
 }
 

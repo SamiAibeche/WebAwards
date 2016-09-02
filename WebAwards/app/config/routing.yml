@@ -6,3 +6,5 @@ web_awards:
     resource: "@WebAwardsBundle/Controller/"
     type:     annotation
     prefix:   /
+logout:
+    path: /logout
