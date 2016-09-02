@@ -11,7 +11,7 @@ use WebAwardsBundle\Entity\Winner;
 use WebAwardsBundle\Entity\User;
 use WebAwardsBundle\Entity\Vote;
 use WebAwardsBundle\Form\ProjectType;
-
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Project controller.
@@ -24,7 +24,7 @@ class ProjectController extends Controller
     /**
      * Lists all Project entities.
      *
-     * @Route("/", name="project_index")
+     * @Route("/user", name="project_index")
      * @Method("GET")
      */
     public function indexAction()

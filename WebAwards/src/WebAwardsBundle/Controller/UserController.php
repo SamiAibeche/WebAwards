@@ -54,7 +54,7 @@ class UserController extends Controller
         $user = new User();
         $form = $this->createForm('WebAwardsBundle\Form\UserType', $user);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

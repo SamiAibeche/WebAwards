@@ -21,6 +21,7 @@ class UserType extends AbstractType
             ->add('lastname')
             ->add('birthdayAt', DateType::class, array('input'  => 'datetime','widget' => 'choice'))
             ->add('email')
+            ->add('username')
             ->add('img')
             ->add('role')
             ->add('isPublisher')

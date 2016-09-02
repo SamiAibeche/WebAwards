@@ -19,7 +19,7 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <a class="navbar-brand hidden-xs hidden-sm hidden-md" href="#"><img class="img-responsive" src="{{ asset('bundles/framework/images/logo-small.png') }}" alt="WebAwards"/></a>
+        <a class="navbar-brand hidden-xs hidden-sm hidden-md" href="{{ path('homepage') }}"><img class="img-responsive" src="{{ asset('bundles/framework/images/logo-small.png') }}" alt="WebAwards"/></a>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">Junior's</a></li>
@@ -34,7 +34,7 @@
     </nav>
     <div  class="col-xs-12 text-right text-uppercase ">
         <button type="button" class="btn btn-secondary addProject"><a href="{{ path('project_new') }}">Soumettre un projet</a></button>
-        <button type="button" class="btn btn-secondary login">S'inscrire</button>
+        <button type="button" class="btn btn-secondary login"><a href="{{ path('login') }}">Connexion</a></button>
     </div>
 {% endblock %}
 
