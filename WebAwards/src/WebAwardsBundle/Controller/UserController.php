@@ -20,31 +20,6 @@ class UserController extends Controller
 {
 
     /**
-     * @Route("/admin", name="admin_action")
-     */
-    public function adminAction()
-    {
-        return new Response('<html><body>Admin page!</body></html>');
-    }
-
-    /**
-     * Lists all User entities.
-     *
-     * @Route("/", name="user_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $users = $em->getRepository('WebAwardsBundle:User')->findAll();
-
-        return $this->render('user/index.html.twig', array(
-            'users' => $users,
-        ));
-    }
-
-    /**
      * Connecte le user après l'inscription.
      * @param User $user
      */
@@ -75,6 +50,19 @@ class UserController extends Controller
                 ->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
 
+            //Récupération des images
+            $file = $user->getImg();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('users_directory'),
+                $fileName
+            );
+            $user->setImg($fileName);
+            $user->setIsPublisher(false);
+            $user->setIsSubscribe(false);
+            $user->setIsAdmin(false);
+            $now = date("Y-m-d H:i:s");
+            $user->setDateAff($now);
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -146,16 +134,32 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
+        //Recup the last img
+        $em = $this->getDoctrine()->getManager();
+        $userData = $em->getRepository('WebAwardsBundle:User')->findById($user->getId());
+        $lastImg = $userData[0]->getImg();
+
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('WebAwardsBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $file = $user->getImg();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            if(isset($lastImg) && $lastImg !== null){
+                unlink("./../web/uploads/user/".$lastImg);
+            }
+            $file->move(
+                $this->getParameter('users_directory'),
+                $fileName
+            );
+            $user->setImg($fileName);
             $em->persist($user);
             $em->flush();
 
             return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
+
         }
 
         return $this->render('user/edit.html.twig', array(
@@ -173,16 +177,23 @@ class UserController extends Controller
      */
     public function deleteAction(Request $request, User $user)
     {
+        $em = $this->getDoctrine()->getManager();
+        $userData = $em->getRepository('WebAwardsBundle:User')->findById($user->getId());
+        $lastImg = $userData[0]->getImg();
+
         $form = $this->createDeleteForm($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if(isset($lastImg) && $lastImg !== null){
+                unlink("./../web/uploads/user/".$lastImg);
+            }
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
         }
 
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('homepage');
     }
 
     /**

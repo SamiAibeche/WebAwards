@@ -31,7 +31,8 @@ class ProjectController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         //Get All projects
-        $projects = $em->getRepository('WebAwardsBundle:Project')->findAll();
+        //$projects = $em->getRepository('WebAwardsBundle:Project')->findByIsVisible(1);
+        $projects = $em->getRepository('WebAwardsBundle:Project')->findBy(array('isVisible' => 1), array('dateAdd' => 'desc'));
 
         //Get the Winner of the day
         $winner = $em->getRepository('WebAwardsBundle:Winner')->findBy(
@@ -62,7 +63,6 @@ class ProjectController extends Controller
         ));
 
     }
-    
     /**
      * Creates a new Project entity.
      *
@@ -97,6 +97,18 @@ class ProjectController extends Controller
             //Paramètre les images
             $project->setImgScreen($fileName);
             $project->setImgMobile($fileNameMobile);
+
+            //Paramètre les variables
+            //IdAuthor
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $idUser = $user->getId();
+            $project->setIdAuthor($user);
+            //Initialisation des données par défaut
+            $project->setNbLike(0);
+            $project->setIsForward(false);
+            $project->setIsVisible(false);
+            $now = date("Y-m-d H:i:s");
+            $project->setDateAdd($now);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
@@ -175,8 +187,8 @@ class ProjectController extends Controller
 
             //Vérification de l'existance des images
             if(isset($screen) && isset($mobile)){
-               // unlink("./../web/uploads/project/".$mobile);
-               // unlink("./../web/uploads/project/".$screen);
+                unlink("./../web/uploads/project/".$mobile);
+                unlink("./../web/uploads/project/".$screen);
             }
 
             $em = $this->getDoctrine()->getManager();

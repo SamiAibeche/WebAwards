@@ -5,7 +5,7 @@ namespace WebAwardsBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
+use Symfony\Component\HttpFoundation\Response;
 
 class SecurityController extends Controller
 {
@@ -22,7 +22,7 @@ class SecurityController extends Controller
 
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-
+        
         return $this->render(
             'login.html.twig',
             array(
@@ -31,5 +31,13 @@ class SecurityController extends Controller
                 'error'         => $error,
             )
         );
+    }
+
+    /**
+     * @Route("/admin", name="admin_action")
+     */
+    public function adminAction()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
     }
 }

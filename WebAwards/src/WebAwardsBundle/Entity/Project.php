@@ -388,7 +388,7 @@ class Project
      */
     public function setDateAdd($dateAdd)
     {
-        $this->dateAdd = $dateAdd;
+        $this->dateAdd = new \DateTime($dateAdd);
 
         return $this;
     }

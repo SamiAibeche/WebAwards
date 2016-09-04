@@ -111,13 +111,6 @@ class User implements UserInterface, \Serializable
      */
     private $dateAff;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="sexe", type="string", length=1)
-     * @Assert\NotBlank()
-     */
-    private $sexe;
 
     /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="idUser")
@@ -394,7 +387,7 @@ class User implements UserInterface, \Serializable
      */
     public function setDateAff($dateAff)
     {
-        $this->dateAff = $dateAff;
+        $this->dateAff = new \DateTime($dateAff);
 
         return $this;
     }
@@ -409,29 +402,6 @@ class User implements UserInterface, \Serializable
         return $this->dateAff;
     }
 
-    /**
-     * Set sexe
-     *
-     * @param string $sexe
-     *
-     * @return User
-     */
-    public function setSexe($sexe)
-    {
-        $this->sexe = $sexe;
-
-        return $this;
-    }
-
-    /**
-     * Get sexe
-     *
-     * @return string
-     */
-    public function getSexe()
-    {
-        return $this->sexe;
-    }
 
     public function __construct()
     {

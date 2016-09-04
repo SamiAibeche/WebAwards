@@ -2,17 +2,23 @@
     <div class="container-fluid">
         <div class="col-xs-12">
             <div class="col-xs-12 col-md-4 text-center">
-                <div class="col-xs-12">
+                <div class="col-xs-12 blocWinnerFooter">
                     <h2>- Site du Mois - </h2>
                     <a href="{{ path('project_show',{ 'id': winner[0].id }) }}" target="_blank" ><img  class="img-responsive img-footer" src="{{ asset('uploads/project/'~ winner[0].imgScreen) }}" alt="Image : {{ winner[0].name }}"/></a>
-                    <h5> {{ user[0].firstname  }} {{ user[0].lastname }} - {{ winner[0].name }} - {{ winner[0].dateAdd|date("d/m/Y") }}</h5>
+                    <h6> {{ user[0].firstname  }} {{ user[0].lastname }} - {{ winner[0].name }} - {{ winner[0].dateAdd|date("d/m/Y") }}</h6>
                 </div>
             </div>
             <div class="col-xs-12 col-md-4 text-center">
                 <div class="col-xs-12">
-                    <h2>- Projets Récents - </h2>
-                    <a href="{{ path('project_show',{ 'id': winner[0].id }) }}" target="_blank" ><img  class="img-responsive img-footer" src="{{ asset('uploads/project/'~ winner[0].imgScreen) }}" alt="Image : {{ winner[0].name }}"/></a>
-                    <h5> {{ user[0].firstname  }} {{ user[0].lastname }} - {{ winner[0].name }} - {{ winner[0].dateAdd|date("d/m/Y") }}</h5>
+                    <h2 class="projectRecentTitle">- Projets Récents - </h2>
+                    <div class="row blocLastUpdate">
+                        {% for project in lastProject %}
+                            <div>
+                                <p class="fleft move "><a href="{{ path('project_show',{ 'id': project.id }) }}">{{ project.name | upper }}</a></p>
+                                <p class="fright"><span>{{ project.dateAdd|date("d/m/Y") }}</span></p>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             <div class="col-xs-12 col-md-4 text-center">

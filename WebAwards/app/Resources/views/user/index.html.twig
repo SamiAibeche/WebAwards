@@ -18,7 +18,6 @@
                 <th>Issubscribe</th>
                 <th>Isadmin</th>
                 <th>Dateaff</th>
-                <th>Sexe</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -37,7 +36,6 @@
                 <td>{% if user.isSubscribe %}Yes{% else %}No{% endif %}</td>
                 <td>{% if user.isAdmin %}Yes{% else %}No{% endif %}</td>
                 <td>{% if user.dateAff %}{{ user.dateAff|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ user.sexe }}</td>
                 <td>
                     <ul>
                         <li>

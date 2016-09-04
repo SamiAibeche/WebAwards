@@ -25,9 +25,9 @@ class ProjectType extends AbstractType
             //->add('imgMobile')
             ->add('imgMobile', FileType::class, array('label' => 'Image Mobile', 'data_class' => null))
             ->add('url')
-            ->add('nbLike')
-            ->add('isForward')
-            ->add('isVisible')
+            //->add('nbLike')
+            //->add('isForward')
+            //->add('isVisible')
            // ->add('dateAdd', DateType::class, array('input'  => 'datetime','widget' => 'choice'))
         ;
     }

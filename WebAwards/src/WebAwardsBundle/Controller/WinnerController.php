@@ -103,18 +103,21 @@ class WinnerController extends Controller
     }
 
     /**
-     * @return Project of the day
+     * @return Project of the day and author of the project and the 5 last project
      */
-    public function winnerDayAction(){
+    public function getFooterDataAction(){
         $em = $this->getDoctrine()->getManager();
+
+        //Get Last Project
+        $lastProject = $em->getRepository('WebAwardsBundle:Project')->findBy(array('isVisible' => 1), array('dateAdd' => 'desc'), 5);
         //Get All projects
         $projects = $em->getRepository('WebAwardsBundle:Project')->findAll();
 
         //Get the Winner of the day
-        $winner = $em->getRepository('WebAwardsBundle:Winner')->findBy(
+        $winners = $em->getRepository('WebAwardsBundle:Winner')->findBy(
             array('isDay' => '1')
         );
-        foreach($winner as $win){
+        foreach($winners as $win){
             $idProject = $win->getIdProject();
         }
         $winner = $em->getRepository('WebAwardsBundle:Project')->findById($idProject);
@@ -124,7 +127,8 @@ class WinnerController extends Controller
 
         return $this->render('footer.html.twig', array(
             'winner'   => $winner,
-            'user'     => $user
+            'user'     => $user,
+            'lastProject'     => $lastProject,
         ));
     }
 

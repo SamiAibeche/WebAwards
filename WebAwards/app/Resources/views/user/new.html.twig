@@ -4,7 +4,51 @@
     <h1>User creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+    <div>
+        {{ form_label(form.email) }}
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email) }}
+    </div>
+    <div>
+        {{ form_label(form.username) }}
+        {{ form_errors(form.username) }}
+        {{ form_widget(form.username) }}
+    </div>
+    <div>
+        {{ form_label(form.plainPassword.first) }}
+        {{ form_errors(form.plainPassword.first) }}
+        {{ form_widget(form.plainPassword.first) }}
+    </div>
+    <div>
+        {{ form_label(form.plainPassword.second) }}
+        {{ form_errors(form.plainPassword.second) }}
+        {{ form_widget(form.plainPassword.second) }}
+    </div>
+    <div>
+        {{ form_label(form.lastname) }}
+        {{ form_errors(form.lastname) }}
+        {{ form_widget(form.lastname) }}
+    </div>
+    <div>
+        {{ form_label(form.firstname) }}
+        {{ form_errors(form.firstname) }}
+        {{ form_widget(form.firstname) }}
+    </div>
+    <div>
+        {{ form_label(form.birthdayAt) }}
+        {{ form_errors(form.birthdayAt) }}
+        {{ form_widget(form.birthdayAt) }}
+    </div>
+    <div>
+        {{ form_label(form.img) }}
+        {{ form_errors(form.img) }}
+        {{ form_widget(form.img) }}
+    </div>
+    <div>
+        {{ form_label(form.role) }}
+        {{ form_errors(form.role) }}
+        {{ form_widget(form.role) }}
+    </div>
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
