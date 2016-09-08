@@ -14,7 +14,7 @@ class VoteRepository extends \Doctrine\ORM\EntityRepository
     /**
      *
      * Verify if the user has been voted for the current project
-     * 
+     *
      * @param $idUser  User id
      * @param $idProject  Project id
      * @return bool
@@ -33,6 +33,54 @@ class VoteRepository extends \Doctrine\ORM\EntityRepository
             return true;
         } else {
             return false;
+        }
+
+    }
+
+    public function getAvgVotes($idProject)
+    {
+
+        $query = $this->createQueryBuilder('v')
+            ->where('v.idProject = '.$idProject.'')
+            ->getQuery();
+
+        $result =  $query->getResult();
+
+        if(!empty($result)){
+
+            $nbVote = count($result);
+
+            $nbDesign = 0;
+            $nbFluidity = 0;
+            $nbConcept = 0;
+            $nbResponsive = 0;
+            $nbTotal = 0;
+
+            foreach ($result as $vote){
+                $nbDesign       += $vote->getNbDesign();
+                $nbFluidity     += $vote->getNbFluidity();
+                $nbConcept      += $vote->getNbConcept();
+                $nbResponsive   += $vote->getNbResponsive();
+                $nbTotal        += $vote->getNbTotal();
+            }
+            
+            $nbDesign       = round(($nbDesign/$nbVote), 1, PHP_ROUND_HALF_EVEN);
+            $nbFluidity     = round(($nbFluidity/$nbVote), 1, PHP_ROUND_HALF_EVEN);
+            $nbConcept      = round(($nbConcept/$nbVote), 1, PHP_ROUND_HALF_EVEN);
+            $nbResponsive   = round(($nbResponsive/$nbVote), 1, PHP_ROUND_HALF_EVEN);
+            $nbTotal        = round(($nbTotal/$nbVote), 1, PHP_ROUND_HALF_EVEN);
+
+
+            $vote->setNbDesign($nbDesign);
+            $vote->setNbFluidity($nbFluidity);
+            $vote->setNbConcept($nbConcept);
+            $vote->setNbResponsive($nbResponsive);
+            $vote->setNbTotal($nbTotal);
+
+            $voteAvg = end($result);
+            $tabResult [] = $voteAvg;
+
+            return $tabResult;
         }
 
     }

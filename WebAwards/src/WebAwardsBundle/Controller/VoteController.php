@@ -123,6 +123,7 @@ class VoteController extends Controller
             $vote->setNbResponsive($nbResponsive);
             $vote->setNbTotal($avgNbTotal);
 
+
             if ($form->isSubmitted() && $form->isValid()) { //if the form is submit & valid
 
                 $em->persist($vote);
@@ -155,6 +156,7 @@ class VoteController extends Controller
     {
         $deleteForm = $this->createDeleteForm($vote);
 
+        
         return $this->render('vote/show.html.twig', array(
             'vote' => $vote,
             'delete_form' => $deleteForm->createView(),

@@ -59,7 +59,7 @@ class ProjectController extends Controller
         $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
 
         //Get the vote of the project
-        $vote = $em->getRepository('WebAwardsBundle:Vote')->findByIdProject($idProject);
+        $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
 
 
         //Get the last project of the Month
@@ -156,7 +156,10 @@ class ProjectController extends Controller
         $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
 
         //Get the vote of the project
-        $vote = $em->getRepository('WebAwardsBundle:Vote')->findByIdProject($idProject);
+        $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
+
+        //dump($vote);
+        //die();
 
         return $this->render('project/show.html.twig', array(
             'project' => $project,
@@ -276,7 +279,7 @@ class ProjectController extends Controller
         $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
 
         //Get the vote of the project
-        $vote = $em->getRepository('WebAwardsBundle:Vote')->findByIdProject($idProject);
+        $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
 
 
         //Get the last project of the Month
@@ -369,7 +372,8 @@ class ProjectController extends Controller
 
         //Get the vote of the project
         $idProject = $tabIdProject[0];
-        $vote = $em->getRepository('WebAwardsBundle:Vote')->findByIdProject($idProject);
+
+        $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
 
 
         return $this->render('project/showWinners.html.twig', array(
