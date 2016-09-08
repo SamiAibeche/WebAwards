@@ -23,10 +23,10 @@
         <a class="navbar-brand hidden-xs hidden-sm hidden-md" href="{{ path('homepage') }}"><img class="img-responsive" src="{{ asset('bundles/framework/images/logo-small.png') }}" alt="WebAwards"/></a>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about">Junior's</a></li>
-                <li><a href="#contact">Agency's</a></li>
-                <li><a href="#contact">Freelance's</a></li>
-                <li><a href="#contact">Honorable's</a></li>
+                <li><a href="{{ path('project_from', { 'from':'junior', page:1 }) }}">Junior's</a></li>
+                <li><a  href="{{ path('project_from', { 'from':'agency', page:1 }) }}">Agency's</a></li>
+                <li><a href="{{ path('project_from', { 'from':'freelance', page:1 }) }}">Freelance's</a></li>
+                <li><a href="{{ path('project_from', { 'from':'honorable', page:1 }) }}">Honorable's</a></li>
                 <li><a href="#contact">Site de la semaine</a></li>
                 <li><a href="#contact">Site du mois</a></li>
                 <li><a href="#contact">Site de l'année</a></li>

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="row">
+            <div  class="col-xs-12 text-center text-uppercase divTitle">
+                <h1> - {{ from }}'s project- </h1>
+            </div>
+        </div>
+    </div>
+
+<div class="container-fluid">
+
+        <div class="container-fluid">
+        {% if projects.count > 0 %}
+            {% for project in projects %}
+                <div class="col-xs-12 col-md-4 vignetteProject">
+                    <a href="{{ path('project_show', { 'id': project.id }) }}">
+                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" />
+                    </a>
+                    <div class="col-xs-12 text-center">
+                        <div class="col-xs-12 text-center blocSuggestVote">
+                            {% if date(project.dateAdd) < date() and date(project.dateAdd) > date('-7days') %}
+                                <div class="SuggestVote">
+                                    <h1><a href="{{ path('project_show', { 'id': project.id }) }}">VOTER !</a></h1>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-center alert alert-warning fade in">
+                        <h2> ... Aucun projet pour le moment ... </h2>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+            {% if maxPages > 1 %}
+
+                <ul class="pagination pagination-sm">
+                    {# `«` arrow  #}
+                    <li {{ thisPage == 1 ? 'class="disabled"' }}>
+                        <a href="{{ path('project_from', { from : 'agency', page: thisPage-1 < 1 ? 1 : thisPage-1}) }}">«</a>
+                    </li>
+
+                    {# Render each page number #}
+                    {% for i in 1..maxPages %}
+                        <li {{ thisPage == i ? 'class="active"' }}>
+                            <a href="{{ path('project_from', {from : 'agency', page: i}) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {# `»` arrow #}
+                    <li {{ thisPage == maxPages ? 'class="disabled"' }}>
+                        <a href="{{ path('project_from',{ from : 'agency', page: thisPage+1 <= maxPages ? thisPage+1 : thisPage}) }}">»</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

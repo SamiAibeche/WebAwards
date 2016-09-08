@@ -13,6 +13,7 @@ use WebAwardsBundle\Entity\Vote;
 use WebAwardsBundle\Form\ProjectType;
 use Symfony\Component\HttpFoundation\Response;
 
+
 /**
  * Project controller.
  *
@@ -24,20 +25,30 @@ class ProjectController extends Controller
     /**
      * Lists all Project entities.
      *
-     * @Route("/user", name="project_index")
+     * @Route("/", name="project_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page = 1)
     {
         $em = $this->getDoctrine()->getManager();
         //Get All projects
         //$projects = $em->getRepository('WebAwardsBundle:Project')->findByIsVisible(1);
-        $projects = $em->getRepository('WebAwardsBundle:Project')->findBy(array('isVisible' => 1), array('dateAdd' => 'desc'));
+        //$projects = $em->getRepository('WebAwardsBundle:Project')->findBy(array('isVisible' => 1), array('dateAdd' => 'desc'));
+        
+        $projects = $em->getRepository('WebAwardsBundle:Project')->getAllPosts($page);
+        $totalPostsReturned = $projects->getIterator()->count();
+        $totalProjects = $projects->count();
+        $maxPage = ceil($totalProjects/6);
+        $iterator = $projects->getIterator();
+
+
+
 
         //Get the Winner of the day
         $winner = $em->getRepository('WebAwardsBundle:Winner')->findBy(
             array('isDay' => '1')
         );
+
         foreach($winner as $win){
             $idProject = $win->getIdProject();
         }
@@ -60,6 +71,8 @@ class ProjectController extends Controller
             'winner'   => $winner,
             'user'     => $user,
             'vote'     => $vote,
+            'maxPages' => $maxPage,
+            'thisPage' => $page,
         ));
 
     }
@@ -215,4 +228,91 @@ class ProjectController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Displays the number of project present in the page and set the navigation
+     *
+     * @Route("/page/{page}", name="project_list")
+     * @Method({"GET"})
+     */
+    public function listAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+
+        $page = $request->get('page');
+
+        $projects = $em->getRepository('WebAwardsBundle:Project')->getAllPosts($page);
+        $totalPostsReturned = $projects->getIterator()->count();
+        $totalProjects = $projects->count();
+        $iterator = $projects->getIterator();
+        $maxPage = ceil($totalProjects/6);
+
+        //Get the Winner of the day
+        $winner = $em->getRepository('WebAwardsBundle:Winner')->findBy(
+            array('isDay' => '1')
+        );
+
+        foreach($winner as $win){
+            $idProject = $win->getIdProject();
+        }
+        $winner = $em->getRepository('WebAwardsBundle:Project')->findById($idProject);
+
+        //Get the author of the project
+        $idUser = $winner[0]->getIdAuthor();
+        $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
+
+        //Get the vote of the project
+        $vote = $em->getRepository('WebAwardsBundle:Vote')->findByIdProject($idProject);
+
+
+        //Get the last project of the Month
+
+        //All Winner of the month
+        //Recuperer dans la liste de tous les projets, le projet == meme id, order by date desc limit 1
+        return $this->render('project/index.html.twig', array(
+            'projects' => $projects,
+            'winner'   => $winner,
+            'user'     => $user,
+            'vote'     => $vote,
+            'maxPages' => $maxPage,
+            'thisPage' => $page,
+        ));
+
+    }
+    /**
+     * Init & show the junior's project.
+     *
+     * @Route("/{from}/", name="project_from")
+     * @Method({"GET"})
+     */
+    public function getProjectFrom(Request $request){
+
+        $page =$request->query->get('page');
+        $page = (int) $page;
+
+        $em = $this->getDoctrine()->getManager();
+
+        $page = $request->get('page');
+        $from = $request->get('from');
+
+        if( $from == "freelance" || $from == "agency" ||  $from == "junior"  || $from == "honorable") {
+
+            $projects = $em->getRepository('WebAwardsBundle:Project')->getAllPostsFrom($page, $from);
+
+        }
+
+        $totalPostsReturned = $projects->getIterator()->count();
+        $totalProjects = $projects->count();
+
+        $iterator = $projects->getIterator();
+        $maxPage = ceil($totalProjects/9);
+
+        return $this->render('project/junior.html.twig', array(
+            'projects' => $projects,
+            'maxPages' => $maxPage,
+            'thisPage' => $page,
+            'from'     => $from
+        ));
+
+    }
+
 }

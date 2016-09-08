@@ -54,7 +54,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('project_index') }}">Back to the list</a>
+            <a href="{{ app.request.headers.get('referer') }}">Back</a>
         </li>
         <li>
             <a href="{{ path('project_edit', { 'id': project.id }) }}">Edit</a>

@@ -10,4 +10,5 @@ namespace WebAwardsBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    
 }
