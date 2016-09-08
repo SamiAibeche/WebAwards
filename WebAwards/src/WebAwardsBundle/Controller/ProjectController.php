@@ -144,11 +144,26 @@ class ProjectController extends Controller
      */
     public function showAction(Project $project)
     {
+        $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($project);
+        $form = $this->createForm('WebAwardsBundle\Form\VoteType');
+
+        $user = $project->getIdAuthor();
+        $idUser = $user->getId();
+        $idProject = $project->getId();
+
+
+        $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
+
+        //Get the vote of the project
+        $vote = $em->getRepository('WebAwardsBundle:Vote')->findByIdProject($idProject);
 
         return $this->render('project/show.html.twig', array(
             'project' => $project,
+            'user'     => $user,
+            'vote'     => $vote,
             'delete_form' => $deleteForm->createView(),
+            'form' => $form->createView()
         ));
     }
 
@@ -306,11 +321,64 @@ class ProjectController extends Controller
         $iterator = $projects->getIterator();
         $maxPage = ceil($totalProjects/9);
 
-        return $this->render('project/junior.html.twig', array(
+        return $this->render('project/showList.html.twig', array(
             'projects' => $projects,
             'maxPages' => $maxPage,
             'thisPage' => $page,
             'from'     => $from
+        ));
+
+    }
+
+    /**
+     * Init & show the junior's project.
+     *
+     * @Route("winner/{winner}/", name="project_from_winner")
+     * @Method({"GET"})
+     */
+    public function getWinnerProjectFrom(Request $request){
+
+        $page =$request->query->get('page');
+        $page = (int) $page;
+
+        $em = $this->getDoctrine()->getManager();
+
+        $page = $request->get('page');
+        $winner = $request->get('winner');
+        
+        $projects = $em->getRepository('WebAwardsBundle:Project')->getWinnerProjects($page, $winner);
+        
+
+        $totalPostsReturned = $projects->getIterator()->count();
+        $totalProjects = $projects->count();
+        $iterator = $projects->getIterator();
+        $maxPage = ceil($totalProjects/9);
+
+
+
+        $tabIdAuthor = [];
+        $tabIdProject = [];
+        foreach ($projects as $post) {
+            $tabIdProject[] = $post->getId();
+            $tabIdAuthor[] = $post->getIdAuthor();
+        }
+
+        //Get the author of the project
+        $idUser = $tabIdAuthor[0];
+        $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
+
+        //Get the vote of the project
+        $idProject = $tabIdProject[0];
+        $vote = $em->getRepository('WebAwardsBundle:Vote')->findByIdProject($idProject);
+
+
+        return $this->render('project/showWinners.html.twig', array(
+            'projects' => $projects,
+            'user'     => $user,
+            'vote'     => $vote,
+            'maxPages' => $maxPage,
+            'thisPage' => $page,
+            'from'     => $winner
         ));
 
     }

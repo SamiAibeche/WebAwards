@@ -14,14 +14,7 @@ class VoteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('idProject')
-            ->add('idUser')
-            ->add('nbDesign')
-            ->add('nbFluidity')
-            ->add('nbConcept')
-            ->add('nbContent')
-            ->add('nbTotal');
+        //Display in the template.
     }
     
     /**

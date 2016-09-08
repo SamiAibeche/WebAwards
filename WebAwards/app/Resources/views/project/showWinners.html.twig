@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="row">
+            <div  class="col-xs-12 text-center text-uppercase divTitle">
+                <h1> - Projet {% if from == "week" %}  de la Semaine
+                    {% elseif from == "month" %}
+                        du Mois
+                    {% elseif from == "year" %}
+                        de l'Année
+                    {% endif %} - </h1>
+            </div>
+        </div>
+    </div>
+
+<div class="container-fluid">
+
+        <div class="container-fluid">
+        {% if projects.count > 0 %}
+            <div class="container-fluid">
+                <div class="row blocProjectDay">
+                    <div  class="col-xs-12 col-md-6">
+                        <div class="col-xs-12">
+                            <a href=" {{ path('project_show', { 'id': (projects|first).id }) }}">
+                                <img class="img-responsive center imgProject" src="{{ asset('uploads/project/'~ (projects|first).imgScreen) }}" alt="Image : {{ (projects|first).name }}"/>
+                            </a>
+                        </div>
+                        <div  class="col-xs-6 text-left"><a href=""><span class="glyphicon glyphicon-heart"></span></a>{{ (projects|first).nbLike }}</div>
+                        <div  class="col-xs-6 text-right shareIcon">
+                            <a class="facebook customer share" href="http://www.facebook.com/sharer.php?u={{ (projects|first).url }}" title="Partager sur Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a class="twitter customer share" href="http://twitter.com/share?url={{ (projects|first).url }}l&amp;text=Site du jour &amp;hashtags=webawards" title="Partager sur Twiiter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div  class="col-xs-12 col-md-6">
+                        <div class="col-xs-4">
+                            <img class="img-responsive center imgProjectMobile" src="{{ asset('uploads/project/'~ (projects|first).imgMobile) }}" alt="Image"/>
+                        </div>
+                        <div  class="col-xs-8 text-center blocInfoUser">
+                            <div><h2><strong>{{ (projects|first).name | upper }}</strong></h2></div>
+                            <div><h5>De : {{ (user|first).firstname }} {{ (user|first).lastname }}</h5></div>
+                            <div><h4>{{ (projects|first).description }}</h4></div>
+                            <div><h6>Posté le : {{ (projects|first).dateAdd|date("d/m/Y") }}</h6></div>
+                        </div>
+                        <div  class="col-xs-12">
+                            <div class="col-xs-6 col-md-2 borderVoteContainer design"><div></div><span>{{ (vote|first).nbDesign }}</span><i>Design</i></div>
+                            <div class="col-xs-6 col-md-2 borderVoteContainer fluidity"><div></div><span>{{ (vote|first).nbFluidity }}</span><i>Fluidité</i></div>
+                            <div class="col-xs-6 col-md-2 borderVoteContainer concept"><div></div><span>{{ (vote|first).nbConcept }}</span><i>Concept</i></div>
+                            <div class="col-xs-6 col-md-2 borderVoteContainer responsive"><div></div><span>{{ (vote|first).nbResponsive }}</span><i>Responsive</i></div>
+                            <div class="col-xs-6 col-md-4 borderVoteContainer nbTotal"><div></div><span>{{ (vote|first).nbTotal }}</span><i>Total</i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ICI LE RESTE DES PROJETS -->
+            {% for project in projects|slice(1) %}
+                <div class="col-xs-12 col-md-4 vignetteProject">
+                    <a href="{{ path('project_show', { 'id': project.id }) }}">
+                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" />
+                    </a>
+                    <div class="col-xs-12 text-center">
+                        <div class="col-xs-12 text-center blocSuggestVote">
+                            {% if date(project.dateAdd) < date() and date(project.dateAdd) > date('-7days') %}
+                                <div class="SuggestVote">
+                                    <h1><a href="{{ path('project_show', { 'id': project.id }) }}">VOTER !</a></h1>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-center alert alert-warning fade in">
+                        <h2> ... Aucun projet pour le moment ... </h2>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+            {% if maxPages > 1 %}
+
+                <ul class="pagination pagination-sm">
+                    {# `«` arrow  #}
+                    <li {{ thisPage == 1 ? 'class="disabled"' }}>
+                        <a href="{{ path('project_from', { from : 'agency', page: thisPage-1 < 1 ? 1 : thisPage-1}) }}">«</a>
+                    </li>
+
+                    {# Render each page number #}
+                    {% for i in 1..maxPages %}
+                        <li {{ thisPage == i ? 'class="active"' }}>
+                            <a href="{{ path('project_from', {from : 'agency', page: i}) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {# `»` arrow #}
+                    <li {{ thisPage == maxPages ? 'class="disabled"' }}>
+                        <a href="{{ path('project_from',{ from : 'agency', page: thisPage+1 <= maxPages ? thisPage+1 : thisPage}) }}">»</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

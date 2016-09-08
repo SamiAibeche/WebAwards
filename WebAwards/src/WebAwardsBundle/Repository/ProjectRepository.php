@@ -108,6 +108,22 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $paginator;
     }
 
+    public function getWinnerProjects($currentPage, $seekWinner){
+
+       $seekWinner = ucfirst($seekWinner);
+        
+        $query = $this->createQueryBuilder('p')
+            ->join('p.winners', 'w')
+            ->where('p.isVisible = 1')
+            ->andWhere("w.is".$seekWinner." = 1")
+            ->orderBy('p.dateAdd', 'DESC')
+            ->getQuery();
+        
+        $paginator = $this->paginate($query, $currentPage, 9);
+        return $paginator;
+    }
+
+
     public function paginate($dql, $page = 1, $limit)
     {
         $paginator = new Paginator($dql);

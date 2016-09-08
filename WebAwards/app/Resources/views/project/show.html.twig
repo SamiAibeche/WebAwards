@@ -1,68 +1,104 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Project</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ project.id }}</td>
-            </tr>
-            <tr>
-                <th>Idauthor</th>
-                <td>{{ project.idAuthor }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ project.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ project.description }}</td>
-            </tr>
-            <tr>
-                <th>Imgscreen</th>
-                <td><img src="{{ asset('uploads/project/' ~ project.imgScreen) }}" alt="Image - {{ project.name }}"/></td>
-            </tr>
-            <tr>
-                <th>Imgmobile</th>
-                <td><img src="{{ asset('uploads/project/' ~ project.ImgMobile) }}" alt="Image - {{ project.name }}"/></td>
-            </tr>
-            <tr>
-                <th>Url</th>
-                <td>{{ project.url }}</td>
-            </tr>
-            <tr>
-                <th>Nblike</th>
-                <td>{{ project.nbLike }}</td>
-            </tr>
-            <tr>
-                <th>Isforward</th>
-                <td>{% if project.isForward %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Isvisible</th>
-                <td>{% if project.isVisible %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Dateadd</th>
-                <td>{% if project.dateAdd %}{{ project.dateAdd|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+
+    <div class="container">
+        <div class="row">
+            <div  class="col-xs-12 text-center text-uppercase divTitle">
+                <h1>{{ project.name }} </h1>
+            </div>
+        </div>
+    </div>
+    {% for flash_message in app.session.flashBag.get('notice') %}
+        <div class="alert alert-warning text-center" role="alert">
+            <strong>Désolé ! </strong>{{ flash_message }}</a>.
+        </div>
+    {% endfor %}
+    <div class="container-fluid">
+    {% if project %}
+        <div class="container-fluid">
+            <div class="row blocProjectDay">
+                <div  class="col-xs-12 col-md-6">
+                    <div class="col-xs-12">
+                        <a href=" {{ path('project_show', { 'id': project.id }) }}">
+                            <img class="img-responsive center imgProject" src="{{ asset('uploads/project/'~ project.imgScreen) }}" alt="Image : {{ project.name }}"/>
+                        </a>
+                    </div>
+                    <div  class="col-xs-6 text-left"><a href=""><span class="glyphicon glyphicon-heart"></span></a>{{ project.nbLike }}</div>
+                    <div  class="col-xs-6 text-right shareIcon">
+                        <a class="facebook customer share" href="http://www.facebook.com/sharer.php?u={{ project.url }}" title="Partager sur Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a class="twitter customer share" href="http://twitter.com/share?url={{ project.url }}l&amp;text=Site du jour &amp;hashtags=webawards" title="Partager sur Twiiter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div  class="col-xs-12 col-md-6">
+                    <div class="col-xs-4">
+                        <img class="img-responsive center imgProjectMobile" src="{{ asset('uploads/project/'~ project.imgMobile) }}" alt="Image"/>
+                    </div>
+                    <div  class="col-xs-8 text-center blocInfoUser">
+                        <div><h2><strong>{{ project.name | upper }}</strong></h2></div>
+                        <div><h5>De : {{ user[0].firstname }} {{ user[0].lastname }}</h5></div>
+                        <div><h4>{{ project.description }}</h4></div>
+                        <div><h6>Posté le : {{ project.dateAdd|date("d/m/Y") }}</h6></div>
+                    </div>
+                    {% if vote  %}
+                        <div  class="col-xs-12">
+                            <div class="col-xs-6 col-md-2 borderVoteContainer design"><div></div><span>{{ vote[0].nbDesign }}</span><i>Design</i></div>
+                            <div class="col-xs-6 col-md-2 borderVoteContainer fluidity"><div></div><span>{{ vote[0].nbFluidity }}</span><i>Fluidité</i></div>
+                            <div class="col-xs-6 col-md-2 borderVoteContainer concept"><div></div><span>{{ vote[0].nbConcept }}</span><i>Concept</i></div>
+                            <div class="col-xs-6 col-md-2 borderVoteContainer responsive"><div></div><span>{{ vote[0].nbResponsive }}</span><i>Responsive</i></div>
+                            <div class="col-xs-6 col-md-4 borderVoteContainer nbTotal"><div></div><span>{{ vote[0].nbTotal }}</span><i>Total</i></div>
+                        </div>
+                    {% else %}
+                        {% if date(project.dateAdd) < date() and date(project.dateAdd) > date('-7days') %}
+                            <div  class="col-xs-12 text-center">
+                                <div class="col-xs-12 noVote"><h2 class="text-uppercase">{{ project.name }} a besoin de vos votes !</h2></div>
+                            </div>
+                        {% else %}
+                            <div  class="col-xs-12 text-center">
+                                <div class="col-xs-12 noVote"><h2 class="text-uppercase">Aucun vote enrgistré pour {{ project.name }}</h2></div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                {% if date(project.dateAdd) < date() and date(project.dateAdd) > date('-7days')  %}
+                <div class="row">
+                    <div class="col-xs-12 blocVoteUser">
+                        {{ form_start(form,{'action': '../vote/new'}) }}
+                        {{ form_widget(form) }}
+
+                            <div class="col-xs-6 col-md-2 borderVoteContainer design"><div></div><span><input name="nbDesign" type="text" placeholder="?/10" class="inputVote text-center"></span><i>Design</i></div>
+                            <div class="col-xs-6 col-md-2 borderVoteContainer fluidity"><div></div><span><input name="nbFluidity" type="text" placeholder="?/10"class="inputVote text-center"></span><i>Fluidité</i></div>
+                            <div class="col-xs-6 col-md-2 borderVoteContainer concept"><div></div><span><input name="nbConcept" type="text" placeholder="?/10" class="inputVote text-center"></span><i>Concept</i></div>
+                            <div class="col-xs-6 col-md-2 borderVoteContainer responsive"><div></div><span><input name="nbResponsive" type="text" placeholder="?/10"class="inputVote text-center"></span><i>Responsive</i></div>
+                        <input type="hidden" name="idAuthor" value="{{ project.idAuthor }}" />
+                        <input type="hidden" name="idProject" value="{{ project.id }}" />
+                        <input type="submit" class="btSendVoteUser" value="voter !" />
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+    {% endif %}
 
     <ul>
         <li>
-            <a href="{{ app.request.headers.get('referer') }}">Back</a>
+            <a href="{{ app.request.headers.get('referer') }}">Back to the list</a>
         </li>
-        <li>
-            <a href="{{ path('project_edit', { 'id': project.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+
+        {%  if (app.user) != (null) %}
+            {% if (app.user.roles[0]) == ('ROLE_ADMIN') %}
+                <li>
+                    <a href="{{ path('project_edit', { 'id': project.id }) }}">Edit</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+                </li>
+            {% endif %}
+        {% endif %}
     </ul>
 {% endblock %}

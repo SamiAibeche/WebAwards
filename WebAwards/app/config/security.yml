@@ -60,3 +60,6 @@ security:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: /project/new, roles: ROLE_USER }
+        - { path: vote, roles: ROLE_USER }
+        - { path: edit, roles: ROLE_ADMIN }
+        - { path: delete, roles: ROLE_ADMIN }

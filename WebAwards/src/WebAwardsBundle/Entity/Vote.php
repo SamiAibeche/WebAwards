@@ -206,7 +206,7 @@ class Vote
     /**
      * Set nbResponsive
      *
-     * @param float $nbContent
+     * @param float nbResponsive
      *
      * @return Vote
      */

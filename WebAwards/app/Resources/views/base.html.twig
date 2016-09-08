@@ -27,9 +27,9 @@
                 <li><a  href="{{ path('project_from', { 'from':'agency', page:1 }) }}">Agency's</a></li>
                 <li><a href="{{ path('project_from', { 'from':'freelance', page:1 }) }}">Freelance's</a></li>
                 <li><a href="{{ path('project_from', { 'from':'honorable', page:1 }) }}">Honorable's</a></li>
-                <li><a href="#contact">Site de la semaine</a></li>
-                <li><a href="#contact">Site du mois</a></li>
-                <li><a href="#contact">Site de l'année</a></li>
+                <li><a href="{{ path('project_from_winner', { 'winner':'week', page:1 }) }}">Site de la semaine</a></li>
+                <li><a href="{{ path('project_from_winner', { 'winner':'month', page:1 }) }}">Site du mois</a></li>
+                <li><a href="{{ path('project_from_winner', { 'winner':'year', page:1 }) }}">Site de l'année</a></li>
             </ul>
         </div>
     </nav>

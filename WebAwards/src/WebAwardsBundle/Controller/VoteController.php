@@ -41,22 +41,108 @@ class VoteController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $vote = new Vote();
         $form = $this->createForm('WebAwardsBundle\Form\VoteType', $vote);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($vote);
-            $em->flush();
 
-            return $this->redirectToRoute('vote_show', array('id' => $vote->getId()));
+        //Get current User id
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $idUser = $user->getId();
+
+        //Get post data ( project id & author id )
+        $idProject = $request->get('idProject');
+        $idAuthor = $request->get('idAuthor');
+
+        //Get User by Id
+        $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
+        //Get project by Id
+        $project = $em->getRepository('WebAwardsBundle:Project')->findById($idProject);
+
+        //Verify if the current user has been voted
+        $hasVote = $em->getRepository('WebAwardsBundle:Vote')->VerifyUserVote($idUser, $idProject);
+        if(!$hasVote){
+            $this->addFlash(
+                'notice',
+                'Un vote a déjà été enregistré pour ce projet.'
+            );
+            return $this->redirectToRoute('project_show',  array('id' => $project[0]->getId()));
+
         }
 
-        return $this->render('vote/new.html.twig', array(
-            'vote' => $vote,
-            'form' => $form->createView(),
-        ));
+        //Vérify if it's numeric data
+        if( (!is_numeric($request->get('nbFluidity'))) || (!is_numeric($request->get('nbDesign')))
+            || (!is_numeric($request->get('nbConcept'))) || (!is_numeric($request->get('nbResponsive'))) ) {
+
+            $this->addFlash(
+                'notice',
+                'Le formulaire ne semble pas être valide !'
+            );
+            return $this->redirectToRoute('project_show',  array('id' => $project[0]->getId()));
+        } else {
+            //Vérify if data >=0 && data<=10
+            if( (($request->get('nbFluidity') >= 10 || $request->get('nbFluidity') <= 0)) || (($request->get('nbDesign') >= 10 || $request->get('nbDesign') <= 0))
+                || (($request->get('nbConcept') >= 10 || $request->get('nbConcept') <= 0)) || (($request->get('nbResponsive') >= 10 || $request->get('nbResponsive') <= 0))){
+                $this->addFlash(
+                    'notice',
+                    'Seuls les votes de 0 à 10 sont autorisés !'
+                );
+                return $this->redirectToRoute('project_show',  array('id' => $project[0]->getId()));
+            } else {
+
+                //Init data
+                $nbFluidity = (int) $request->get('nbFluidity');
+                $nbDesign = (int) $request->get('nbDesign');
+                $nbConcept = (int) $request->get('nbConcept');
+                $nbResponsive = (int) $request->get('nbResponsive');
+            }
+        }
+
+
+
+        //Calculate vote to prepare injection.
+        $avgNbFluidity = ($nbFluidity/10)*15;
+        $avgNbConcept = ($nbConcept/10)*15;
+        $avgNbDesign = ($nbDesign/10)*30;
+        $avgNbResponsive = ($nbResponsive/10)*40;
+        $avgNbTotal = ($avgNbFluidity+$avgNbConcept+$avgNbDesign+$avgNbResponsive)/10;
+
+        $avgNbTotal = round($avgNbTotal, 1, PHP_ROUND_HALF_DOWN);
+
+
+        //If the current user != project author
+        if($idUser != $idAuthor) {
+
+
+            $vote->setIdUser($user[0]);
+            $vote->setIdProject($project[0]);
+            $vote->setNbFluidity($nbFluidity);
+            $vote->setNbDesign($nbDesign);
+            $vote->setNbConcept($nbConcept);
+            $vote->setNbResponsive($nbResponsive);
+            $vote->setNbTotal($avgNbTotal);
+
+            if ($form->isSubmitted() && $form->isValid()) { //if the form is submit & valid
+
+                $em->persist($vote);
+                $em->flush();
+                return $this->redirectToRoute('project_show', array('id' => $project[0]->getId()));
+
+            } else {
+                $this->addFlash(
+                    'notice',
+                    'Le formulaire ne semble pas être valide !'
+                );
+            }
+        } else {
+            $this->addFlash(
+                'notice',
+                'Vous ne pouvez pas voter pour votre propre projet !'
+            );
+        }
+
+        return $this->redirectToRoute('project_show',  array('id' => $project[0]->getId()));
     }
 
     /**
