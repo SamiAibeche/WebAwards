@@ -133,6 +133,11 @@ class Project
      * @ORM\OneToMany(targetEntity="Vote", mappedBy="idProject",cascade={"remove"})
      */
     private $votes;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Heart", mappedBy="idProject",cascade={"remove"})
+     */
+    private $hearts;
 
     /**
      * @ORM\OneToMany(targetEntity="Winner", mappedBy="idProject",cascade={"remove"})

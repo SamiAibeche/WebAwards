@@ -123,6 +123,11 @@ class User implements UserInterface, \Serializable
     private $votes;
 
     /**
+     * @ORM\OneToMany(targetEntity="Heart", mappedBy="idUser")
+     */
+    private $hearts;
+
+    /**
      * @ORM\OneToMany(targetEntity="Project", mappedBy="idAuthor")
      */
     private $projects;

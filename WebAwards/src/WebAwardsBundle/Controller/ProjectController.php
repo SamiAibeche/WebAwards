@@ -61,6 +61,7 @@ class ProjectController extends Controller
         //Get the vote of the project
         $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
 
+        $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
 
         //Get the last project of the Month
 
@@ -69,6 +70,7 @@ class ProjectController extends Controller
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
             'winner'   => $winner,
+            'nbHeart'  => $nbHeart,
             'user'     => $user,
             'vote'     => $vote,
             'maxPages' => $maxPage,
@@ -157,13 +159,14 @@ class ProjectController extends Controller
 
         //Get the vote of the project
         $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
-
+        $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
         //dump($vote);
         //die();
 
         return $this->render('project/show.html.twig', array(
             'project' => $project,
             'user'     => $user,
+            'nbHeart' => $nbHeart,
             'vote'     => $vote,
             'delete_form' => $deleteForm->createView(),
             'form' => $form->createView()
@@ -301,13 +304,14 @@ class ProjectController extends Controller
         //Get the vote of the project
         $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
 
-
+        $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
         //Get the last project of the Month
 
         //All Winner of the month
         //Recuperer dans la liste de tous les projets, le projet == meme id, order by date desc limit 1
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
+            'nbHeart'  => $nbHeart,
             'winner'   => $winner,
             'user'     => $user,
             'vote'     => $vote,
@@ -395,10 +399,13 @@ class ProjectController extends Controller
 
         $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
 
+        $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
+
 
         return $this->render('project/showWinners.html.twig', array(
             'projects' => $projects,
             'user'     => $user,
+            'nbHeart'  => $nbHeart,
             'vote'     => $vote,
             'maxPages' => $maxPage,
             'thisPage' => $page,
