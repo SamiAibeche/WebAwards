@@ -1,7 +1,7 @@
 <?php
 
 namespace WebAwardsBundle\Repository;
-
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * VoteRepository
  *
@@ -63,7 +63,7 @@ class VoteRepository extends \Doctrine\ORM\EntityRepository
                 $nbResponsive   += $vote->getNbResponsive();
                 $nbTotal        += $vote->getNbTotal();
             }
-            
+
             $nbDesign       = round(($nbDesign/$nbVote), 1, PHP_ROUND_HALF_EVEN);
             $nbFluidity     = round(($nbFluidity/$nbVote), 1, PHP_ROUND_HALF_EVEN);
             $nbConcept      = round(($nbConcept/$nbVote), 1, PHP_ROUND_HALF_EVEN);
@@ -83,5 +83,40 @@ class VoteRepository extends \Doctrine\ORM\EntityRepository
             return $tabResult;
         }
 
+    }
+    public function getIdUserFromVotes ($votes){
+
+
+        $tabId = [];
+        foreach ($votes as $vote){
+            $user = $vote->getIdUser();
+            $tabId[] = $user->getId();
+        }
+
+        return $tabId;
+    }
+    public function getVotesFrom($idProject)
+    {
+
+        $query = $this->createQueryBuilder('v')
+            ->join('v.idUser', 'u')
+            ->where('v.idProject = '.$idProject.'')
+            ->orderBy('v.id', 'DESC')
+            ->getQuery();
+
+        $result =$query->getResult();
+
+        return $result;
+    }
+
+    public function paginate($dql, $page = 1, $limit)
+    {
+        $paginator = new Paginator($dql);
+
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1)) // Offset
+            ->setMaxResults($limit); // Limit
+
+        return $paginator;
     }
 }

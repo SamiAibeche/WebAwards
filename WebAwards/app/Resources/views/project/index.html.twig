@@ -9,6 +9,11 @@
                 </div>
             </div>
         </div>
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="alert alert-warning text-center" role="alert">
+                <strong>Désolé ! </strong>{{ flash_message }}</a>.
+            </div>
+        {% endfor %}
         <div class="container-fluid">
             <div class="row blocProjectDay">
                 <div  class="col-xs-12 col-md-6">
@@ -29,7 +34,7 @@
                     </div>
                     <div  class="col-xs-8 text-center blocInfoUser">
                         <div><h2><strong>{{ winner[0].name | upper }}</strong></h2></div>
-                        <div><h5>De : {{ user[0].firstname }} {{ user[0].lastname }}</h5></div>
+                        <div><h5>De : <a class="linkUser" href="{{ path('user_show', { 'id': user[0].id }) }}">{{ user[0].firstname }} {{ user[0].lastname }}</a></h5></div>
                         <div><h4>{{ winner[0].description }}</h4></div>
                         <div><h6>Posté le : {{ winner[0].dateAdd|date("d/m/Y") }}</h6></div>
                     </div>

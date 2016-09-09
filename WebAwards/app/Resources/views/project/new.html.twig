@@ -8,9 +8,11 @@
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('project_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="blocBtn">
+                <a class="btn btRetour" href="{{ app.request.headers.get('referer') }}">RETOUR</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

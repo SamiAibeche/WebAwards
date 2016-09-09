@@ -38,7 +38,9 @@
         <button type="button" class="btn btn-secondary login">
             {% if app.user %}
                 <a href="{{ path('logout') }}">Déconnexion</a>
-                <a href="#"> | <span class="glyphicon glyphicon-user"></span></a>
+                {% if (app.user.roles[0]) != ('ROLE_ADMIN') %}
+                    <a href="{{ path('user_show', { 'id': app.user.id }) }}"> | <span class="glyphicon glyphicon-user"></span></a>
+                {% endif %}
             {% else %}
                 <a href="{{ path('login') }}">Connexion</a>
             {% endif %}

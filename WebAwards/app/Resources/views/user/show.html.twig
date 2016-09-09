@@ -1,72 +1,91 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User</h1>
+    <div class="container">
+        <div class="row">
+            <div  class="col-xs-12 text-center text-uppercase divTitle">
+                <h1> - {{ user.firstname }} {{ user.lastname }} - </h1>
+            </div>
+            <div class="col-xs-12 blocProfilUser">
+                <div class="col-xs-12 col-sm-6 center">
+                    <img  class="img-responsive img-profil" src="{{ asset('uploads/user/' ~ user.img) }}" alt="Image de {{ user.firstname }} {{ user.lastname }}" title="Voir profil"/>
+                </div>
+                <div class="col-xs-12 col-sm-6 text-center">
+                    <h1 class="vignetteUserRole"><span>{% if user.role != "me"  %} {{ user.role|upper }} {% else %} MAKER {% endif %}</span></h1>
+                    <p class="nameProfil">{{ user.firstname|upper }} {{ user.lastname|upper }} </p>
+                    <p class="vignetteUserDate" >Membre depuis le : {{ user.dateAff|date("d/m/Y") }}</p>
+                    <div class="blocMailUser">
+                        <a href="mailto:{{ user.email }}" >CONTACTER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if projects  %}
+        <div class="container-fluid">
+            <div class="row">
+                <div  class="col-xs-12 text-center text-uppercase divTitle">
+                    <h1> - Tous les projets de  {{ user.firstname }} {{ user.lastname }} - </h1>
+                </div>
+            </div>
+            <div class="row blocProjectDay">
+            {% for project in projects %}
+                <div class="col-xs-12 col-md-4 vignetteProject">
+                    <a href="{{ path('project_show', { 'id': project.id }) }}">
+                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" />
+                    </a>
+                    <div class="col-xs-12 text-center blocSuggestVote">
+                        {% if date(project.dateAdd) < date() and date(project.dateAdd) > date('-7days') %}
+                            <div class="SuggestVote">
+                                <h1><a href="{{ path('project_show', { 'id': project.id }) }}">VOTER !</a></h1>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ user.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ user.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Birthdayat</th>
-                <td>{% if user.birthdayAt %}{{ user.birthdayAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Img</th>
-                <td>{{ user.img }}</td>
-            </tr>
-            <tr>
-                <th>Role</th>
-                <td>{{ user.role }}</td>
-            </tr>
-            <tr>
-                <th>Ispublisher</th>
-                <td>{% if user.isPublisher %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Issubscribe</th>
-                <td>{% if user.isSubscribe %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Isadmin</th>
-                <td>{% if user.isAdmin %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Dateaff</th>
-                <td>{% if user.dateAff %}{{ user.dateAff|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+            {% endfor %}
+                </div>
+        </div>
+    {% endif %}
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="blocBtn">
+                <a class="btn btRetour" href="{{ app.request.headers.get('referer') }}">RETOUR</a>
+            </div>
+        </div>
+    </div>
+
+    {%  if (app.user) != (null) %}
+        {% if (app.user.roles[0]) == ('ROLE_ADMIN') %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="blocBtn">
+                        <a class="btEdit" href="{{ path('user_edit', { 'id': user.id }) }}">MODIFIER</a>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="blocBtn">
+                        {{ form_start(delete_form) }}
+                        <input class="btDelete" type="submit" value="SUPPRIMER">
+                        {{ form_end(delete_form) }}
+                    </div>
+                </div>
+            </div>
+
+            {% elseif (app.user.id) == user.id %}
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="blocBtn">
+                            <a class="btEdit" href="{{ path('user_edit', { 'id': user.id }) }}">MODIFIER</a>
+                        </div>
+                    </div>
+                </div>
+
+
+        {% endif %}
+    {% endif %}
 {% endblock %}

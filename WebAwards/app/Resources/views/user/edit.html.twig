@@ -1,21 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        <h1>User edit</h1>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="blocBtn">
+                    {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
+                    <input class="btEdit" type="submit" value="MODIFIER" />
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+        </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="blocBtn">
+                            {{ form_start(delete_form) }}
+                            <input class="btDelete" type="submit" value="SUPPRIMER MON COMPTE">
+                            {{ form_end(delete_form) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="blocBtn">
+                    <a class="btn btRetour" href="{{ app.request.headers.get('referer') }}">RETOUR</a>
+                </div>
+            </div>
+        </div>
+
 {% endblock %}

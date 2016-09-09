@@ -20,6 +20,23 @@ class UserController extends Controller
 {
 
     /**
+     * Lists all Comment entities.
+     *
+     * @Route("/", name="user_index")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $em->getRepository('WebAwardsBundle:User')->findAll();
+
+        return $this->render('user/index.html.twig', array(
+            'users' => $users,
+        ));
+    }
+
+    /**
      * Connecte le user après l'inscription.
      * @param User $user
      */
@@ -119,10 +136,41 @@ class UserController extends Controller
     public function showAction(User $user)
     {
         $deleteForm = $this->createDeleteForm($user);
+        $em = $this->getDoctrine()->getManager();
+
+
+        $authorId = ($user->getId());
+        $projects = $em->getRepository('WebAwardsBundle:Project')->findByIdAuthor($authorId);
 
         return $this->render('user/show.html.twig', array(
             'user' => $user,
+            'projects'=>$projects,
             'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    /**
+     * Finds and displays a User entity.
+     *
+     * @Route("/jury/{idProject}", name="user_jury_show")
+     * @Method("GET")
+     */
+    public function showJuryAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $idProject = $request->get('idProject');
+
+        $project = $em->getRepository('WebAwardsBundle:Project')->findById($idProject);
+        $votes = $em->getRepository('WebAwardsBundle:Vote')->getVotesFrom($idProject);
+        $tabIdUsers = $em->getRepository('WebAwardsBundle:Vote')->getIdUserFromVotes($votes);
+
+        $users = $em->getRepository('WebAwardsBundle:User')->findById($tabIdUsers);
+        $project = $project[0];
+
+
+        return $this->render('user/jury.html.twig', array(
+            'users' => $users,
+            'project'=>$project,
         ));
     }
 
@@ -134,6 +182,28 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        $id = $user->getId();
+
+        if($currentUser == "anon."){
+            $this->addFlash(
+                'notice',
+                'Vous ne pouvez pas accéder à cette page'
+            );
+            return $this->redirectToRoute("homepage");
+        }
+        $roles = $currentUser->getRoles();
+
+        if($roles[0] != "ROLE_ADMIN"){
+            if($id !== $currentUser->getId()){
+                $this->addFlash(
+                    'notice',
+                    'Vous ne pouvez pas accéder à cette page'
+                );
+                return $this->redirectToRoute("homepage");
+            }
+        }
+
         //Recup the last img
         $em = $this->getDoctrine()->getManager();
         $userData = $em->getRepository('WebAwardsBundle:User')->findById($user->getId());

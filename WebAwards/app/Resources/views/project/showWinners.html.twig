@@ -39,7 +39,7 @@
                         </div>
                         <div  class="col-xs-8 text-center blocInfoUser">
                             <div><h2><strong>{{ (projects|first).name | upper }}</strong></h2></div>
-                            <div><h5>De : {{ (user|first).firstname }} {{ (user|first).lastname }}</h5></div>
+                            <div><h5>De : <a class="linkUser" href="{{ path('user_show', { 'id': (user|first).id }) }}">{{ (user|first).firstname }} {{ (user|first).lastname }}</a></h5></div>
                             <div><h4>{{ (projects|first).description }}</h4></div>
                             <div><h6>Posté le : {{ (projects|first).dateAdd|date("d/m/Y") }}</h6></div>
                         </div>
@@ -82,6 +82,13 @@
                 </div>
             </div>
         {% endif %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="blocBtn">
+                        <a class="btn btRetour" href="{{ app.request.headers.get('referer') }}">RETOUR</a>
+                    </div>
+                </div>
+            </div>
             {% if maxPages > 1 %}
 
                 <ul class="pagination pagination-sm">

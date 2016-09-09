@@ -178,6 +178,26 @@ class ProjectController extends Controller
      */
     public function editAction(Request $request, Project $project)
     {
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+
+
+        if($currentUser == "anon."){
+            $this->addFlash(
+                'notice',
+                'Vous ne pouvez pas accéder à cette page'
+            );
+                return $this->redirectToRoute("homepage");
+        }
+        
+        $roles = $currentUser->getRoles();
+        if($roles[0] != "ROLE_ADMIN" ){
+                $this->addFlash(
+                    'notice',
+                    'Vous ne pouvez pas accéder à cette page'
+                );
+                return $this->redirectToRoute("homepage");
+        }
+
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('WebAwardsBundle\Form\ProjectType', $project);
         $editForm->handleRequest($request);
