@@ -34,20 +34,20 @@
         </div>
     </nav>
     <div  class="col-xs-12 text-right text-uppercase ">
-        <button type="button" class="btn btn-secondary addProject"><a href="{{ path('project_new') }}">Soumettre un projet</a></button>
-        <button type="button" class="btn btn-secondary login">
+        <a class="btn btn-secondary addProject" href="{{ path('project_new') }}">Soumettre un projet</a>
+
             {% if app.user %}
-                <a href="{{ path('logout') }}">Déconnexion</a>
+                <a class="btn btn-secondary login" href="{{ path('logout') }}">Déconnexion</a>
                 {% if (app.user.roles[0]) != ('ROLE_ADMIN') %}
-                    <a href="{{ path('user_show', { 'id': app.user.id }) }}"> | <span class="glyphicon glyphicon-user"></span></a>
+                    <a class="btn btn-secondary login" href="{{ path('user_show', { 'id': app.user.id }) }}"><span class="glyphicon glyphicon-user"></span></a>
                 {% else %}
-                    <a href="#"> | <span class="glyphicon glyphicon-folder-open"></span></a>
+                    <a class="btn btn-secondary login" href="#"> <span class="fa fa-bars"></span></a>
                 {% endif %}
             {% else %}
-                <a href="{{ path('login') }}">Connexion</a>
+                <a class="btn btn-secondary login" href="{{ path('login') }}">Connexion</a>
             {% endif %}
             <a href="{{ path('heart_new', { 'idProject': 1 }) }}"></a>
-        </button>
+
     </div>
 {% endblock %}
 

@@ -261,6 +261,8 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
+
+            return $this->redirectToRoute('homepage');
         }
 
         return $this->redirectToRoute('homepage');

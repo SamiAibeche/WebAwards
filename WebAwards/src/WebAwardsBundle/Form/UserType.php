@@ -38,7 +38,7 @@ class UserType extends AbstractType
             ->add('img', FileType::class, array('label' => 'Image Profil', 'data_class' => null))
             ->add('role',ChoiceType::class , array(
                 'choices'  => array(
-                    'Agence' => 'agency',
+                    'Une agence' => 'agency',
                     'Indépendent' => 'freelance',
                     'Juste moi !' => 'me',
                 ),

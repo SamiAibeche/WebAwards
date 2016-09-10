@@ -1,54 +1,74 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User creation</h1>
+    <div class="container">
+        <div class="row divTitleSubscribe">
+            <div  class="col-xs-12 text-center text-uppercase divTitle">
+                <h1> - CRÉER VOTRE COMTE - </h1>
+            </div>
+        </div>
+    </div>
+    <div class="blocFormSubscribe">
+        {{ form_start(form, { 'attr': {'class': 'try'} }) }}
+        <!-- STEP ONE -->
+        <div class="subscribeStepOne">
+            <div class="col-xs-12 borderInput">
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email , { 'attr': {'class': 'userNameLogin', 'placeholder':'EMAIL'} }) }}
+            </div>
+            <div class="col-xs-12 borderInput">
+                {{ form_errors(form.username) }}
+                {{ form_widget(form.username, { 'attr': {'class': 'userNameLogin', 'placeholder':'USERNAME'} }) }}
+            </div>
+            <div class="col-xs-12 borderInput">
+                {{ form_errors(form.plainPassword.first) }}
+                {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'userNameLogin', 'placeholder':'MOT DE PASSE'} }) }}
+            </div>
+            <div class="col-xs-12 borderInput">
+                {{ form_errors(form.plainPassword.second) }}
+                {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'userNameLogin', 'placeholder':'CONFIRMATION'} }) }}
+            </div>
 
-    {{ form_start(form) }}
-    <div>
-        {{ form_label(form.email) }}
-        {{ form_errors(form.email) }}
-        {{ form_widget(form.email) }}
+            <div class="col-xs-12 btNextStep">
+                <span>SUIVANT <i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+            </div>
+        </div>
+        <!-- STEP TWO -->
+        <div class="subscribeStepTwo">
+            <div class="col-xs-12 borderInput">
+                {{ form_errors(form.lastname) }}
+                {{ form_widget(form.lastname, { 'attr': {'class': 'userNameLogin', 'placeholder':'NOM'} }) }}
+            </div>
+            <div class="col-xs-12 borderInput">
+                {{ form_errors(form.firstname) }}
+                {{ form_widget(form.firstname, { 'attr': {'class': 'userNameLogin', 'placeholder':'PRENOM'} }) }}
+            </div>
+            <div style="border-right: 1px solid black; border-left: 1px solid black; ">
+
+                <div class="select-style">
+                    {{ form_errors(form.role) }}
+                    <p>VOUS ÊTES ?</p>{{form_widget(form.role) }}
+                </div>
+            </div>
+
+            <div class="date-style borderInput">
+                <label class="fgrey">DATE DE NAISSANCE</label>
+                {{ form_errors(form.birthdayAt) }}
+                {{ form_widget(form.birthdayAt) }}
+            </div>
+            <div class="file-style borderInput">
+                {{ form_errors(form.img) }}
+                <label class="labelFile fgrey btn btn-default btn-file">
+                    CHOISIR UNE PHOTO DE PROFIL {{ form_widget(form.img, { 'attr': {'class': 'inputFile'} }) }}
+                </label>
+            </div>
+            <input id="btSendSubscribe" type="submit" value="Create" />
+
+            <div class="col-xs-12 btPreviousStep">
+                <span><i class="fa fa-angle-double-left" aria-hidden="true"></i> PRECEDENT</span>
+            </div>
+
+        </div>
+        {{ form_end(form) }}
     </div>
-    <div>
-        {{ form_label(form.username) }}
-        {{ form_errors(form.username) }}
-        {{ form_widget(form.username) }}
-    </div>
-    <div>
-        {{ form_label(form.plainPassword.first) }}
-        {{ form_errors(form.plainPassword.first) }}
-        {{ form_widget(form.plainPassword.first) }}
-    </div>
-    <div>
-        {{ form_label(form.plainPassword.second) }}
-        {{ form_errors(form.plainPassword.second) }}
-        {{ form_widget(form.plainPassword.second) }}
-    </div>
-    <div>
-        {{ form_label(form.lastname) }}
-        {{ form_errors(form.lastname) }}
-        {{ form_widget(form.lastname) }}
-    </div>
-    <div>
-        {{ form_label(form.firstname) }}
-        {{ form_errors(form.firstname) }}
-        {{ form_widget(form.firstname) }}
-    </div>
-    <div>
-        {{ form_label(form.birthdayAt) }}
-        {{ form_errors(form.birthdayAt) }}
-        {{ form_widget(form.birthdayAt) }}
-    </div>
-    <div>
-        {{ form_label(form.img) }}
-        {{ form_errors(form.img) }}
-        {{ form_widget(form.img) }}
-    </div>
-    <div>
-        {{ form_label(form.role) }}
-        {{ form_errors(form.role) }}
-        {{ form_widget(form.role) }}
-    </div>
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
 {% endblock %}
