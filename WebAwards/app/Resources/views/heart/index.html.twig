@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Heart list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Islike</th>
+                <th>Idproject</th>
+                <th>Iduser</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for heart in hearts %}
+            <tr>
+                <td><a href="{{ path('heart_show', { 'id': heart.id }) }}">{{ heart.id }}</a></td>
+                <td>{% if heart.isLike %}Yes{% else %}No{% endif %}</td>
+                <td>{{ heart.idProject }}</td>
+                <td>{{ heart.idUser }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('heart_show', { 'id': heart.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('heart_edit', { 'id': heart.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('heart_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
