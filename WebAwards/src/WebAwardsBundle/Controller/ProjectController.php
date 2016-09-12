@@ -30,6 +30,7 @@ class ProjectController extends Controller
      */
     public function indexAction($page = 1)
     {
+        $hasLike = "";
         $em = $this->getDoctrine()->getManager();
         //Get All projects
         //$projects = $em->getRepository('WebAwardsBundle:Project')->findByIsVisible(1);
@@ -64,6 +65,20 @@ class ProjectController extends Controller
         $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
 
         //Get the last project of the Month
+        
+        
+        
+        
+        
+        
+        
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        if($currentUser != "anon.") {
+            $roles = $currentUser->getRoles();
+            if ($roles[0] != "ROLE_ADMIN") {
+                $hasLike = $em->getRepository('WebAwardsBundle:Heart')->verifyHasLike($idProject, $currentUser);
+            }
+        }
 
         //All Winner of the month
         //Recuperer dans la liste de tous les projets, le projet == meme id, order by date desc limit 1
@@ -71,6 +86,7 @@ class ProjectController extends Controller
             'projects' => $projects,
             'winner'   => $winner,
             'nbHeart'  => $nbHeart,
+            'hasLike'   => $hasLike,
             'user'     => $user,
             'vote'     => $vote,
             'maxPages' => $maxPage,
@@ -146,6 +162,7 @@ class ProjectController extends Controller
      */
     public function showAction(Project $project)
     {
+        $hasLike = 0;
         $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($project);
         $form = $this->createForm('WebAwardsBundle\Form\VoteType');
@@ -155,19 +172,30 @@ class ProjectController extends Controller
         $idProject = $project->getId();
 
 
+
         $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
 
         //Get the vote of the project
         $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
         $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
-        //dump($vote);
-        //die();
+
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        if($currentUser != "anon.") {
+            $roles = $currentUser->getRoles();
+            if ($roles[0] != "ROLE_ADMIN") {
+                $hasLike = $em->getRepository('WebAwardsBundle:Heart')->verifyHasLike($idProject, $currentUser);
+            }
+        }
+
+       //dump($hasLike);
+       //die();
 
         return $this->render('project/show.html.twig', array(
             'project' => $project,
             'user'     => $user,
             'nbHeart' => $nbHeart,
             'vote'     => $vote,
+            'hasLike'   => $hasLike,
             'delete_form' => $deleteForm->createView(),
             'form' => $form->createView()
         ));
@@ -364,7 +392,7 @@ class ProjectController extends Controller
      * @Method({"GET"})
      */
     public function getWinnerProjectFrom(Request $request){
-
+        $hasLike = "";
         $page =$request->query->get('page');
         $page = (int) $page;
 
@@ -401,12 +429,20 @@ class ProjectController extends Controller
 
         $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
 
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        if($currentUser != "anon.") {
+            $roles = $currentUser->getRoles();
+            if ($roles[0] != "ROLE_ADMIN") {
+                $hasLike = $em->getRepository('WebAwardsBundle:Heart')->verifyHasLike($idProject, $currentUser);
+            }
+        }
 
         return $this->render('project/showWinners.html.twig', array(
             'projects' => $projects,
             'user'     => $user,
             'nbHeart'  => $nbHeart,
             'vote'     => $vote,
+            'hasLike'   => $hasLike,
             'maxPages' => $maxPage,
             'thisPage' => $page,
             'from'     => $winner

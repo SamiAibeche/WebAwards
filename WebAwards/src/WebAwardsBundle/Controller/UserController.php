@@ -54,6 +54,18 @@ class UserController extends Controller
      */
     public function registerAction(Request $request)
     {
+
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+
+
+        if($currentUser != "anon."){
+            $this->addFlash(
+                'notice',
+                'Vous êtes déjà connecté ...'
+            );
+            return $this->redirectToRoute("homepage");
+        }
+
         // 1) build the form
         $user = new User();
         $form = $this->createForm(UserType::class, $user);

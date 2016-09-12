@@ -29,23 +29,23 @@
                 {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'userNameLogin', 'placeholder':'CONFIRMATION'} }) }}
             </div>
 
-            <div class="col-xs-12 btNextStep">
+            <div class="col-xs-12 btNextStep disableLink">
                 <span>SUIVANT <i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
             </div>
         </div>
         <!-- STEP TWO -->
         <div class="subscribeStepTwo">
-            <div class="col-xs-12 borderInput">
+            <div class="col-xs-12 borderInput upIndex">
                 {{ form_errors(form.lastname) }}
                 {{ form_widget(form.lastname, { 'attr': {'class': 'userNameLogin', 'placeholder':'NOM'} }) }}
             </div>
-            <div class="col-xs-12 borderInput">
+            <div class="col-xs-12 borderInput upIndex">
                 {{ form_errors(form.firstname) }}
                 {{ form_widget(form.firstname, { 'attr': {'class': 'userNameLogin', 'placeholder':'PRENOM'} }) }}
             </div>
             <div style="border-right: 1px solid black; border-left: 1px solid black; ">
 
-                <div class="select-style">
+                <div class="select-style downIndex">
                     {{ form_errors(form.role) }}
                     <p>VOUS ÊTES ?</p>{{form_widget(form.role) }}
                 </div>
@@ -59,7 +59,7 @@
             <div class="file-style borderInput">
                 {{ form_errors(form.img) }}
                 <label class="labelFile fgrey btn btn-default btn-file">
-                    CHOISIR UNE PHOTO DE PROFIL {{ form_widget(form.img, { 'attr': {'class': 'inputFile'} }) }}
+                    <i class="fa fa-plus" aria-hidden="true"></i> CHOISIR UNE PHOTO DE PROFIL {{ form_widget(form.img, { 'attr': {'class': 'inputFile'} }) }}
                 </label>
             </div>
             <input id="btSendSubscribe" type="submit" value="Create" />

@@ -19,7 +19,12 @@ class HeartRepository extends \Doctrine\ORM\EntityRepository
      */
     public function verifyHasLike($idProject, $currentUser){
 
-        $idUser = $currentUser->getId();
+
+        if(is_array($currentUser)){
+            $idUser = $currentUser[0]->getId();
+        } else {
+            $idUser = $currentUser->getId();
+        }
 
         //Selectionne le like, dont l'idProject & l'idUser correspondent
         $query = $this->createQueryBuilder('h')
@@ -29,7 +34,7 @@ class HeartRepository extends \Doctrine\ORM\EntityRepository
 
 
         $result =  $query->getResult();
-
+        
         if(empty($result)){ //Si aucun like n'a été trouvé
             return true;
         } else {    //sinon
