@@ -58,9 +58,12 @@
             </div>
             <div class="file-style borderInput">
                 {{ form_errors(form.img) }}
+                {{ form_widget(form.img, { 'attr': {'class': 'inputFile'} }) }}
+                <!--
                 <label class="labelFile fgrey btn btn-default btn-file">
                     <i class="fa fa-plus" aria-hidden="true"></i> CHOISIR UNE PHOTO DE PROFIL {{ form_widget(form.img, { 'attr': {'class': 'inputFile'} }) }}
                 </label>
+                -->
             </div>
             <input id="btSendSubscribe" type="submit" value="Create" />
 

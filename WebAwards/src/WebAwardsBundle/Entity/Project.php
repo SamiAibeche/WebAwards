@@ -89,7 +89,7 @@ class Project
      *     maxHeightMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ...",
      *     minHeightMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ..."
      * )
-     *
+     * @Assert\NotBlank()
      */
     private $imgMobile;
 
