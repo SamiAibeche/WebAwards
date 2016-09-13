@@ -25,7 +25,7 @@
                             <img class="img-responsive center imgProject" src="{{ asset('uploads/project/'~ project.imgScreen) }}" alt="Image : {{ project.name }}"/>
                         </a>
                     </div>
-                    <div  class="col-xs-6 text-left"><a href="{{ path('heart_new', {'idProject' : project.id }) }}"><span class="glyphicon glyphicon-heart {% if (hasLike == 1) or  (hasLike == "") %} blackHeart {% else %} yellowHeart {% endif %}"></span></a>{{ nbHeart }}</div>
+                    <div  class="col-xs-6 text-left"><a href="{{ path('heart_new', {'idProject' : project.id }) }}"><span class="glyphicon glyphicon-heart {% if (hasLike == 1) or  (hasLike == "") %} blackHeart {% endif %}"></span></a>{{ nbHeart }}</div>
                     <div  class="col-xs-6 text-right shareIcon">
                         <a class="facebook customer share" href="http://www.facebook.com/sharer.php?u={{ project.url }}" title="Partager sur Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                         <a class="twitter customer share" href="http://twitter.com/share?url={{ project.url }}l&amp;text=Site du jour &amp;hashtags=webawards" title="Partager sur Twiiter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
