@@ -1,10 +1,71 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Project creation</h1>
+    <div class="container">
+        <div class="row divTitleSubscribe">
+            <div  class="col-xs-12 text-center text-uppercase divTitle">
+                <h1> - CRÉER VOTRE PROJET - </h1>
+            </div>
+        </div>
+    </div>
+<div class="blocFormSubscribe">
+    {{ form_start(form, { 'attr': {'class': 'try'} }) }}
+    <div class="newProjectStepOne">
+        <div class="col-xs-12 borderInput">
+            {{ form_errors(form.name) }}
+            {{ form_widget(form.name , { 'attr': {'class': 'userNameLogin', 'placeholder':'NOM'} }) }}
+        </div>
+        <div class="col-xs-12 borderInput">
+            {{ form_errors(form.description) }}
+            {{ form_widget(form.description , { 'attr': {'class': 'userNameLogin', 'placeholder':'DESCRITPION DU PROJET'} }) }}
+        </div>
+        <div class="col-xs-12 borderInput">
+            {{ form_errors(form.url) }}
+            {{ form_widget(form.url , { 'attr': {'class': 'userNameLogin', 'placeholder':'URL DU PROJET'} }) }}
+        </div>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
+        <div class="col-xs-12 btNextStepProject disableLink">
+            <span>SUIVANT <i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="newProjectStepTwo">
+        <div class="file-style borderInput">
+            {{ form_errors(form.imgScreen) }}
+            <label class="labelFile fgrey btn btn-default btn-file">
+                <i class="fa fa-plus" aria-hidden="true"></i> CHOISIR UNE IMAGE LAPTOP {{ form_widget(form.imgScreen, { 'attr': {'class': 'inputFile'} }) }}
+            </label>
+        </div>
+        <div class="file-style borderInput">
+            {{ form_errors(form.imgMobile) }}
+            <label class="labelFile fgrey btn btn-default btn-file">
+                <i class="fa fa-plus" aria-hidden="true"></i> CHOISIR UNE IMAGE MOBILE {{ form_widget(form.imgMobile, { 'attr': {'class': 'inputFile'} }) }}
+            </label>
+        </div>
+        <div class="col-xs-12 btNextStepProjectPayement disableLink">
+            <span>SUIVANT <i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="newProjectStepPayement">
+        <div class="file-style  col-xs-6 blocPayYear">
+            <div class="titlePay">
+                ABONNEZ-VOUS POUR SEULEMENT :
+            </div>
+            <div class="pricePay">
+                120 € / ANS
+            </div>
+            <div class="infoPay">
+                Poster un nombre de projet illimité !
+            </div>
+        </div>
+        <div class="file-style  col-xs-6 blocPayOnce">
+            <div class="titlePay"> PAYER UNE SEULE FOIS : </div>
+            <div class="pricePay"> 30 € / PROJET </div>
+            <div class="infoPay"> Poster votre projet sur WebAwards !</div>
+        </div>
+        <div class="col-xs-12 btNextStepProjectPayement disableLink">
+            <span> <input type="submit" value="PAYER" /> </span>
+        </div>
+    </div>
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
