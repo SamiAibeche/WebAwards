@@ -153,7 +153,7 @@ class UserController extends Controller
 
         $authorId = ($user->getId());
         $projects = $em->getRepository('WebAwardsBundle:Project')->findByIdAuthor($authorId);
-
+       
         return $this->render('user/show.html.twig', array(
             'user' => $user,
             'projects'=>$projects,

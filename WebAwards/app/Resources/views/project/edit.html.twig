@@ -1,12 +1,68 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Project edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input class="btEdit" type="submit" value="Modifier" />
+<div class="container">
+    <div class="row divTitleSubscribe">
+        <div  class="col-xs-12 text-center text-uppercase divTitle">
+            <h1> - CRÉER VOTRE PROJET - </h1>
+        </div>
+    </div>
+</div>
+<div class="blocFormSubscribe">
+    {{ form_start(edit_form, { 'attr': {'class': 'try', 'novalidate': 'novalidate'} }) }}
+    <div class="newProjectStepOne">
+        <div class="col-xs-12 borderInput">
+            {{ form_errors(edit_form.name) }}
+            {{ form_widget(edit_form.name , { 'attr': {'class': 'userNameLogin', 'placeholder':'NOM'} }) }}
+        </div>
+        <div class="col-xs-12 borderInput">
+            {{ form_errors(edit_form.description) }}
+            {{ form_widget(edit_form.description , { 'attr': {'class': 'userNameLogin', 'placeholder':'DESCRITPION DU PROJET'} }) }}
+        </div>
+        <div class="col-xs-12 borderInput">
+            {{ form_errors(edit_form.url) }}
+            {{ form_widget(edit_form.url , { 'attr': {'class': 'userNameLogin', 'placeholder':'URL DU PROJET'} }) }}
+        </div>
+    </div>
+    <div class="newProjectStepTwo">
+        <div class="file-style borderInput">
+            <label class="labelScreenProjectLabel fgrey"l>CHOISIR UNE IMAGE LAPTOP</label><br>
+            {{ form_errors(edit_form.imgScreen) }}
+            <label class="labelScreenProject fgrey btn btn-default btn-ScreenProject">
+                <i class="fa fa-plus" aria-hidden="true"></i> {{ form_widget(edit_form.imgScreen, { 'attr': {'class': 'inputFile'} }) }}
+            </label>
+        </div>
+        <div class="file-style borderInput">
+            {{ form_errors(edit_form.imgMobile) }}
+            <label class="labelMobileProjectLabel fgrey"l>CHOISIR UNE IMAGE MOBILE</label><br>
+            <label class="labelMobileProject fgrey btn btn-default btn-MobileProject">
+                <i class="fa fa-plus" aria-hidden="true"></i>{{ form_widget(edit_form.imgMobile, { 'attr': {'class': 'inputFile'} })  }}
+            </label>
+        </div>
+        <div class="date-style borderInput">
+            <label class="fgrey">DATE D'AJOUT</label>
+            {{ form_errors(edit_form.dateAdd) }}
+            {{ form_widget(edit_form.dateAdd) }}
+        </div>
+        <div>
+            <input type="submit" class="btEdit ml0" value="MODIFIER" />
+        </div>
+    </div>
     {{ form_end(edit_form) }}
+    </div>
+    {%  if (app.user) != (null) %}
+        {% if (app.user.roles[0]) == ('ROLE_ADMIN') %}
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <div class="blocBtn">
+                        {{ form_start(delete_form) }}
+                        <input class="btDelete ml0" type="submit" value="SUPPRIMER">
+                        {{ form_end(delete_form) }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
 
     <div class="row">
         <div class="col-xs-12">
@@ -15,18 +71,4 @@
             </div>
         </div>
     </div>
-        {%  if (app.user) != (null) %}
-            {% if (app.user.roles[0]) == ('ROLE_ADMIN') %}
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="blocBtn">
-                            {{ form_start(delete_form) }}
-                            <input class="btDelete" type="submit" value="SUPPRIMER">
-                            {{ form_end(delete_form) }}
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endif %}
 {% endblock %}

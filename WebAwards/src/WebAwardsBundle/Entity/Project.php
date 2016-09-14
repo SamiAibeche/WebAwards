@@ -34,7 +34,7 @@ class Project
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=125)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Ce champs ne devrait pas être vide")
      */
     private $name;
 
@@ -42,7 +42,7 @@ class Project
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Ce champs ne devrait pas être vide")
      */
     private $description;
 
@@ -50,22 +50,19 @@ class Project
      * @var string
      *
      * @ORM\Column(name="imgScreen", type="string", length=255)
-     * @Assert\File(
-     *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
-     *     mimeTypesMessage="Seuls les formats png, jpg, jpeg sont acceptés."
-     * )
      * @Assert\Image(
      *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
-     *     minWidth = 200,
-     *     maxWidth = 4000,
-     *     minHeight = 200,
-     *     maxHeight = 4000,
-     *     maxWidthMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ...",
-     *     minWidthMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ..." ,
-     *     maxHeightMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ...",
-     *     minHeightMessage = "L'image principale doit avoir une largeur de ... et une hauteur de ..."
+     *     mimeTypesMessage="Seuls les formats png, jpg, jpeg sont acceptés.",
+     *     minWidth = 690,
+     *     maxWidth = 710,
+     *     minHeight = 490,
+     *     maxHeight = 510,
+     *     maxWidthMessage = "L'image principale doit avoir une largeur de 700 px et une hauteur de 500 px",
+     *     minWidthMessage = "L'image principale doit avoir une largeur de 700 px et une hauteur de 500 px " ,
+     *     maxHeightMessage = "L'image principale doit avoir une largeur de 700 px et une hauteur de 500 px ",
+     *     minHeightMessage = "L'image principale doit avoir une largeur de 700 px et une hauteur de 500 px "
      * )
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Veuillez choisir une image laptop ")
      */
     private $imgScreen;
 
@@ -73,23 +70,19 @@ class Project
      * @var string
      *
      * @ORM\Column(name="imgMobile", type="string", length=255)
-     *
-     * @Assert\File(
-     *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
-     *     mimeTypesMessage="Seuls les formats png, jpg, jpeg sont acceptés."
-     * )
      * @Assert\Image(
      *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
-     *     minWidth = 100,
-     *     maxWidth = 2000,
-     *     minHeight = 100,
-     *     maxHeight = 2000,
-     *     maxWidthMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ...",
-     *     minWidthMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ..." ,
-     *     maxHeightMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ...",
-     *     minHeightMessage = "L'image mobile doit avoir une largeur de ... et une hauteur de ..."
+     *     mimeTypesMessage="Seuls les formats png, jpg, jpeg sont acceptés.",
+     *     minWidth = 500,
+     *     maxWidth = 520,
+     *     minHeight = 900,
+     *     maxHeight = 920,
+     *     maxWidthMessage = "L'image mobile doit avoir une largeur de 510 px et une hauteur de 910px",
+     *     minWidthMessage = "L'image mobile doit avoir une largeur de 510 px et une hauteur de 910px" ,
+     *     maxHeightMessage = "L'image mobile doit avoir une largeur de 510 px et une hauteur de 910px",
+     *     minHeightMessage = "L'image mobile doit avoir une largeur de 510 px et une hauteur de 910px"
      * )
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Veuillez choisir une image mobile")
      */
     private $imgMobile;
 
@@ -97,7 +90,7 @@ class Project
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=125)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Ce champs ne devrait pas être vide")
      */
     private $url;
 
@@ -393,7 +386,7 @@ class Project
      */
     public function setDateAdd($dateAdd)
     {
-        $this->dateAdd = new \DateTime($dateAdd);
+        $this->dateAdd = $dateAdd;
 
         return $this;
     }

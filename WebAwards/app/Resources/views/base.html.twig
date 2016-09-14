@@ -12,25 +12,27 @@
 </head>
 <body>
 {% block nav %}
-    <nav id="myMenu" class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <a class="navbar-brand hidden-xs hidden-sm hidden-md" href="{{ path('homepage') }}"><img class="img-responsive" src="{{ asset('bundles/framework/images/logo-small.png') }}" alt="WebAwards"/></a>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ path('project_from', { 'from':'junior', page:1 }) }}">Junior's</a></li>
-                <li><a  href="{{ path('project_from', { 'from':'agency', page:1 }) }}">Agency's</a></li>
-                <li><a href="{{ path('project_from', { 'from':'freelance', page:1 }) }}">Freelance's</a></li>
-                <li><a href="{{ path('project_from', { 'from':'honorable', page:1 }) }}">Honorable's</a></li>
-                <li><a href="{{ path('project_from_winner', { 'winner':'week', page:1 }) }}">Site de la semaine</a></li>
-                <li><a href="{{ path('project_from_winner', { 'winner':'month', page:1 }) }}">Site du mois</a></li>
-                <li><a href="{{ path('project_from_winner', { 'winner':'year', page:1 }) }}">Site de l'année</a></li>
-            </ul>
+    <nav id="myMenu" class="navbar navbar-default" role="navigation" data-spy="affix" data-offset-top="167">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <a class="navbar-brand hidden-xs hidden-sm hidden-md" href="{{ path('homepage') }}"><img id="myLogo" class="img-responsive" src="{{ asset('bundles/framework/images/logo-small.png') }}" alt="WebAwards"/></a>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('project_from', { 'from':'junior', page:1 }) }}">Junior's</a></li>
+                    <li><a  href="{{ path('project_from', { 'from':'agency', page:1 }) }}">Agency's</a></li>
+                    <li><a href="{{ path('project_from', { 'from':'freelance', page:1 }) }}">Freelance's</a></li>
+                    <li><a href="{{ path('project_from', { 'from':'honorable', page:1 }) }}">Honorable's</a></li>
+                    <li><a href="{{ path('project_from_winner', { 'winner':'week', page:1 }) }}">Site de la semaine</a></li>
+                    <li><a href="{{ path('project_from_winner', { 'winner':'month', page:1 }) }}">Site du mois</a></li>
+                    <li><a href="{{ path('project_from_winner', { 'winner':'year', page:1 }) }}">Site de l'année</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
     <div  class="col-xs-12 text-right text-uppercase ">
@@ -41,13 +43,12 @@
                 {% if (app.user.roles[0]) != ('ROLE_ADMIN') %}
                     <a class="btn btn-secondary login" href="{{ path('user_show', { 'id': app.user.id }) }}"><span class="glyphicon glyphicon-user"></span></a>
                 {% else %}
-                    <a class="btn btn-secondary login" href="#"> <span class="fa fa-bars"></span></a>
+                    <a id="adminMenuIcon" class="btn btn-secondary login" href="#"> <span class="fa fa-bars"></span></a>
                 {% endif %}
             {% else %}
                 <a class="btn btn-secondary login" href="{{ path('login') }}">Connexion</a>
             {% endif %}
             <a href="{{ path('heart_new', { 'idProject': 1 }) }}"></a>
-
     </div>
 {% endblock %}
 

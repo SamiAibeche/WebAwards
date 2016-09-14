@@ -162,6 +162,11 @@ class ProjectController extends Controller
      */
     public function showAction(Project $project)
     {
+
+        if(!($project->getIsVisible())){
+            return $this->redirectToRoute("homepage");
+        }
+        
         $hasLike = 0;
         $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($project);
@@ -229,21 +234,62 @@ class ProjectController extends Controller
                 return $this->redirectToRoute("homepage");
         }
 
-        $deleteForm = $this->createDeleteForm($project);
+
+
+        $id = $project->getId();
+        //Recup the last img
+        $em = $this->getDoctrine()->getManager();
+        $projectData = $em->getRepository('WebAwardsBundle:Project')->findById($id);
+
+        $lastImgScreen = $projectData[0]->getImgScreen();
+        $lastImgMobile = $projectData[0]->getImgMobile();
+
         $editForm = $this->createForm('WebAwardsBundle\Form\ProjectType', $project);
         $editForm->handleRequest($request);
 
+        $deleteForm = $this->createDeleteForm($project);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             //Récupération des images
             $fileScreen = $project->getImgScreen();
             $fileMobile = $project->getImgMobile();
-            
+
+            $fileScreenName = md5(uniqid()).'.'.$fileScreen->guessExtension();
+            $fileMobileName = md5(uniqid()).'.'.$fileMobile->guessExtension();
+
+
+
+            if(isset($lastImgScreen) && $lastImgScreen !== null && isset($lastImgMobile) && $lastImgMobile !== null ){
+                unlink("./../web/uploads/project/".$lastImgScreen);
+                unlink("./../web/uploads/project/".$lastImgMobile);
+            }
+
+
+            $fileScreen->move(
+                $this->getParameter('projects_directory'),
+                $fileScreenName
+            );
+            $fileMobile->move(
+                $this->getParameter('projects_directory'),
+                $fileMobileName
+            );
+
+            $project->setImgScreen($fileScreenName);
+            $project->setImgMobile($fileMobileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('project_edit', array('id' => $project->getId()));
+            $this->addFlash(
+                'notice',
+                'Modification enregistrée'
+            );
+
+            return $this->redirectToRoute('project_show', array('id' => $project->getId()));
         }
+
+
 
         return $this->render('project/edit.html.twig', array(
             'project' => $project,

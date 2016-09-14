@@ -2,26 +2,76 @@
 
 {% block body %}
 
-        <h1>User edit</h1>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="blocBtn">
-                    {{ form_start(edit_form) }}
-                    {{ form_widget(edit_form) }}
-                    <input class="btEdit" type="submit" value="MODIFIER" />
-                    {{ form_end(edit_form) }}
-                </div>
+    <div class="container">
+        <div class="row divTitleSubscribe">
+            <div  class="col-xs-12 text-center text-uppercase divTitle">
+                <h1> - MODIFIER VOTRE COMTE - </h1>
             </div>
         </div>
+    </div>
 
+        <div class="blocFormSubscribe">
+            {{ form_start(edit_form, { 'attr': {'class': 'try'} }) }}
+            <!-- STEP ONE -->
+            <div class="subscribeStepOne">
+                <div class="col-xs-12 borderInput upIndex">
+                    {{ form_errors(edit_form.email) }}
+                    {{ form_widget(edit_form.email , { 'attr': {'class': 'userNameLogin', 'placeholder':'EMAIL'} }) }}
+                </div>
+                <div class="col-xs-12 borderInput upIndex">
+                    {{ form_errors(edit_form.username) }}
+                    {{ form_widget(edit_form.username, { 'attr': {'class': 'userNameLogin', 'placeholder':'USERNAME'} }) }}
+                </div>
+                <div class="col-xs-12 borderInput upIndex">
+                    {{ form_errors(edit_form.plainPassword.first) }}
+                    {{ form_widget(edit_form.plainPassword.first, { 'attr': {'class': 'userNameLogin', 'placeholder':'MOT DE PASSE'} }) }}
+                </div>
+                <div class="col-xs-12 borderInput upIndex">
+                    {{ form_errors(edit_form.plainPassword.second) }}
+                    {{ form_widget(edit_form.plainPassword.second, { 'attr': {'class': 'userNameLogin', 'placeholder':'CONFIRMATION'} }) }}
+                </div>
+                <div class="col-xs-12 borderInput upIndex">
+                    {{ form_errors(edit_form.lastname) }}
+                    {{ form_widget(edit_form.lastname, { 'attr': {'class': 'userNameLogin', 'placeholder':'NOM'} }) }}
+                </div>
+                <div class="col-xs-12 borderInput upIndex">
+                    {{ form_errors(edit_form.firstname) }}
+                    {{ form_widget(edit_form.firstname, { 'attr': {'class': 'userNameLogin', 'placeholder':'PRENOM'} }) }}
+                </div>
+                <div style="border-right: 1px solid black; border-left: 1px solid black; ">
 
-        <div class="row">
+                    <div class="select-style downIndex">
+                        {{ form_errors(edit_form.role) }}
+                        <p>VOUS ÊTES ?</p>{{form_widget(edit_form.role) }}
+                    </div>
+                </div>
+
+                <div class="date-style borderInput">
+                    <label class="fgrey">DATE DE NAISSANCE</label>
+                    {{ form_errors(edit_form.birthdayAt) }}
+                    {{ form_widget(edit_form.birthdayAt) }}
+                </div>
+                <div class="file-style borderInput">
+                    {{ form_errors(edit_form.img) }}
+                    <label class="labelFileUser fgrey" >CHOISIR UNE PHOTO DE PROFIL</label>
+                    <br>
+                    <label class="labelFile fgrey btn btn-default btn-file">
+                        <i class="fa fa-plus" aria-hidden="true"></i>{{ form_widget(edit_form.img, { 'attr': {'class': 'inputFile'} }) }}
+                    </label>
+                </div>
+                <input  class="btEdit ml0" id="btSendSubscribe" type="submit" value="MODIFIER" />
+
+            </div>
+            {{ form_end(edit_form) }}
+        </div>
+
+    <div class="row">
             <div class="col-xs-12">
-                <div class="row">
+                <div class="row text-center">
                     <div class="col-xs-12">
                         <div class="blocBtn">
                             {{ form_start(delete_form) }}
-                            <input class="btDelete" type="submit" value="SUPPRIMER MON COMPTE">
+                            <input class="btDelete ml0" type="submit" value="SUPPRIMER MON COMPTE">
                             {{ form_end(delete_form) }}
                         </div>
                     </div>

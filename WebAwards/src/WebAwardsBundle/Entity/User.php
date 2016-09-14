@@ -28,7 +28,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=125)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Ce champs ne devrait pas être vide")
      */
     private $firstname;
 
@@ -36,7 +36,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=125)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Ce champs ne devrait pas être vide")
      */
     private $lastname;
 
@@ -44,12 +44,12 @@ class User implements UserInterface, \Serializable
      * @var \DateTime
      *
      * @ORM\Column(name="birthdayAt", type="datetime")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Ce champs ne devrait pas être vide")
      */
     private $birthdayAt;
 
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Ce champs ne devrait pas être vide")
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
@@ -65,7 +65,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=125)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Ce champs ne devrait pas être vide")
      */
     private $email;
 
@@ -73,6 +73,20 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="img", type="string", length=125)
+     * @Assert\Image(
+     *     mimeTypes={ "image/png", "image/jpg", "image/jpeg" },
+     *     mimeTypesMessage="Seuls les formats png, jpg, jpeg sont acceptés.",
+     *     minWidth = 340,
+     *     maxWidth = 360,
+     *     minHeight = 340,
+     *     maxHeight = 360,
+     *     maxWidthMessage = "L'image principale doit avoir une largeur de 350 px et une hauteur de 350 px",
+     *     minWidthMessage = "L'image principale doit avoir une largeur de 350 px et une hauteur de 350 px " ,
+     *     maxHeightMessage = "L'image principale doit avoir une largeur de 350 px et une hauteur de 350 px ",
+     *     minHeightMessage = "L'image principale doit avoir une largeur de 350 px et une hauteur de 350 px "
+     * )
+     * @Assert\NotBlank(message="Veuillez choisir une image de profil ")
+     *
      */
     private $img;
 
