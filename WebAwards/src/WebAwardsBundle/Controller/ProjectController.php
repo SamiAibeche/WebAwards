@@ -65,13 +65,13 @@ class ProjectController extends Controller
         $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
 
         //Get the last project of the Month
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+        $hasLike = "";
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         if($currentUser != "anon.") {
             $roles = $currentUser->getRoles();
@@ -166,7 +166,7 @@ class ProjectController extends Controller
         if(!($project->getIsVisible())){
             return $this->redirectToRoute("homepage");
         }
-        
+
         $hasLike = 0;
         $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($project);
@@ -351,6 +351,7 @@ class ProjectController extends Controller
      * @Method({"GET"})
      */
     public function listAction(Request $request){
+
         $em = $this->getDoctrine()->getManager();
 
         $page = $request->get('page');
@@ -382,6 +383,15 @@ class ProjectController extends Controller
         //Get the last project of the Month
 
         //All Winner of the month
+        $hasLike = "";
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        if($currentUser != "anon.") {
+            $roles = $currentUser->getRoles();
+            if ($roles[0] != "ROLE_ADMIN") {
+                $hasLike = $em->getRepository('WebAwardsBundle:Heart')->verifyHasLike($idProject, $currentUser);
+            }
+        }
+
         //Recuperer dans la liste de tous les projets, le projet == meme id, order by date desc limit 1
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
@@ -389,6 +399,7 @@ class ProjectController extends Controller
             'winner'   => $winner,
             'user'     => $user,
             'vote'     => $vote,
+            'hasLike'   => $hasLike,
             'maxPages' => $maxPage,
             'thisPage' => $page,
         ));
@@ -415,12 +426,16 @@ class ProjectController extends Controller
             $projects = $em->getRepository('WebAwardsBundle:Project')->getAllPostsFrom($page, $from);
 
         }
-
-        $totalPostsReturned = $projects->getIterator()->count();
-        $totalProjects = $projects->count();
-
-        $iterator = $projects->getIterator();
-        $maxPage = ceil($totalProjects/9);
+        
+        if($from !== "honorable"){
+            $totalPostsReturned = $projects->getIterator()->count();
+            $totalProjects = $projects->count();
+            $iterator = $projects->getIterator();
+            $maxPage = ceil($totalProjects/9);
+        } else {
+            $totalProjects = count($projects);
+            $maxPage = ceil($totalProjects/9);
+        }
 
         return $this->render('project/showList.html.twig', array(
             'projects' => $projects,

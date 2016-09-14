@@ -43,7 +43,7 @@
                 {% if (app.user.roles[0]) != ('ROLE_ADMIN') %}
                     <a class="btn btn-secondary login" href="{{ path('user_show', { 'id': app.user.id }) }}"><span class="glyphicon glyphicon-user"></span></a>
                 {% else %}
-                    <a id="adminMenuIcon" class="btn btn-secondary login" href="#"> <span class="fa fa-bars"></span></a>
+                    <a id="adminMenuIcon" class="btn btn-secondary login" href="{{ path('admin_navigation') }}"> <span class="fa fa-bars"></span></a>
                 {% endif %}
             {% else %}
                 <a class="btn btn-secondary login" href="{{ path('login') }}">Connexion</a>

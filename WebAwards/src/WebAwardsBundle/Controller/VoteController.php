@@ -82,8 +82,8 @@ class VoteController extends Controller
             return $this->redirectToRoute('project_show',  array('id' => $project[0]->getId()));
         } else {
             //Vérify if data >=0 && data<=10
-            if( (($request->get('nbFluidity') >= 10 || $request->get('nbFluidity') <= 0)) || (($request->get('nbDesign') >= 10 || $request->get('nbDesign') <= 0))
-                || (($request->get('nbConcept') >= 10 || $request->get('nbConcept') <= 0)) || (($request->get('nbResponsive') >= 10 || $request->get('nbResponsive') <= 0))){
+            if( (($request->get('nbFluidity') > 10 || $request->get('nbFluidity') <= 0)) || (($request->get('nbDesign') > 10 || $request->get('nbDesign') <= 0))
+                || (($request->get('nbConcept') > 10 || $request->get('nbConcept') <= 0)) || (($request->get('nbResponsive') > 10 || $request->get('nbResponsive') <= 0))){
                 $this->addFlash(
                     'notice',
                     'Seuls les votes de 0 à 10 sont autorisés !'

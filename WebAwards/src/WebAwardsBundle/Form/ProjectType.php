@@ -28,7 +28,7 @@ class ProjectType extends AbstractType
             //->add('nbLike')
             //->add('isForward')
             //->add('isVisible')
-            ->add('dateAdd', DateType::class, array('input'  => 'datetime','widget' => 'choice'))
+            //->add('dateAdd', DateType::class, array('input'  => 'datetime','widget' => 'choice'))
         ;
     }
     

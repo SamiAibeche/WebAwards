@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container-fluid">
+
+        <div class="container">
+            <div class="row">
+                <div  class="col-xs-12 text-center text-uppercase divTitle">
+                    <h1> - projets à valider - </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            {% for flash_message in app.session.flashBag.get('notice') %}
+                <div class="alert alert-warning text-center" role="alert">
+                    <strong>{{ flash_message }}</strong>
+                </div>
+            {% endfor %}
+
+            {% if projects %}
+            {% for project in projects %}
+                <div class="col-xs-12 col-md-4 vignetteProject">
+                    <a href="{{ path('admin_invalid_show', { 'id': project.id }) }}">
+                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" />
+                    </a>
+                </div>
+            {% endfor %}
+            {% else %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-center alert alert-warning fade in">
+                            <h2> ... Aucun projet à valider ... </h2>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

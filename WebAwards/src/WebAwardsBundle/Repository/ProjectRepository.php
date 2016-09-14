@@ -83,9 +83,8 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
                 }
             }
             //Get Project of the user
-            $query = $this->createQueryBuilder('p');
 
-               $query
+               $query = $this->createQueryBuilder('p')
                     ->where('p.isVisible = 1')
                     ->andWhere('p.idAuthor IN (:idUser)')
                     ->setParameter('idUser', $tabUserId)
@@ -95,13 +94,24 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         } else if($form = "honorable"){
             
             $query = $this->createQueryBuilder('p')
-                ->join('p.votes', 'v')
                 ->where('p.isVisible = 1')
-                ->andWhere("v.nbTotal > 7")
                 ->orderBy('p.dateAdd', 'DESC')
                 ->getQuery();
-        }
 
+            $resp = $query->getResult();
+
+            $projects = [];
+            foreach ($resp as $project){
+                $vote = $this->getEntityManager()->getRepository('WebAwardsBundle:Vote')->getAvgVotes($project->getId());
+                if($vote !== null){
+                    if($vote[0]->getNbTotal() > 6){
+                        $projects [] = $project;
+                    }
+                }
+            }
+            return $projects;
+
+        }
 
         //No need to manually get get the result ($query->getResult())
         $paginator = $this->paginate($query, $currentPage, 9);
@@ -134,4 +144,32 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
 
         return $paginator;
     }
+
+    public function getInactifProjects(){
+
+        $query = $this->createQueryBuilder('p')
+            ->where('p.isVisible = 0')
+            ->orderBy('p.dateAdd', 'DESC')
+            ->getQuery();
+
+        $result = $query->getResult();
+
+        return $result;
+    }
+
+    public function getAllPostsForAdmin($currentPage)
+    {
+
+        $query = $this->createQueryBuilder('p')
+            ->orderBy('p.dateAdd', 'DESC')
+            ->getQuery();
+
+        //No need to manually get get the result ($query->getResult())
+
+        $paginator = $this->paginate($query, $currentPage, 6);
+
+
+        return $paginator;
+    }
+
 }
