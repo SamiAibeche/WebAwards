@@ -15,7 +15,7 @@
                         {% for project in lastProject %}
                             <div>
                                 <p class="fleft move "><a href="{{ path('project_show',{ 'id': project.id }) }}">{{ project.name | upper }}</a></p>
-                                <p class="fright"><span>{{ project.dateAdd|date("d/m/Y") }}</span></p>
+                                <p class="fright black"><span>{{ project.dateAdd|date("d/m/Y") }}</span></p>
                             </div>
                         {% endfor %}
                     </div>

@@ -97,7 +97,6 @@ class CommentController extends Controller
         $comment->setDateAdd($now);
         $comment->setIdProject($project);
         $comment->setIdUser($currentUser);
-        $comment->setNbLike(0);
 
 
         if ($form->isSubmitted() && $form->isValid()) {

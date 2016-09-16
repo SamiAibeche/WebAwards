@@ -273,6 +273,8 @@ class UserController extends Controller
                 unlink("./../web/uploads/user/".$lastImg);
             }
             $em->flush();
+            $this->get('security.context')->setToken(null);
+            $this->get('request')->getSession()->invalidate();
 
             return $this->redirectToRoute('homepage');
         }

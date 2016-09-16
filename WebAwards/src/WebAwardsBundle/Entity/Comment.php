@@ -25,7 +25,7 @@ class Comment
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="idUsers")
-     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $idUser;
 

@@ -39,7 +39,7 @@
                         </div>
                         <div  class="col-xs-12 col-sm-8 text-center blocInfoUser">
                             <div class="col-xs-12 col-lg-sm-8 col-md-offset-2"><h2><strong>{{ (projects|first).name | upper }}</strong></h2></div>
-                            <div class="col-xs-12 col-lg-sm-8 col-md-offset-2"><h5>De : <a class="linkUser" href="{{ path('user_show', { 'id': (user|first).id }) }}">{{ (user|first).firstname }} {{ (user|first).lastname }}</a></h5></div>
+
                             <div class="col-xs-12 col-lg-sm-8 col-md-offset-2 col-md-offset-2"><h4>{{ (projects|first).description }}</h4></div>
                             <div class="col-xs-12 col-lg-sm-8 col-md-offset-2"><h6>Posté le : {{ (projects|first).dateAdd|date("d/m/Y") }}</h6></div>
                         </div>

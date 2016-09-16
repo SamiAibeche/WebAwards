@@ -480,32 +480,40 @@ class ProjectController extends Controller
             $tabIdProject[] = $post->getId();
             $tabIdAuthor[] = $post->getIdAuthor();
         }
+        
+        if(count($projects) > 0){
+            //Get the author of the project
+            $idUser = $tabIdAuthor[0];
+            $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
 
-        //Get the author of the project
-        $idUser = $tabIdAuthor[0];
-        $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
+            //Get project
+            $idProject = $tabIdProject[0];
+            //Get the vote of the project
+            $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
+            $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
 
-        //Get project
-        $idProject = $tabIdProject[0];
-        //Get the vote of the project
-        $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
-        $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
-
-        //Vérifie que l'utilisateur a voté
-        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
-        if($currentUser != "anon.") {
-            $roles = $currentUser->getRoles();
-            if ($roles[0] != "ROLE_ADMIN") {
-                $hasLike = $em->getRepository('WebAwardsBundle:Heart')->verifyHasLike($idProject, $currentUser);
+            //Vérifie que l'utilisateur a voté
+            $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+            if($currentUser != "anon.") {
+                $roles = $currentUser->getRoles();
+                if ($roles[0] != "ROLE_ADMIN") {
+                    $hasLike = $em->getRepository('WebAwardsBundle:Heart')->verifyHasLike($idProject, $currentUser);
+                }
             }
-        }
 
+            return $this->render('project/showWinners.html.twig', array(
+                'projects' => $projects,
+                'user'     => $user,
+                'nbHeart'  => $nbHeart,
+                'vote'     => $vote,
+                'hasLike'   => $hasLike,
+                'maxPages' => $maxPage,
+                'thisPage' => $page,
+                'from'     => $winner
+            ));
+        }
         return $this->render('project/showWinners.html.twig', array(
             'projects' => $projects,
-            'user'     => $user,
-            'nbHeart'  => $nbHeart,
-            'vote'     => $vote,
-            'hasLike'   => $hasLike,
             'maxPages' => $maxPage,
             'thisPage' => $page,
             'from'     => $winner

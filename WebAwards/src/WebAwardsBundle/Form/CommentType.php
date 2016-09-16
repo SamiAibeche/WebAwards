@@ -21,7 +21,6 @@ class CommentType extends AbstractType
             //->add('idProject')
             ->add('content');
             //->add('dateAdd', DateType::class, array('input'  => 'datetime','widget' => 'choice'))
-            //->add('nbLike')
     }
     
     /**

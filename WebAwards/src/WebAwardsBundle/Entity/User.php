@@ -127,22 +127,22 @@ class User implements UserInterface, \Serializable
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="idUser")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="idUser", cascade={"remove"})
      */
     private $idUsers;
     
     /**
-     * @ORM\OneToMany(targetEntity="Vote", mappedBy="idUser")
+     * @ORM\OneToMany(targetEntity="Vote", mappedBy="idUser" ,cascade={"remove"})
      */
     private $votes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Heart", mappedBy="idUser")
+     * @ORM\OneToMany(targetEntity="Heart", mappedBy="idUser", cascade={"remove"})
      */
     private $hearts;
 
     /**
-     * @ORM\OneToMany(targetEntity="Project", mappedBy="idAuthor")
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="idAuthor", cascade={"remove"})
      */
     private $projects;
 
