@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="574187a1-22f7-44db-aaf8-190980524d5c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/uploads/project/003a244c5d3c81e5accf407595178063.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/uploads/project/21ef634adc502ebd109584dacfd70533.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/uploads/project/2c6ff5ba2ac134646f8b8533493ddc49.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/uploads/project/6228ddf24e8c1aadd7137369fd3a0b4f.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/uploads/project/6d6ea797acc40ff67f4b135ab5f959a7.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/uploads/project/83cceb0f3739f4e8f770bed80ea3b295.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/uploads/project/bca02e9c6a01294bfe3c3ecca71ca5f9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/uploads/project/f2dc2ca670a7e17817400dcdff97fc39.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/uploads/user/49fb3c03443023dd9e835b154fb680e3.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/uploads/user/4d9076b7e3729b49a8a12ef76fac0548.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/admin/show_inactif.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Controller/CommentController.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Controller/CommentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Controller/SecurityController.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Controller/SecurityController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comment.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comment.php" />
     </list>
     <ignored path="WebAwards.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,8 +38,18 @@
       <file leaf-file-name="ProjectController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/ProjectController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2746">
-              <caret line="230" column="9" selection-start-line="214" selection-start-column="7" selection-end-line="230" selection-end-column="9" />
+            <state relative-caret-position="279">
+              <caret line="385" column="16" selection-start-line="385" selection-start-column="12" selection-end-line="385" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Comment.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comment.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2370">
+              <caret line="159" column="4" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -60,7 +58,7 @@
       <file leaf-file-name="CommentController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/CommentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2160">
+            <state relative-caret-position="2100">
               <caret line="144" column="14" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="14" />
               <folding>
                 <element signature="e#46#91#0#PHP" expanded="true" />
@@ -69,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="744">
-              <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+            <state relative-caret-position="92">
+              <caret line="122" column="26" selection-start-line="122" selection-start-column="26" selection-end-line="122" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -84,9 +82,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
               <caret line="30" column="29" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="29" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,9 +90,11 @@
       <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="729">
+            <state relative-caret-position="4365">
               <caret line="298" column="0" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#46#91#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -146,7 +144,6 @@
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Repository/VoteRepository.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Repository/ProjectRepository.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php" />
-        <option value="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comment.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Controller/UserController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/footer.html.twig" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Controller/WinnerController.php" />
@@ -168,6 +165,7 @@
         <option value="$PROJECT_DIR$/web/bundles/framework/css/main.css" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Controller/CommentController.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Controller/SecurityController.php" />
+        <option value="$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comment.php" />
       </list>
     </option>
   </component>
@@ -183,6 +181,7 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
+    <option name="x" value="56" />
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="963" />
@@ -212,6 +211,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -638,8 +639,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -664,7 +663,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1000" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
-    <property name="SearchEverywhereHistoryKey" value="secu&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/SecurityController.php&#10;proje&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;main&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;main.&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;base&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/base.html.twig&#10;comment&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/CommentController.php&#10;inde&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/user/index.html.twig&#10;index&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/index.html.twig&#10;winner&#9;null&#9;null&#10;bas&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/base.html.twig&#10;commentco&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/CommentController.php&#10;user&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;sec&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/config/security.yml&#10;projec&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;vote&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/VoteController.php&#10;projectC&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;project&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Form/ProjectTagType.php&#10;voteC&#9;null&#9;null&#10;show&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/showList.html.twig&#10;projectR&#9;null&#9;null&#10;projectTyp&#9;null&#9;null&#10;new&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/new.html.twig&#10;userCon&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;main.css&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;pro&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;User&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/User.php&#10;proj&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Form/ProjectType.php&#10;p&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;heart&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/HeartRepository.php&#10;login&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/login.html.twig&#10;use&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Form/UserType.php&#10;userCo&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;foot&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/footer.html.twig&#10;userT&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Form/UserType.php&#10;vigne&#9;null&#9;null&#10;userC&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;main.js&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/js/main.js&#10;contro&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;mai&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;secr&#9;null&#9;null&#10;sho&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/show.html.twig&#10;voteR&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/VoteRepository.php&#10;securit&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/config/security.yml&#10;winne&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Winner.php&#10;ansi&#9;null&#9;null&#10;secur&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/config/security.yml&#10;Vote&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Vote.php&#10;userfo&#9;null&#9;null&#10;PROJECT&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;userR&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/UserRepository.php" />
+    <property name="SearchEverywhereHistoryKey" value="Comment&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Comment.php&#10;voteC&#9;null&#9;null&#10;secu&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/SecurityController.php&#10;proje&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;main&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;main.&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;base&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/base.html.twig&#10;comment&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/CommentController.php&#10;inde&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/user/index.html.twig&#10;index&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/index.html.twig&#10;winner&#9;null&#9;null&#10;bas&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/base.html.twig&#10;commentco&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/CommentController.php&#10;user&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;sec&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/config/security.yml&#10;projec&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;vote&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/VoteController.php&#10;projectC&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;project&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Form/ProjectTagType.php&#10;show&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/showList.html.twig&#10;projectR&#9;null&#9;null&#10;projectTyp&#9;null&#9;null&#10;new&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/new.html.twig&#10;userCon&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;main.css&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;pro&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;User&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/User.php&#10;proj&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Form/ProjectType.php&#10;p&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;heart&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/HeartRepository.php&#10;login&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/login.html.twig&#10;use&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Form/UserType.php&#10;userCo&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;foot&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/footer.html.twig&#10;userT&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Form/UserType.php&#10;vigne&#9;null&#9;null&#10;userC&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;main.js&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/js/main.js&#10;contro&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;mai&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;secr&#9;null&#9;null&#10;sho&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/show.html.twig&#10;voteR&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/VoteRepository.php&#10;securit&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/config/security.yml&#10;winne&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Winner.php&#10;ansi&#9;null&#9;null&#10;secur&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/config/security.yml&#10;Vote&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Vote.php&#10;userfo&#9;null&#9;null&#10;PROJECT&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
@@ -760,7 +759,8 @@
       <workItem from="1472835079245" duration="25498000" />
       <workItem from="1472925210045" duration="3263000" />
       <workItem from="1472996473114" duration="126124000" />
-      <workItem from="1473714674570" duration="87066000" />
+      <workItem from="1473714674570" duration="87552000" />
+      <workItem from="1474059402064" duration="280000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1471458927328</created>
@@ -1084,11 +1084,18 @@
       <option name="project" value="LOCAL" />
       <updated>1474046089442</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Fix Symfony practice v1">
+      <created>1474048247720</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1474048247720</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="359332000" />
+    <option name="totallyTimeSpent" value="360098000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1100,25 +1107,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="963" extended-state="0" />
-    <editor active="true" />
+    <frame x="56" y="23" width="1680" height="963" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22283272" sideWeight="0.49401197" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22527473" sideWeight="0.49401197" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295063" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295063" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23306544" sideWeight="0.50549453" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295063" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295063" sideWeight="0.496337" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23306544" sideWeight="0.4945055" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2325315" sideWeight="0.4945055" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.505988" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295063" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295063" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39954075" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1156,7 +1163,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="SHOW_FILE_HISTORY_DETAILS" value="false" />
-    <MESSAGE value="Update Entity &#10;" />
     <MESSAGE value="Génération CRUD" />
     <MESSAGE value="Update Mapping" />
     <MESSAGE value="Update Project - Entity / Controller" />
@@ -1181,7 +1187,8 @@
     <MESSAGE value="Edit - Show - Subscribe - View WIP" />
     <MESSAGE value="Admin Back - WIP&#10;Update view" />
     <MESSAGE value="Update Navigation&#10;Update Comment ( Add / Edit / Delete ) &#10;Update Comment ( Views )&#10;Update Project ( Resposive )&#10;Update User&#10;Update Controller Action ( Comment/ Project / User / Winnerà&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Navigation&#10;Update Comment ( Add / Edit / Delete ) &#10;Update Comment ( Views )&#10;Update Project ( Resposive )&#10;Update User&#10;Update Controller Action ( Comment/ Project / User / Winnerà&#10;" />
+    <MESSAGE value="Fix Symfony practice v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Symfony practice v1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1210,22 +1217,14 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/uploads/project/621a46d49d8f4d3dad9be01148c93123.jpeg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/uploads/project/f71b3e046bcfb62bd73f8c38c584c3d0.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/web/uploads/project/621a46d49d8f4d3dad9be01148c93123.jpeg" />
+    <entry file="file://$PROJECT_DIR$/web/uploads/project/f71b3e046bcfb62bd73f8c38c584c3d0.png" />
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="297" column="25" selection-start-line="297" selection-start-column="20" selection-end-line="297" selection-end-column="25" />
           <folding>
-            <element signature="e#42#96#0#PHP" expanded="true" />
+            <element signature="e#42#96#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1234,7 +1233,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="32" column="62" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1242,7 +1240,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
           <caret line="283" column="7" selection-start-line="283" selection-start-column="7" selection-end-line="283" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1250,7 +1247,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1258,11 +1254,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-          <folding>
-            <marker date="1473855674000" expanded="true" signature="32:2508" placeholder="{% block body ...%}" />
-            <marker date="1473855674000" expanded="true" signature="1380:2467" placeholder="{% if maxPages &gt; 1 ...%}" />
-            <marker date="1473855674000" expanded="true" signature="1846:2113" placeholder="{% for i in 1..maxPages ...%}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1270,17 +1261,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding>
-            <element signature="e#251#380#0#PHP" expanded="false" />
-            <element signature="e#451#831#0#PHP" expanded="false" />
-            <element signature="e#903#972#0#PHP" expanded="false" />
-            <element signature="e#903#1015#0#PHP" expanded="false" />
-            <element signature="e#4391#4656#0#PHP" expanded="false" />
-            <element signature="e#4447#4516#0#PHP" expanded="false" />
-            <element signature="e#4447#4559#0#PHP" expanded="false" />
-            <element signature="e#4662#5006#0#PHP" expanded="false" />
-            <element signature="e#4736#4809#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1288,7 +1268,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1296,9 +1275,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-          <folding>
-            <marker date="1473866627000" expanded="true" signature="385:626" placeholder="{% for flash_message in app.session.flashBag.get('notice') ...%}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1306,7 +1282,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
           <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1326,20 +1301,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1614">
-          <caret line="129" column="29" selection-start-line="128" selection-start-column="16" selection-end-line="129" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/Project.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
           <caret line="382" column="23" selection-start-line="382" selection-start-column="14" selection-end-line="382" selection-end-column="23" />
           <folding>
-            <element signature="e#41#95#0#PHP" expanded="true" />
+            <element signature="e#41#95#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1348,7 +1315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1364,7 +1330,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
           <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="29" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1372,7 +1337,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-674">
           <caret line="105" column="86" selection-start-line="105" selection-start-column="86" selection-end-line="105" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1380,7 +1344,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="50" column="46" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1388,7 +1351,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1396,7 +1358,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1404,15 +1365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1420,7 +1372,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1428,7 +1379,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="82" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1436,7 +1386,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
           <caret line="56" column="18" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1444,9 +1393,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="64" column="45" selection-start-line="64" selection-start-column="45" selection-end-line="64" selection-end-column="45" />
-          <folding>
-            <marker date="1474036200000" expanded="true" signature="2228:2237" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1454,7 +1400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1462,7 +1407,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1470,7 +1414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="84" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="84" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1478,7 +1421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1486,7 +1428,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="31" column="73" selection-start-line="31" selection-start-column="73" selection-end-line="31" selection-end-column="73" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1494,7 +1435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1510,7 +1450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="39" column="64" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1518,7 +1457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1526,7 +1464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="385">
           <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1534,7 +1471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1542,7 +1478,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="42" column="93" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1550,7 +1485,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="37" column="85" selection-start-line="37" selection-start-column="69" selection-end-line="37" selection-end-column="85" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1562,19 +1496,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/ProjectController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2746">
-          <caret line="230" column="9" selection-start-line="214" selection-start-column="7" selection-end-line="230" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
+        <state relative-caret-position="4365">
           <caret line="298" column="0" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#46#91#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1582,15 +1510,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="30" column="29" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/CommentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2160">
+        <state relative-caret-position="2100">
           <caret line="144" column="14" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="14" />
           <folding>
             <element signature="e#46#91#0#PHP" expanded="true" />
@@ -1598,10 +1524,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="129" column="29" selection-start-line="128" selection-start-column="16" selection-end-line="129" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+        <state relative-caret-position="92">
+          <caret line="122" column="26" selection-start-line="122" selection-start-column="26" selection-end-line="122" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/ProjectController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="385" column="16" selection-start-line="385" selection-start-column="12" selection-end-line="385" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/Comment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2370">
+          <caret line="159" column="4" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="4" />
           <folding />
         </state>
       </provider>

@@ -51,13 +51,6 @@ class Comment
      */
     private $dateAdd;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="nbLike", type="integer")
-     */
-    private $nbLike;
-    
 
     /**
      * Get id
@@ -164,31 +157,7 @@ class Comment
     {
         return $this->dateAdd;
     }
-
-    /**
-     * Set nbLike
-     *
-     * @param integer $nbLike
-     *
-     * @return Comment
-     */
-    public function setNbLike($nbLike)
-    {
-        $this->nbLike = $nbLike;
-
-        return $this;
-    }
-
-    /**
-     * Get nbLike
-     *
-     * @return int
-     */
-    public function getNbLike()
-    {
-        return $this->nbLike;
-    }
-
+    
     
 }
 
