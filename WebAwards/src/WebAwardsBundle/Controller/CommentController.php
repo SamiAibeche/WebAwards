@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use WebAwardsBundle\Entity\Comment;
-use WebAwardsBundle\Form\CommentType;
 
 /**
  * Comment controller.
@@ -177,9 +176,6 @@ class CommentController extends Controller
             $currId = $currentUser->getId();
             $userIdComment = $comment->getIdUser()->getId();
             if($currId !== $userIdComment){
-                dump($currId);
-                dump($userIdComment);
-                die();
                 $this->addFlash(
                     'notice',
                     'Vous ne pouvez pas accéder à cette page'
@@ -225,7 +221,7 @@ class CommentController extends Controller
             $em->remove($comment);
             $em->flush();
         }
-        
+
         return $this->redirectToRoute('project_show', array('id' => $idProject));
     }
 
