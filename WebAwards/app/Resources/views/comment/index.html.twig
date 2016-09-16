@@ -1,47 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Comment list</h1>
+    <div class="container">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Iduser</th>
-                <th>Idproject</th>
-                <th>Content</th>
-                <th>Dateadd</th>
-                <th>Nblike</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for comment in comments %}
-            <tr>
-                <td><a href="{{ path('comment_show', { 'id': comment.id }) }}">{{ comment.id }}</a></td>
-                <td>{{ comment.idUser }}</td>
-                <td>{{ comment.idProject }}</td>
-                <td>{{ comment.content }}</td>
-                <td>{% if comment.dateAdd %}{{ comment.dateAdd|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ comment.nbLike }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('comment_show', { 'id': comment.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('comment_edit', { 'id': comment.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('comment_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+        <div class="row">
+            <div  class="col-xs-12 text-center text-uppercase divTitle">
+                <h1> - Membres de <strong>WebAwards</strong> - </h1>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row blocProjectDay">
+            <div class="blocUserList">
+                {% for comment in comments %}
+                    <div class="col-xs-6 col-md-4 col-lg-2 blocUserVignette">
+                        <div style="text-align: center">
+                            <a class="userNameTitle" href="{{ path('user_show', { 'id': comment.idUser.id }) }}"><h5>{{ comment.idUser.username }}</h5></a>
+                            <p class="infoCommentShow">a posté <a href="{{ path('comment_show', { 'id': comment.id }) }}">ce commentaire</a></p>
+                            <p class="infoCommentShow">le : {{ comment.dateAdd|date("d/m/Y") }}</p>
+                            <p class="linkEditComment"><a href="{{ path('comment_edit', { 'id': comment.id }) }}">MODIFIER</a></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="blocBtn">
+                <a class="btn btRetour" href="{{ app.request.headers.get('referer') }}">RETOUR</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

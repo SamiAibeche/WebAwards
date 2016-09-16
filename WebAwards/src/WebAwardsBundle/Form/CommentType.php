@@ -15,13 +15,13 @@ class CommentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
-            ->add('idUser')
-            ->add('idProject')
-            ->add('content')
-            ->add('dateAdd', DateType::class, array('input'  => 'datetime','widget' => 'choice'))
-            ->add('nbLike')
-        ;
+            //->add('idUser')
+            //->add('idProject')
+            ->add('content');
+            //->add('dateAdd', DateType::class, array('input'  => 'datetime','widget' => 'choice'))
+            //->add('nbLike')
     }
     
     /**

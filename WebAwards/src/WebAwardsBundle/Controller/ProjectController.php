@@ -30,11 +30,8 @@ class ProjectController extends Controller
      */
     public function indexAction($page = 1)
     {
-        $hasLike = "";
         $em = $this->getDoctrine()->getManager();
-        //Get All projects
-        //$projects = $em->getRepository('WebAwardsBundle:Project')->findByIsVisible(1);
-        //$projects = $em->getRepository('WebAwardsBundle:Project')->findBy(array('isVisible' => 1), array('dateAdd' => 'desc'));
+
         
         $projects = $em->getRepository('WebAwardsBundle:Project')->getAllPosts($page);
         $totalPostsReturned = $projects->getIterator()->count();
@@ -62,26 +59,19 @@ class ProjectController extends Controller
         //Get the vote of the project
         $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
 
+        //Get the number of like
         $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
 
-        //Get the last project of the Month
-
-
-
-
-
-
+        //Verify if the current user has like
         $hasLike = "";
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
-        if($currentUser != "anon.") {
+        if($currentUser != "anon.") { //If the user is connected
             $roles = $currentUser->getRoles();
-            if ($roles[0] != "ROLE_ADMIN") {
+            if ($roles[0] != "ROLE_ADMIN") { //if isn't an Admin
                 $hasLike = $em->getRepository('WebAwardsBundle:Heart')->verifyHasLike($idProject, $currentUser);
             }
         }
 
-        //All Winner of the month
-        //Recuperer dans la liste de tous les projets, le projet == meme id, order by date desc limit 1
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
             'winner'   => $winner,
@@ -141,6 +131,7 @@ class ProjectController extends Controller
             $now = date("Y-m-d H:i:s");
             $project->setDateAdd($now);
 
+            //Envoi des données
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
@@ -162,28 +153,33 @@ class ProjectController extends Controller
      */
     public function showAction(Project $project)
     {
-
+        //Vérifie si le projet est "Visible" (Si l'admin l'a validé)
         if(!($project->getIsVisible())){
             return $this->redirectToRoute("homepage");
         }
 
+        //Initialisation des variables
         $hasLike = 0;
         $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($project);
         $form = $this->createForm('WebAwardsBundle\Form\VoteType');
-
+        $formComment = $this->createForm('WebAwardsBundle\Form\CommentType');
         $user = $project->getIdAuthor();
         $idUser = $user->getId();
         $idProject = $project->getId();
 
 
-
+        //Récupération de l'auteur du projet
         $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
 
-        //Get the vote of the project
+        //Récupération des votes du projet
         $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
         $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
 
+        //Récupération des commentaires liés au projet
+        $comments = $em->getRepository('WebAwardsBundle:Comment')->findByIdProject($idProject);
+
+        //Vérifie que l'utilisateur ait déjà like le projet
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         if($currentUser != "anon.") {
             $roles = $currentUser->getRoles();
@@ -192,17 +188,16 @@ class ProjectController extends Controller
             }
         }
 
-       //dump($hasLike);
-       //die();
-
         return $this->render('project/show.html.twig', array(
-            'project' => $project,
-            'user'     => $user,
-            'nbHeart' => $nbHeart,
-            'vote'     => $vote,
+            'project'   => $project,
+            'user'      => $user,
+            'nbHeart'   => $nbHeart,
+            'vote'      => $vote,
             'hasLike'   => $hasLike,
+            'comments'  => $comments,
             'delete_form' => $deleteForm->createView(),
-            'form' => $form->createView()
+            'form'      => $form->createView(),
+            'formComment' => $formComment->createView()
         ));
     }
 
@@ -214,9 +209,10 @@ class ProjectController extends Controller
      */
     public function editAction(Request $request, Project $project)
     {
+        //Récupération des donées de l'utilisateur en cours
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
 
-
+        //Si il n'est pas connecté
         if($currentUser == "anon."){
             $this->addFlash(
                 'notice',
@@ -224,7 +220,7 @@ class ProjectController extends Controller
             );
                 return $this->redirectToRoute("homepage");
         }
-        
+        //Si ce n'est pas un admin
         $roles = $currentUser->getRoles();
         if($roles[0] != "ROLE_ADMIN" ){
                 $this->addFlash(
@@ -234,37 +230,40 @@ class ProjectController extends Controller
                 return $this->redirectToRoute("homepage");
         }
 
-
-
+        //Initialisation des variables
         $id = $project->getId();
-        //Recup the last img
+
+        //Img
         $em = $this->getDoctrine()->getManager();
         $projectData = $em->getRepository('WebAwardsBundle:Project')->findById($id);
 
         $lastImgScreen = $projectData[0]->getImgScreen();
         $lastImgMobile = $projectData[0]->getImgMobile();
 
+        //Form
         $editForm = $this->createForm('WebAwardsBundle\Form\ProjectType', $project);
         $editForm->handleRequest($request);
 
         $deleteForm = $this->createDeleteForm($project);
+
+        //Vérifie si le formulaire a été envoyé && qu'il est valide
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-            //Récupération des images
+            //Récupération des images postées
             $fileScreen = $project->getImgScreen();
             $fileMobile = $project->getImgMobile();
-
+            //Nom unique pour chaque image
             $fileScreenName = md5(uniqid()).'.'.$fileScreen->guessExtension();
             $fileMobileName = md5(uniqid()).'.'.$fileMobile->guessExtension();
 
 
-
+            //Vérifie que l'utilisateur avec bien des images au préalable et les supprime
             if(isset($lastImgScreen) && $lastImgScreen !== null && isset($lastImgMobile) && $lastImgMobile !== null ){
                 unlink("./../web/uploads/project/".$lastImgScreen);
                 unlink("./../web/uploads/project/".$lastImgMobile);
             }
 
-
+            //Place les nouvelles images dans le dossier uploads/Projet
             $fileScreen->move(
                 $this->getParameter('projects_directory'),
                 $fileScreenName
@@ -274,13 +273,16 @@ class ProjectController extends Controller
                 $fileMobileName
             );
 
+            //Set les nouvelles images
             $project->setImgScreen($fileScreenName);
             $project->setImgMobile($fileMobileName);
 
+            //Envoi des données dans la DB
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
 
+            //Success message
             $this->addFlash(
                 'notice',
                 'Modification enregistrée'
@@ -288,8 +290,6 @@ class ProjectController extends Controller
 
             return $this->redirectToRoute('project_show', array('id' => $project->getId()));
         }
-
-
 
         return $this->render('project/edit.html.twig', array(
             'project' => $project,
@@ -313,7 +313,7 @@ class ProjectController extends Controller
             $screen = $project->getImgScreen();
             $mobile = $project->getImgMobile();
 
-            //Vérification de l'existance des images
+            //Vérification de l'existance des images et suppression
             if(isset($screen) && isset($mobile)){
                 unlink("./../web/uploads/project/".$mobile);
                 unlink("./../web/uploads/project/".$screen);
@@ -413,14 +413,16 @@ class ProjectController extends Controller
      */
     public function getProjectFrom(Request $request){
 
+        //Initialisation et récupération des variables
         $page =$request->query->get('page');
         $page = (int) $page;
-
-        $em = $this->getDoctrine()->getManager();
 
         $page = $request->get('page');
         $from = $request->get('from');
 
+        $em = $this->getDoctrine()->getManager();
+
+        //Vérifie que la requête qui sera envoyée aura les bonnes data
         if( $from == "freelance" || $from == "agency" ||  $from == "junior"  || $from == "honorable") {
 
             $projects = $em->getRepository('WebAwardsBundle:Project')->getAllPostsFrom($page, $from);
@@ -444,27 +446,27 @@ class ProjectController extends Controller
             'from'     => $from
         ));
 
+
     }
 
     /**
-     * Init & show the junior's project.
+     * Init & show the winner's project.
      *
      * @Route("winner/{winner}/", name="project_from_winner")
      * @Method({"GET"})
      */
     public function getWinnerProjectFrom(Request $request){
+
+        //Initialisation des variables
         $hasLike = "";
-        $page =$request->query->get('page');
-        $page = (int) $page;
-
-        $em = $this->getDoctrine()->getManager();
-
         $page = $request->get('page');
         $winner = $request->get('winner');
-        
+        $em = $this->getDoctrine()->getManager();
+
+        //Recuperation des winner
         $projects = $em->getRepository('WebAwardsBundle:Project')->getWinnerProjects($page, $winner);
         
-
+        //Pagination
         $totalPostsReturned = $projects->getIterator()->count();
         $totalProjects = $projects->count();
         $iterator = $projects->getIterator();
@@ -483,13 +485,13 @@ class ProjectController extends Controller
         $idUser = $tabIdAuthor[0];
         $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
 
-        //Get the vote of the project
+        //Get project
         $idProject = $tabIdProject[0];
-
+        //Get the vote of the project
         $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
-
         $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
 
+        //Vérifie que l'utilisateur a voté
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         if($currentUser != "anon.") {
             $roles = $currentUser->getRoles();

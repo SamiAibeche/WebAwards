@@ -103,32 +103,47 @@ class WinnerController extends Controller
     }
 
     /**
+     * Initialisation des données pour le footer (5 derniers projets / Projet du mois)
      * @return Project of the day and author of the project and the 5 last project
      */
     public function getFooterDataAction(){
         $em = $this->getDoctrine()->getManager();
 
-        //Get Last Project
+        //Get 5 Last Project
         $lastProject = $em->getRepository('WebAwardsBundle:Project')->findBy(array('isVisible' => 1), array('dateAdd' => 'desc'), 5);
-        //Get All projects
-        $projects = $em->getRepository('WebAwardsBundle:Project')->findAll();
 
         //Get the Winner of the day
         $winners = $em->getRepository('WebAwardsBundle:Winner')->findBy(
             array('isDay' => '1')
         );
+        //Get Project of the day
         foreach($winners as $win){
             $idProject = $win->getIdProject();
         }
+        //Get Project
         $winner = $em->getRepository('WebAwardsBundle:Project')->findById($idProject);
+        //Get User
         $userId = $winner[0]->getIdAuthor();
         $user = $em->getRepository('WebAwardsBundle:User')->findById($userId);
 
+        //Get Winner of the month
+        $monthWinners =  $em->getRepository('WebAwardsBundle:Winner')->findBy(
+            array('isMonth' => '1')
+        );
+        //Get Project
+        $monthWinner = $em->getRepository('WebAwardsBundle:Winner')->getLastMonthWinner($monthWinners);
+        //Get Author Project
+        $userMonthId = $monthWinner->getIdAuthor();
+        $userMonthWinner = $em->getRepository('WebAwardsBundle:User')->findById($userMonthId);
+        $userMonthWinner = $userMonthWinner[0];
+
 
         return $this->render('footer.html.twig', array(
-            'winner'   => $winner,
-            'user'     => $user,
-            'lastProject'     => $lastProject,
+            'monthWinner'=> $monthWinner,
+            'userMonth'  => $userMonthWinner,
+            'winner'     => $winner,
+            'user'       => $user,
+            'lastProject'=> $lastProject,
         ));
     }
 

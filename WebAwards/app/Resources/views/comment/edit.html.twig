@@ -1,21 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Comment edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    <div class="container">
+        <div class="row divTitleSubscribe">
+            <div  class="col-xs-12 text-center text-uppercase divTitle">
+                <h1> - MODIFIER
+                    {% if app.user %}
+                        {% if (app.user.roles[0]) != ('ROLE_ADMIN') %}
+                            VOTRE
+                        {% elseif (app.user.roles[0]) == ('ROLE_ADMIN') %}
+                            LE
+                        {% endif %}
+                    {% endif %}
+                    COMMENTAIRE -
+                </h1>
+            </div>
+        </div>
+    </div>
+<div class="blocFormSubscribe">
+    {{ form_start(edit_form ,{'attr': {'id':'formCommentEdit'}}) }}
+    <div class="form-group">
+        <label id="labelComment" for="comment_content"><h4>Modifier
+                {% if app.user %}
+                    {% if (app.user.roles[0]) != ('ROLE_ADMIN') %}
+                        votre
+                    {% elseif (app.user.roles[0]) == ('ROLE_ADMIN') %}
+                        le
+                    {% endif %}
+                {% endif %} commentaire ici :</h4></label>
+        <br>
+            {{ form_errors(edit_form.content) }}
+            {{ form_widget(edit_form.content,{'attr': {'class':'form-contol'}}) }}
+            <input name="btSend" class="btEditComment" type="submit" value="MODIFIER" />
+    </div>
     {{ form_end(edit_form) }}
+</div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <div class="blocBtn">
+                        {{ form_start(delete_form) }}
+                        <input class="btDelete ml0" type="submit" value="SUPPRIMER">
+                        {{ form_end(delete_form) }}
+                        <a class="btn btRetour ml0" href="{{ path('project_show', {'id' : comment.idProject}) }}">RETOUR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('comment_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

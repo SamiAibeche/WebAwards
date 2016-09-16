@@ -41,7 +41,6 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="text")
-     * @Assert\NotBlank()
      */
     private $content;
 
@@ -145,7 +144,7 @@ class Comment
     /**
      * Set dateAdd
      *
-     * @param string $dateAdd
+     * @param \DateTime $dateAdd
      *
      * @return Comment
      */
@@ -159,7 +158,7 @@ class Comment
     /**
      * Get dateAdd
      *
-     * @return string
+     * @return \DateTime
      */
     public function getDateAdd()
     {

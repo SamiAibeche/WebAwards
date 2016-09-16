@@ -153,7 +153,7 @@ class UserController extends Controller
 
         $authorId = ($user->getId());
         $projects = $em->getRepository('WebAwardsBundle:Project')->findByIdAuthor($authorId);
-       
+
         return $this->render('user/show.html.twig', array(
             'user' => $user,
             'projects'=>$projects,
@@ -267,11 +267,11 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($user);
             if(isset($lastImg) && $lastImg !== null){
                 unlink("./../web/uploads/user/".$lastImg);
             }
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
             $em->flush();
 
             return $this->redirectToRoute('homepage');

@@ -24,6 +24,18 @@ class CommentController extends Controller
      */
     public function indexAction()
     {
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        //Si il n'est pas connecté
+        if($currentUser == "anon."){
+            return $this->redirectToRoute("homepage");
+        }
+
+        //Si ce n'est pas un admin
+        $roles = $currentUser->getRoles();
+        if($roles[0] != "ROLE_ADMIN" ){
+            return $this->redirectToRoute("homepage");
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $comments = $em->getRepository('WebAwardsBundle:Comment')->findAll();
@@ -44,13 +56,57 @@ class CommentController extends Controller
         $comment = new Comment();
         $form = $this->createForm('WebAwardsBundle\Form\CommentType', $comment);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+
+
+        $idProject = $request->get('idProject');
+        if( $idProject <= 0 || !is_numeric($idProject)){
+            $this->addFlash(
+                'notice',
+                'Une erreur semble s\'etre produite'
+            );
+            return $this->redirectToRoute("homepage");
+        }
+
+        $idProject = (int) $request->get('idProject');
+        $project = $em->getRepository('WebAwardsBundle:Project')->findById($idProject);
+        $project = $project[0];
+
+        if($currentUser != "anon.") {
+            $roles = $currentUser->getRoles();
+            if ($roles[0] != "ROLE_ADMIN") {
+                $idUser = $currentUser->getid();
+            } else {
+                $this->addFlash(
+                    'notice',
+                    'Un admin ne peut commenter un projet'
+                );
+                return $this->redirectToRoute("project_show", array( "id"=>$idProject));
+            }
+        } else {
+            $this->addFlash(
+                'notice',
+                'Veuillez devez être connecté pour commenter un projet'
+            );
+            return $this->redirectToRoute("project_show", array( "id"=>$idProject));
+        }
+
+
+        $now = new \DateTime();
+        $comment->setDateAdd($now);
+        $comment->setIdProject($project);
+        $comment->setIdUser($currentUser);
+        $comment->setNbLike(0);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
             $em->persist($comment);
             $em->flush();
 
-            return $this->redirectToRoute('comment_show', array('id' => $comment->getId()));
+            return $this->redirectToRoute('project_show', array('id' => $idProject));
         }
 
         return $this->render('comment/new.html.twig', array(
@@ -67,6 +123,26 @@ class CommentController extends Controller
      */
     public function showAction(Comment $comment)
     {
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        //Si il n'est pas connecté
+        if($currentUser == "anon."){
+            $this->addFlash(
+                'notice',
+                'Vous ne pouvez pas accéder à cette page'
+            );
+            return $this->redirectToRoute("homepage");
+        }
+
+        //Si ce n'est pas un admin
+        $roles = $currentUser->getRoles();
+        if($roles[0] != "ROLE_ADMIN" ){
+            $this->addFlash(
+                'notice',
+                'Vous ne pouvez pas accéder à cette page'
+            );
+            return $this->redirectToRoute("homepage");
+        }
+
         $deleteForm = $this->createDeleteForm($comment);
 
         return $this->render('comment/show.html.twig', array(
@@ -83,6 +159,35 @@ class CommentController extends Controller
      */
     public function editAction(Request $request, Comment $comment)
     {
+
+
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        //Si il n'est pas connecté
+        if($currentUser == "anon."){
+            $this->addFlash(
+                'notice',
+                'Vous ne pouvez pas accéder à cette page'
+            );
+            return $this->redirectToRoute("homepage");
+        }
+
+        //Si ce n'est pas un admin
+        $roles = $currentUser->getRoles();
+        if($roles[0] != "ROLE_ADMIN" ){
+            $currId = $currentUser->getId();
+            $userIdComment = $comment->getIdUser()->getId();
+            if($currId !== $userIdComment){
+                dump($currId);
+                dump($userIdComment);
+                die();
+                $this->addFlash(
+                    'notice',
+                    'Vous ne pouvez pas accéder à cette page'
+                );
+                return $this->redirectToRoute("homepage");
+            }
+        }
+
         $deleteForm = $this->createDeleteForm($comment);
         $editForm = $this->createForm('WebAwardsBundle\Form\CommentType', $comment);
         $editForm->handleRequest($request);
@@ -113,13 +218,15 @@ class CommentController extends Controller
         $form = $this->createDeleteForm($comment);
         $form->handleRequest($request);
 
+        $idProject = $comment->getIdProject()->getId();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($comment);
             $em->flush();
         }
-
-        return $this->redirectToRoute('comment_index');
+        
+        return $this->redirectToRoute('project_show', array('id' => $idProject));
     }
 
     /**

@@ -62,4 +62,6 @@ security:
         - { path: /project/new, roles: ROLE_USER }
         - { path: vote, roles: ROLE_USER }
         - { path: /user/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /comment/, roles: ROLE_USER }
         - { path: delete, roles: ROLE_ADMIN }
+

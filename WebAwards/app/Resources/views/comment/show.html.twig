@@ -1,48 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Comment</h1>
+    <div class="container">
+        <div class="row divTitleSubscribe">
+            <div  class="col-xs-12 text-center text-uppercase divTitle">
+                <h1> - COMMENTAIRE  - </h1>
+            </div>
+        </div>
+    </div>
+    <div class="blocFormSubscribe blocShowComment">
+            <div class="col-xs-12 spaceBottom">Posté par {{ comment.idUser.username }} le {{ comment.dateAdd|date("d/m/Y") }}  : </div>
+            <div class="col-xs-12 spaceBottom">" {{ comment.content }} "</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <div class="blocBtn">
+                        {{ form_start(delete_form) }}
+                        <input class="btDelete ml0" type="submit" value="SUPPRIMER">
+                        {{ form_end(delete_form) }}
+                        <a class="btEdit ml0" href="{{ path('comment_edit', {'id' : comment.id}) }}">MODIFIER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ comment.id }}</td>
-            </tr>
-            <tr>
-                <th>Iduser</th>
-                <td>{{ comment.idUser }}</td>
-            </tr>
-            <tr>
-                <th>Idproject</th>
-                <td>{{ comment.idProject }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ comment.content }}</td>
-            </tr>
-            <tr>
-                <th>Dateadd</th>
-                <td>{% if comment.dateAdd %}{{ comment.dateAdd|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Nblike</th>
-                <td>{{ comment.nbLike }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('comment_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('comment_edit', { 'id': comment.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

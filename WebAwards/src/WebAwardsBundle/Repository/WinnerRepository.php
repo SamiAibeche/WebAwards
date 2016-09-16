@@ -10,4 +10,44 @@ namespace WebAwardsBundle\Repository;
  */
 class WinnerRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Récupère le projet du mois passé, en prenant compte de prendre celui de l'année passée si nous sommes au mois de janvier.
+     * @param $monthWinners Tableau de tous les projets du mois
+     * @return mixed Projet du mois
+     */
+    public function getLastMonthWinner($monthWinners){
+
+        //Initialisation des données
+        $currMonth = (int) date("m");
+        $currYear = (int) date("Y");
+
+        //Vérifiaction de l'égalité du mois en cours à celui du mois de janvier.
+        if($currMonth == 1){    //Si c'est le cas
+
+            foreach ($monthWinners as $win) { //Parcours de tous les projets
+
+                $curProject = $win->getIdProject();
+                $date = $curProject->getDateAdd();
+                $month = (int) $date->format('m'); //Récupération du mois du projet
+                $year = (int) $date->format('Y');  //Récupération de l'année du projet
+
+               if( ($currYear-1) == $year &&  $month == 12 ){ //Si l'année du projet == l'année passée ET que le mois du projet est un mois de décembre
+                    $winnerMonth = $curProject; //Récupération du gagnant
+               }
+            }
+        } else { //Sinon
+            foreach ($monthWinners as $win) { //Parcours de tous les projets
+
+                $curProject = $win->getIdProject();
+                $date = $curProject->getDateAdd();
+                $month = (int) $date->format('m'); //Récupération du mois du projet
+                $year = (int) $date->format('Y'); //Récupération de l'année du projet
+
+                if( $currYear == $year &&  $month == ($currMonth-1)  ){ //Si l'année du projet == l'année en cours ET que le mois du projet == au mois passé
+                    $winnerMonth = $curProject; //Récupération du gagnant
+                }
+            }
+        }
+        return $winnerMonth; //Envoi du projet
+    }
 }
