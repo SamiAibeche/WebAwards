@@ -125,6 +125,13 @@ class User implements UserInterface, \Serializable
      */
     private $dateAff;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateSubscribe", type="datetime", nullable=true)
+     */
+    private $dateSubscribe;
+
 
     /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="idUser", cascade={"remove"})
@@ -496,6 +503,22 @@ class User implements UserInterface, \Serializable
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateSubscribe()
+    {
+        return $this->dateSubscribe;
+    }
+
+    /**
+     * @param \DateTime $dateSubscribe
+     */
+    public function setDateSubscribe($dateSubscribe)
+    {
+        $this->dateSubscribe = new \DateTime($dateSubscribe);
     }
 
 

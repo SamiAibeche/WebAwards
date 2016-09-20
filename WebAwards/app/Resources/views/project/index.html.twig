@@ -11,7 +11,7 @@
         </div>
         {% for flash_message in app.session.flashBag.get('notice') %}
             <div class="alert alert-warning text-center" role="alert">
-                <strong>Désolé ! </strong>{{ flash_message }}</a>
+                {{ flash_message }}
             </div>
         {% endfor %}
         <div class="container-fluid">

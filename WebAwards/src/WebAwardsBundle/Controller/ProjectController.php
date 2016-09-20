@@ -96,7 +96,18 @@ class ProjectController extends Controller
         $form = $this->createForm('WebAwardsBundle\Form\ProjectType', $project);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) { //Si le form est envoyé
+
+            //Recupère le statut de l'utilisateur est abonné ou pas
+            $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+            if($currentUser != "anon.") {
+                $roles = $currentUser->getRoles();
+                if ($roles[0] != "ROLE_ADMIN") {
+                    $subscribe = $currentUser->getIsSubscribe();
+                }
+            }
+
+
             //Récupération des images
             $fileScreen = $project->getImgScreen();
             $fileMobile = $project->getImgMobile();
@@ -124,21 +135,94 @@ class ProjectController extends Controller
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $idUser = $user->getId();
             $project->setIdAuthor($user);
-            //Initialisation des données par défaut
+            //Initialisation des données par défaut du projet
             $project->setNbLike(0);
             $project->setIsForward(false);
             $project->setIsVisible(false);
-            $now = date("Y-m-d H:i:s");
+            $now = (new \DateTime());
             $project->setDateAdd($now);
 
-            //Envoi des données
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($project);
-            $em->flush();
+            if($subscribe === false){ //Si l'utilisateur n'est pas abonné
 
-            return $this->redirectToRoute('project_show', array('id' => $project->getId()));
+                $method = $request->get('methodPost'); //Récupération de son choix de paiement
+
+                //Initialisation du prix de la transaction
+                if(!empty($method) && ($method === "year") || ($method == "once")){
+
+                    if($method === "year"){
+                        $price = 12000;
+                    } else if($method == "once"){
+                        $price = 3000;
+                    }
+
+                    //Initialisation de la clé Stripe
+                    \Stripe\Stripe::setApiKey('sk_test_MW10NdytJNLAtToDgY1xuRl2');
+
+                    //Récupération du token paiement
+                    $payement = $request->get('stripeToken');
+
+                    //Exécution du paiement
+                    try {
+                        $charge = \Stripe\Charge::create(
+                            array('card' => $payement, 'amount' => $price, 'currency' => 'eur')
+                        );
+                        $statusPaid = $charge->status;
+
+                        //Si l'execution est n'est pas un succès
+                        if($statusPaid !== "succeeded"){
+                            $this->addFlash(
+                                'notice',
+                                'Erreur lors du processus de paiement, veuillez réessayer.'
+                            );
+                            return $this->redirectToRoute("homepage");
+                        }
+                        //Set des données de l'utilisateurs
+                        if($method === "year"){
+                            $currentUser->setIsSubscribe(true); //Si l'utilisateur s'est abonné
+                        } else if($method == "once"){
+                            $currentUser->setIsPublisher(true); //Sinon
+                        }
+                    }catch (\Stripe\Error\Card $e){ //Si une erreur s'est produite
+                        $this->addFlash(
+                            'notice',
+                            'Le paiement a été refusé, veuillez réessayer.
+                             Message d\'info : '.$e->getMessage().''
+                        );
+                        return $this->redirectToRoute("homepage");
+                    }
+
+                    //Insertions des données si tout ne s'est bien passé
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($project);
+                    $em->flush();
+
+                    $this->addFlash(
+                        'notice',
+                        'Merci ! Votre paiement a été accepté ! Votre projet est en cours de validation par nos équipes !'
+                    );
+                    return $this->redirectToRoute("homepage");
+
+                    //Si les champs concernant le paiement ne sont pas envoyés
+                } else {
+                    $this->addFlash(
+                        'notice',
+                        'Le paiement ne semble pas être identifiable....'
+                    );
+                    return $this->redirectToRoute("homepage");
+                }
+            } else { //Si l'utilisateur est déjà abonné, nous envoyons directement le projet
+                //Envoi des données
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($project);
+                $em->flush();
+
+                $this->addFlash(
+                    'notice',
+                    'Merci ! Votre projet est en cours de validation par nos équipes !'
+                );
+                return $this->redirectToRoute("homepage");
+            }
         }
-
         return $this->render('project/new.html.twig', array(
             'project' => $project,
             'form' => $form->createView(),
