@@ -182,4 +182,56 @@ class WinnerController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Set a Winner of the day entity.
+     *
+     * Need to call once a day
+     * @Route("/setWinnerDay/", name="set_winner_day")
+     *
+     */
+    public function setWinnerDayAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //Récupération des projets de la veille
+        $yesterdayProjects = $em->getRepository('WebAwardsBundle:Project')->getProjectsFromYesterday();
+
+        //Récupération du projet de la veille le mieux noté  
+        $curr = 0;
+        if($yesterdayProjects !== false){
+            foreach ($yesterdayProjects as $project){
+                $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($project->getId());
+                if($vote !== null){
+                    if($vote[0]->getNbTotal() > $curr){
+                        $curr = $vote[0]->getNbTotal();
+                        $winOftheDay = $project;
+                    }
+                }
+            }
+        }
+        //Initialise le nouveau winner
+        $winner = new Winner();
+        $winner->setIdProject($winOftheDay);
+        $winner->setIsDay(true);
+        $winner->setIsWeek(false);
+        $winner->setIsMonth(false);
+        $winner->setIsYear(false);
+
+        //Récupération de l'ancien projet du jour gagnant
+        $lastWinnerArr = $em->getRepository('WebAwardsBundle:Winner')->findBy(
+            array('isDay' => '1')
+        );
+
+        $lastWinner = $lastWinnerArr[0];
+        $lastWinner->setIsDay(false);
+
+        //Suppression de l'ancien winner et ajout du nouveau  vers la DB
+        $em->persist($lastWinner);
+        $em->persist($winner);
+        $em->flush();
+
+        exit();
+
+    }
 }

@@ -50,4 +50,5 @@ class WinnerRepository extends \Doctrine\ORM\EntityRepository
         }
         return $winnerMonth; //Envoi du projet
     }
+    
 }

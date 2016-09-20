@@ -172,4 +172,34 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $paginator;
     }
 
+    /**
+     *
+     * Recupère l'ensemble des projets visible posté la veille ou false si aucun projet n'est trouvé
+     * @return array|bool
+     */
+    public function getProjectsFromYesterday(){
+
+        //Initialisation des variables
+        $begin = date('Y-m-d 00:00:00',strtotime("-1 days"));
+        $last = date('Y-m-d 23:59:59',strtotime("-1 days"));
+
+        //Initialisation de la requête
+        $query = $this->createQueryBuilder('p')
+            ->where('p.isVisible = 1')
+            ->andwhere('p.dateAdd BETWEEN :begin AND :last')
+            ->setParameter('begin', $begin)
+            ->setParameter('last', $last)
+            ->getQuery();
+
+        //Execution
+        $resp =  $query->getResult();
+
+        //Réponse
+        if(count($resp) > 0){
+            return $resp;
+        } else {
+            return false;
+        }
+    }
+
 }
