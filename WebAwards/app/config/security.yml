@@ -19,7 +19,7 @@ security:
             memory:
                 users:
                     admin:
-                        password: $2y$13$aabu98fd.l60phldkU.WAeDwgzqiv1IcaF.EndURJuAhGllFgzTv.
+                        password: "%admin_password%"
                         roles: 'ROLE_ADMIN'
 
     encoders:
