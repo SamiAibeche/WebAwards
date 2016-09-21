@@ -77,7 +77,7 @@ class SecurityController extends Controller
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository('WebAwardsBundle:Project')->findById($id);
         $project = $project[0];
-       
+
 
         $project->setIsVisible(true);
 
@@ -96,7 +96,7 @@ class SecurityController extends Controller
     /**
      * @Route("/admin/project/{id}/validate", name="admin_invalid_show")
      */
-    public function showInactifProject($id){
+    public function showInactifProjectAction($id){
 
 
         $em = $this->getDoctrine()->getManager();
