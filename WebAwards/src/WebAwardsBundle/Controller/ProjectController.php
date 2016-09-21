@@ -179,6 +179,9 @@ class ProjectController extends Controller
                         //Set des données de l'utilisateurs
                         if($method === "year"){
                             $currentUser->setIsSubscribe(true); //Si l'utilisateur s'est abonné
+                            $now = (new \DateTime());
+                            $currentUser->setDateSubscribe($now);
+
                         } else if($method == "once"){
                             $currentUser->setIsPublisher(true); //Sinon
                         }

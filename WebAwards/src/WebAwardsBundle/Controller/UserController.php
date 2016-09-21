@@ -297,4 +297,38 @@ class UserController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Set the subscriber status.
+     *
+     * Need to call once a day
+     * @Route("/setSubscriberStatus/", name="set_subscriber_status")
+     *
+     */
+    public function setWinnerYearAction(Request $request)
+    {
+        //Initialisation des variables
+        $em = $this->getDoctrine()->getManager();
+        $now = (new \DateTime());
+        //Recupération la même date une année auparavant
+        $lastYear = $now->modify('-1 year');
+
+
+        //Récupération des utilisateurs inscrits
+        $userSubscribe = $em->getRepository('WebAwardsBundle:User')->findByIsSubscribe(1);
+
+        //Vérification de la validité de l'abonement > 1 ans
+        foreach ($userSubscribe as $user){
+            $date = $user->getDateSubscribe();
+            if($date <= $lastYear){
+                $user->setIsSubscribe(false);
+                $em->persist($user);
+                $em->flush();
+            }
+        }
+
+        return $this->redirectToRoute("homepage");
+
+
+    }
 }
