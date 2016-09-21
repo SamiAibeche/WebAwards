@@ -498,7 +498,7 @@ class ProjectController extends Controller
      * @Route("/{from}/", name="project_from")
      * @Method({"GET"})
      */
-    public function getProjectFrom(Request $request){
+    public function getProjectFromAction(Request $request){
 
         //Initialisation et récupération des variables
         $page =$request->query->get('page');
@@ -542,7 +542,7 @@ class ProjectController extends Controller
      * @Route("winner/{winner}/", name="project_from_winner")
      * @Method({"GET"})
      */
-    public function getWinnerProjectFrom(Request $request){
+    public function getWinnerProjectFromAction(Request $request){
 
         //Initialisation des variables
         $hasLike = "";

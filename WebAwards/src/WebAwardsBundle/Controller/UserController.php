@@ -323,10 +323,9 @@ class UserController extends Controller
             if($date <= $lastYear){
                 $user->setIsSubscribe(false);
                 $em->persist($user);
-                $em->flush();
             }
         }
-
+        $em->flush();
         return $this->redirectToRoute("homepage");
 
 

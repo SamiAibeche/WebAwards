@@ -58,7 +58,7 @@ class SecurityController extends Controller
     /**
      * @Route("/admin/project/validate", name="admin_inactif")
      */
-    public function getInactifProjectPage(){
+    public function getInactifProjectPageAction(){
         $em = $this->getDoctrine()->getManager();
         $projectToValid = $em->getRepository('WebAwardsBundle:Project')->getInactifProjects();
 
@@ -71,7 +71,7 @@ class SecurityController extends Controller
     /**
      * @Route("/admin/project/activate/{id}/", name="admin_active_project")
      */
-    public function setActiveProject($id){
+    public function setActiveProjectAction($id){
 
 
         $em = $this->getDoctrine()->getManager();
@@ -96,7 +96,7 @@ class SecurityController extends Controller
     /**
      * @Route("/admin/project/{id}/validate", name="admin_invalid_show")
      */
-    public function showInactifProject($id){
+    public function showInactifProjectAction($id){
 
 
         $em = $this->getDoctrine()->getManager();
