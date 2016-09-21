@@ -28,7 +28,7 @@
                     <div  class="col-xs-6 text-left"><a href="{{ path('heart_new', {'idProject' : project.id }) }}"><span class="glyphicon glyphicon-heart {% if (hasLike == 1) or  (hasLike == "") %} blackHeart {% endif %}"></span></a>{{ nbHeart }}</div>
                     <div  class="col-xs-6 text-right shareIcon">
                         <a class="facebook customer share" href="http://www.facebook.com/sharer.php?u={{ project.url }}" title="Partager sur Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a class="twitter customer share" href="http://twitter.com/share?url={{ project.url }}l&amp;text=Site du jour &amp;hashtags=webawards" title="Partager sur Twiiter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a class="twitter customer share" href="http://twitter.com/share?url={{ project.url }}l&amp;text=Site%20du%20jour%20&amp;hashtags=webawards" title="Partager sur Twitter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div  class="col-xs-12 col-md-6 col-lg-5">
@@ -88,9 +88,9 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 mr45">
             <div class="col-xs-12 blocAddComment">
-                {{ form_start(formComment,{ 'attr': {'name': 'comment', 'action': '/comment/new'} }) }}
+                {{ form_start(formComment,{ 'attr': {'action': '/comment/new'} }) }}
                 <div class="form-group">
-                    <label for="comment">Poster un commentaire :</label>
+                    <label for="comment_content">Poster un commentaire :</label>
                     <br>
                     {{ form_errors(formComment.content) }}
                     {{ form_widget(formComment.content, {'attr': {'class':'form-contol'}}) }}
@@ -103,7 +103,7 @@
             {%  for comment in comments %}
                 <div class="col-xs-12 blocComments">
                     <div class="col-xs-3 col-sm-2">
-                        <a href="{{ path('user_show', { 'id': comment.idUser.id }) }}"><img  class="img-responsive img-profil-comment" src="{{ asset('uploads/user/'~ comment.idUser.img) }}" /></a>
+                        <a href="{{ path('user_show', { 'id': comment.idUser.id }) }}"><img  class="img-responsive img-profil-comment" src="{{ asset('uploads/user/'~ comment.idUser.img) }}" alt="Image" /></a>
                     </div>
                     <div class="col-xs-8 col-sm-push-0 col-md-push-1">
                         <p>{{ comment.content }}</p>
@@ -123,7 +123,6 @@
                 </div>
             {% endfor %}
         {% endif %}
-        </div>
     {% endif %}
     </div>
 

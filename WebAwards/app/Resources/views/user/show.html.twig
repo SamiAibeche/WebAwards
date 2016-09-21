@@ -32,7 +32,7 @@
             {% for project in projects %}
                 <div class="col-xs-12 col-md-4 vignetteProject">
                     <a href="{{ path('project_show', { 'id': project.id }) }}">
-                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" />
+                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" alt="Image" />
                     </a>
                     <div class="col-xs-12 text-center blocSuggestVote">
                         {% if date(project.dateAdd) < date() and date(project.dateAdd) > date('-7days') %}

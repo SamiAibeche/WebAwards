@@ -26,7 +26,7 @@
         </div>
         <div class="newProjectStepTwo">
             <div class="file-style borderInput">
-                <label class="labelScreenProjectLabel fgrey"l>CHOISIR UNE IMAGE LAPTOP</label><br>
+                <label class="labelScreenProjectLabel fgrey">CHOISIR UNE IMAGE LAPTOP</label><br>
                 {{ form_errors(form.imgScreen) }}
                 <label class="labelScreenProject fgrey btn btn-default btn-ScreenProject">
                     <i class="fa fa-plus" aria-hidden="true"></i> {{ form_widget(form.imgScreen, { 'attr': {'class': 'inputFile'} }) }}
@@ -34,7 +34,7 @@
             </div>
             <div class="file-style borderInput">
                 {{ form_errors(form.imgMobile) }}
-                <label class="labelMobileProjectLabel fgrey"l>CHOISIR UNE IMAGE MOBILE</label><br>
+                <label class="labelMobileProjectLabel fgrey">CHOISIR UNE IMAGE MOBILE</label><br>
                 <label class="labelMobileProject fgrey btn btn-default btn-MobileProject">
                     <i class="fa fa-plus" aria-hidden="true"></i>{{ form_widget(form.imgMobile, { 'attr': {'class': 'inputFile'} })  }}
                 </label>
@@ -62,7 +62,7 @@
                 <div class="pricePay"> 30 € / PROJET </div>
                 <div class="infoPay"> Postez votre projet sur WebAwards !</div>
             </div>
-            <input type="hidden" required />
+            <input type="hidden" />
             <script
                     id = "stripeButton"
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"

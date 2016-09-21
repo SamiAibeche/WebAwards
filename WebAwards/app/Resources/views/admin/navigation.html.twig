@@ -14,13 +14,12 @@
 <div id="blocMenuAdmin">
     <nav class="blocNav">
         <ul class="blocNavSub">
-            <div>
+
                 <li><a href="{{ path('admin_inactif') }}"><h1><span class="numMenuAdmin"> 01 </span>À VALIDER ({{ nbProject }})</h1></a></li>
                 <li><a href="{{ path('admin_project_index') }}"><h1><span class="numMenuAdmin"> 02 </span>PROJETS</h1></a></li>
                 <li><a href="{{ path('user_index') }}"><h1><span class="numMenuAdmin"> 03 </span>UTILISATEURS</h1></a></li>
                 <li><a href="{{ path('comment_index') }}"><h1><span class="numMenuAdmin"> 04 </span>COMMENTAIRES</h1></a></li>
                 <li class="returnHome"><a href="{{ path('homepage') }}"><span>HOME</span></a></li>
-            </div>
 
         </ul>
     </nav>
@@ -31,4 +30,4 @@
     <script src="{{ asset('bundles/framework/js/main.js') }}"></script>
 {% endblock %}
 </body>
-</html
+</html>
