@@ -180,8 +180,8 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function getProjectsFromYesterday(){
 
         //Initialisation des variables
-        $begin = date('Y-m-d 00:00:00',strtotime("-1 days"));
-        $last = date('Y-m-d 23:59:59',strtotime("-1 days"));
+        $begin = date('Y-m-d 00:00:00',strtotime("-8 days"));
+        $last = date('Y-m-d 23:59:59',strtotime("-8 days"));
 
         //Initialisation de la requête
         $query = $this->createQueryBuilder('p')
@@ -202,4 +202,110 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         }
     }
 
+
+    /**
+     *
+     * Recupère l'ensemble des projets visible posté la semaine passée ou false si aucun projet n'est trouvé
+     * @return array|bool
+     */
+    public function getProjectsFromLastWeek(){
+
+        $begin = date('Y-m-d 00:00:00',strtotime("-15 days"));
+        $last = date('Y-m-d 23:59:59',strtotime("-8 days"));
+
+
+        //Récupération des projets du mois passé
+        $query = $this->createQueryBuilder('p')
+            ->where('p.isVisible = 1')
+            ->andwhere('p.dateAdd BETWEEN :begin AND :last')
+            ->setParameter('begin', $begin)
+            ->setParameter('last', $last)
+            ->getQuery();
+        $resp =  $query->getResult();
+
+        //Réponse
+        if(count($resp) > 0){
+            return $resp;
+        } else {
+            return false;
+        }
+
+    }
+
+    /**
+     *
+     * Recupère l'ensemble des projets visible posté le mois passé ou false si aucun projet n'est trouvé
+     * @return array|bool
+     */
+    public function getProjectsFromLastMonth(){
+
+
+        //Initialisation des données courante
+        $currMonth = (int) date("m");
+        $currYear = (int) date("Y");
+
+        //Determine si on est au mois de Janvier
+        if($currMonth == 1){
+            $lastMonth = 12;
+            //Récupère le nombre de jour du mois précédent (31 dans ce cas ci)
+            $nbDay = cal_days_in_month(CAL_GREGORIAN, $lastMonth, ($currYear-1));
+            $begin = date(($currYear-1).'-'.$lastMonth.'-01 00:00:00'); //Début du mois passé
+            $last = date(($currYear-1).'-'.$lastMonth.'-'.$nbDay.' 23:59:59'); //Fin du mois passé
+        } else {
+            //Pour le mois passé
+            $lastMonth = $currMonth-1;
+            //Récupère le nombre de jour du mois précédent
+            $nbDay = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $currYear);
+            $begin = date($currYear.'-'.$lastMonth.'-01 00:00:00'); //Début du mois passé
+            $last = date($currYear.'-'.$lastMonth.'-'.$nbDay.' 23:59:59'); //Fin du mois passé
+        }
+
+        //Récupération des projets du mois passé
+        $query = $this->createQueryBuilder('p')
+            ->where('p.isVisible = 1')
+            ->andwhere('p.dateAdd BETWEEN :begin AND :last')
+            ->setParameter('begin', $begin)
+            ->setParameter('last', $last)
+            ->getQuery();
+        $resp =  $query->getResult();
+
+        //Réponse
+        if(count($resp) > 0){
+            return $resp;
+        } else {
+            return false;
+        }
+
+    }
+    /**
+     *
+     * Recupère l'ensemble des projets visible posté l'année passée ou false si aucun projet n'est trouvé
+     * @return array|bool
+     */
+    public function getProjectsFromLastYear(){
+
+
+        //Initialisation des données courante
+        $currYear = (int) date("Y");
+
+        $begin = date(($currYear-1).'-01-01 00:00:00'); //Début de l'année
+        $last = date(($currYear-1).'-12-31 23:59:59'); //Fin de l'année passée
+
+        //Récupération des projets du mois passé
+        $query = $this->createQueryBuilder('p')
+            ->where('p.isVisible = 1')
+            ->andwhere('p.dateAdd BETWEEN :begin AND :last')
+            ->setParameter('begin', $begin)
+            ->setParameter('last', $last)
+            ->getQuery();
+        $resp =  $query->getResult();
+
+        //Réponse
+        if(count($resp) > 0){
+            return $resp;
+        } else {
+            return false;
+        }
+
+    }
 }

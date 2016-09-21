@@ -209,29 +209,169 @@ class WinnerController extends Controller
                     }
                 }
             }
+
+            //Initialise le nouveau winner
+            $winner = new Winner();
+            $winner->setIdProject($winOftheDay);
+            $winner->setIsDay(true);
+            $winner->setIsWeek(false);
+            $winner->setIsMonth(false);
+            $winner->setIsYear(false);
+
+            //Récupération de l'ancien projet du jour gagnant
+            $lastWinnerArr = $em->getRepository('WebAwardsBundle:Winner')->findBy(
+                array('isDay' => '1')
+            );
+
+            $lastWinner = $lastWinnerArr[0];
+            $lastWinner->setIsDay(false);
+
+            //Suppression de l'ancien winner et ajout du nouveau  vers la DB
+            $em->persist($lastWinner);
+            $em->persist($winner);
+            $em->flush();
         }
-        //Initialise le nouveau winner
-        $winner = new Winner();
-        $winner->setIdProject($winOftheDay);
-        $winner->setIsDay(true);
-        $winner->setIsWeek(false);
-        $winner->setIsMonth(false);
-        $winner->setIsYear(false);
 
-        //Récupération de l'ancien projet du jour gagnant
-        $lastWinnerArr = $em->getRepository('WebAwardsBundle:Winner')->findBy(
-            array('isDay' => '1')
-        );
+        return $this->redirectToRoute("homepage");
 
-        $lastWinner = $lastWinnerArr[0];
-        $lastWinner->setIsDay(false);
+    }
 
-        //Suppression de l'ancien winner et ajout du nouveau  vers la DB
-        $em->persist($lastWinner);
-        $em->persist($winner);
-        $em->flush();
+    /**
+     * Set a Winner of the week entity.
+     *
+     * Need to call once a week
+     * @Route("/setWinnerWeek/", name="set_winner_week")
+     *
+     */
 
-        exit();
+    public function setWinnerWeekAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //Récupération des projets de la veille
+        $weekProjects = $em->getRepository('WebAwardsBundle:Project')->getProjectsFromLastWeek();
+
+        $curr = 0;
+        if($weekProjects !== false){
+            foreach ($weekProjects as $project){
+                $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($project->getId());
+                if($vote !== null){
+                    if($vote[0]->getNbTotal() > $curr){
+                        $curr = $vote[0]->getNbTotal();
+                        $winOfTheWeek = $project;
+                    }
+                }
+            }
+
+
+            $curr = 0;
+            //Initialise le nouveau winner
+            $winner = new Winner();
+            $winner->setIdProject($winOfTheWeek);
+            $winner->setIsDay(false);
+            $winner->setIsWeek(true);
+            $winner->setIsMonth(false);
+            $winner->setIsYear(false);
+
+
+            //Suppression de l'ancien winner et ajout du nouveau  vers la DB
+            $em->persist($winner);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute("homepage");
+
+
+    }
+
+    /**
+     * Set a Winner of the month entity.
+     *
+     * Need to call once a month
+     * @Route("/setWinnerMonth/", name="set_winner_month")
+     *
+     */
+    public function setWinnerMonthAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //Récupération des projets de la veille
+        $monthProjects = $em->getRepository('WebAwardsBundle:Project')->getProjectsFromLastMonth();
+        $curr = 0;
+        if($monthProjects !== false){
+            foreach ($monthProjects as $project){
+                $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($project->getId());
+                if($vote !== null){
+                    if($vote[0]->getNbTotal() > $curr){
+                        $curr = $vote[0]->getNbTotal();
+                        $winOftheMonth = $project;
+                    }
+                }
+            }
+
+            //Initialise le nouveau winner
+            $winner = new Winner();
+            $winner->setIdProject($winOftheMonth);
+            $winner->setIsDay(false);
+            $winner->setIsWeek(false);
+            $winner->setIsMonth(true);
+            $winner->setIsYear(false);
+
+
+            //Suppression de l'ancien winner et ajout du nouveau  vers la DB
+            $em->persist($winner);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute("homepage");
+
+
+    }
+
+    /**
+     * Set a Winner of the year entity.
+     *
+     * Need to call once a year
+     * @Route("/setWinnerYear/", name="set_winner_year")
+     *
+     */
+    public function setWinnerYearAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //Récupération des projets de la veille
+        $yearProjects = $em->getRepository('WebAwardsBundle:Project')->getProjectsFromLastYear();
+
+
+        //Recupère le projet le mieux noté
+        $curr = 0;
+        if($yearProjects !== false){
+            foreach ($yearProjects as $project){
+                $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($project->getId());
+                if($vote !== null){
+                    if($vote[0]->getNbTotal() > $curr){
+                        $curr = $vote[0]->getNbTotal();
+                        $winOfTheYear = $project;
+                    }
+                }
+            }
+
+            //Initialise le nouveau winner
+            $winner = new Winner();
+            $winner->setIdProject($winOfTheYear);
+            $winner->setIsDay(false);
+            $winner->setIsWeek(false);
+            $winner->setIsMonth(false);
+            $winner->setIsYear(true);
+
+
+            //Suppression de l'ancien winner et ajout du nouveau  vers la DB
+            $em->persist($winner);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute("homepage");
+
 
     }
 }
