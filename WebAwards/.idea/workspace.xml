@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="574187a1-22f7-44db-aaf8-190980524d5c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WebAwardsBundle/Util/WebAwards.php" afterPath="$PROJECT_DIR$/src/WebAwardsBundle/Util/WebAwards.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/WebAwardsBundle/Util/WebAwardsTest.php" afterPath="$PROJECT_DIR$/tests/WebAwardsBundle/Util/WebAwardsTest.php" />
     </list>
@@ -30,31 +29,28 @@
       <file leaf-file-name="WebAwardsTest.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/WebAwardsBundle/Util/WebAwardsTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+            <state relative-caret-position="330">
+              <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebAwards.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WebAwards.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Util/WebAwards.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="60" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+            <state relative-caret-position="105">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VoteController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VoteController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="94" column="90" selection-start-line="94" selection-start-column="90" selection-end-line="94" selection-end-column="90" />
-              <caret line="95" column="86" selection-start-line="95" selection-start-column="86" selection-end-line="95" selection-end-column="86" />
-              <caret line="96" column="87" selection-start-line="96" selection-start-column="87" selection-end-line="96" selection-end-column="87" />
-              <caret line="97" column="93" selection-start-line="97" selection-start-column="93" selection-end-line="97" selection-end-column="93" />
+            <state relative-caret-position="485">
+              <caret line="110" column="65" selection-start-line="110" selection-start-column="22" selection-end-line="110" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -124,9 +120,9 @@
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Tests/Util/WebAwards.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Tests/WebAwardsBundle/Util/WebAwardsTest.php" />
         <option value="$PROJECT_DIR$/vendor/phpunit/phpunit/phpunit.xml" />
+        <option value="$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php" />
         <option value="$PROJECT_DIR$/tests/WebAwardsBundle/Util/WebAwardsTest.php" />
         <option value="$PROJECT_DIR$/src/WebAwardsBundle/Util/WebAwards.php" />
-        <option value="$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php" />
       </list>
     </option>
   </component>
@@ -410,14 +406,7 @@
       <workItem from="1472925210045" duration="3263000" />
       <workItem from="1472996473114" duration="126124000" />
       <workItem from="1473714674570" duration="87552000" />
-      <workItem from="1474059402064" duration="55920000" />
-    </task>
-    <task id="LOCAL-00012" summary="Création de l'entité Projects_Tags">
-      <created>1471607824094</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1471607824094</updated>
+      <workItem from="1474059402064" duration="57923000" />
     </task>
     <task id="LOCAL-00013" summary="Création de l'entité Tags">
       <created>1471607916111</created>
@@ -755,11 +744,18 @@
       <option name="project" value="LOCAL" />
       <updated>1474499263969</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Update voteController">
+      <created>1474544018508</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1474544018508</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="415738000" />
+    <option name="totallyTimeSpent" value="417741000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -827,7 +823,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="SHOW_FILE_HISTORY_DETAILS" value="false" />
-    <MESSAGE value="Update Vote" />
     <MESSAGE value="Mise en place User Profil / Jury /btnAction" />
     <MESSAGE value="Update nbHeart / Vue-Controller" />
     <MESSAGE value="Update Flash - Notice" />
@@ -852,7 +847,8 @@
     <MESSAGE value="Validation Symfony WIP" />
     <MESSAGE value="Fix SensioLabs WIP" />
     <MESSAGE value="Test WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test WIP" />
+    <MESSAGE value="Update voteController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update voteController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1252,29 +1248,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="110" column="65" selection-start-line="110" selection-start-column="22" selection-end-line="110" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/WebAwardsBundle/Util/WebAwardsTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+        <state relative-caret-position="330">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Util/WebAwards.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="60" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="94" column="90" selection-start-line="94" selection-start-column="90" selection-end-line="94" selection-end-column="90" />
-          <caret line="95" column="86" selection-start-line="95" selection-start-column="86" selection-end-line="95" selection-end-column="86" />
-          <caret line="96" column="87" selection-start-line="96" selection-start-column="87" selection-end-line="96" selection-end-column="87" />
-          <caret line="97" column="93" selection-start-line="97" selection-start-column="93" selection-end-line="97" selection-end-column="93" />
+        <state relative-caret-position="105">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>

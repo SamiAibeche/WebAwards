@@ -7,34 +7,45 @@ namespace WebAwardsBundle\Util;
 class WebAwards {
 
 
-    public static function slugify($text) {
+    public static function checkVote($vote) {
 
+        //Vérifie la validité du nombre entré
 
-        // replace non letter or digits by -
-        $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
-
-        
-        // trim
-        $text = trim($text, '-');
-
-
-        // transliterate
-        if (function_exists('iconv'))
-        {
-            $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        //Champs vide
+        if(empty($vote)){
+            return "empty";
         }
 
-        // lowercase
-        $text = strtolower($text);
-
-        // remove unwanted characters
-        $text = preg_replace('#[^-\w]+#', '', $text);
-
-        if (empty($text))
-        {
-            return 'n-a';
+        //Champs avec uniquement des espaces
+        if(empty(trim($vote))){
+            return "empty";
         }
 
-        return $text;
+        //Champs contenant des espaces
+        $pos = strrpos($vote," ");
+        if($pos){
+            return "space";
+        }
+
+        //Champs non numérique
+        if(!is_numeric($vote)){
+            return false;
+        }
+
+        //Arrondi du nombre à un chiffre après la virgule.
+        $vote = round($vote, 1, PHP_ROUND_HALF_DOWN);
+
+        //Champs inférieur à 0
+        if($vote < 0){
+            return "négatif";
+        }
+
+        //Champs supérieur à 10
+        if($vote > 10){
+            return "big";
+        }
+
+        //Champs OK
+        return true;
     }
 }

@@ -10,18 +10,17 @@ class WebAwardsTest extends \PHPUnit_Framework_TestCase {
 
         if (function_exists("iconv")) {
                                 //valeur attendue           Valeur à tester
-            $this->assertEquals('sensio', WebAwards::slugify('Sensio'));
-            $this->assertEquals('sensio-labs', WebAwards::slugify('sensio labs'));
-            $this->assertEquals('sensio-labs', WebAwards::slugify('sensio   labs'));
-            $this->assertEquals('paris-france', WebAwards::slugify('paris,france'));
-            $this->assertEquals('sensio', WebAwards::slugify('  sensio'));
-            $this->assertEquals('sensio', WebAwards::slugify('sensio  '));
-            $this->assertEquals('n-a', WebAwards::slugify(''));
-            $this->assertEquals('n-a', WebAwards::slugify(' '));
-            if (function_exists('iconv'))
-            {
-                $this->assertEquals('developpeur-web', WebAwards::slugify('Développeur Web'));
-            }
+            $this->assertEquals(false, WebAwards::checkVote('valeur'));
+            $this->assertEquals(false, WebAwards::checkVote('8dfff'));
+            $this->assertEquals('empty', WebAwards::checkVote(''));
+            $this->assertEquals('empty', WebAwards::checkVote(' '));
+            $this->assertEquals('space', WebAwards::checkVote('12 34'));
+            $this->assertEquals('négatif', WebAwards::checkVote(-1));
+            $this->assertEquals('big', WebAwards::checkVote(11));
+            $this->assertEquals(true, WebAwards::checkVote(8));
+            $this->assertEquals(true, WebAwards::checkVote(8.5));
+            $this->assertEquals(true, WebAwards::checkVote(8.55555221100));
+        
         }
 
     }
