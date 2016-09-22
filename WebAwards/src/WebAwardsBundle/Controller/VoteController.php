@@ -92,10 +92,10 @@ class VoteController extends Controller
             } else {
 
                 //Init data
-                $nbFluidity = (int) $request->get('nbFluidity');
-                $nbDesign = (int) $request->get('nbDesign');
-                $nbConcept = (int) $request->get('nbConcept');
-                $nbResponsive = (int) $request->get('nbResponsive');
+                $nbFluidity =  round($request->get('nbFluidity'), 1, PHP_ROUND_HALF_DOWN);
+                $nbDesign =  round($request->get('nbDesign'), 1, PHP_ROUND_HALF_DOWN);
+                $nbConcept = round($request->get('nbConcept'), 1, PHP_ROUND_HALF_DOWN);
+                $nbResponsive = round($request->get('nbResponsive'), 1, PHP_ROUND_HALF_DOWN);
             }
         }
 
