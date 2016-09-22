@@ -29,8 +29,8 @@
       <file leaf-file-name="WebAwardsTest.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/WebAwardsBundle/Util/WebAwardsTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+            <state relative-caret-position="660">
+              <caret line="44" column="84" selection-start-line="44" selection-start-column="84" selection-end-line="44" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -39,18 +39,18 @@
       <file leaf-file-name="WebAwards.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Util/WebAwards.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="1650">
+              <caret line="110" column="17" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VoteController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php">
+      <file leaf-file-name="WinnerRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnerRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="110" column="65" selection-start-line="110" selection-start-column="22" selection-end-line="110" selection-end-column="65" />
+            <state relative-caret-position="32">
+              <caret line="21" column="36" selection-start-line="20" selection-start-column="8" selection-end-line="21" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -282,6 +282,28 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebAwards" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebAwards" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebAwardsBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Repository" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -308,7 +330,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1000" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
-    <property name="SearchEverywhereHistoryKey" value="voteC&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/VoteController.php&#10;phpunit.x&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/vendor/phpunit/phpunit/phpunit.xml&#10;base&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/base.html.twig&#10;sec&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/SecurityController.php&#10;secu&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/SecurityController.php&#10;user&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/User.php&#10;main&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;index&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/index.html.twig&#10;project&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;projectC&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;userC&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;vote&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/VoteRepository.php&#10;vot&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/VoteRepository.php&#10;projec&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/ProjectRepository.php&#10;winnerR&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/WinnerRepository.php&#10;win&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/WinnerController.php&#10;ind&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/index.html.twig&#10;security.en.xlf&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.en.xlf&#10;main.&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/js/main.js&#10;main.css&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;use&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;User&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/User.php&#10;proj&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;pro&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;new&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/new.html.twig&#10;mai&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;footer&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/footer.html.twig&#10;Comment&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Comment.php&#10;proje&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;comment&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/CommentController.php&#10;inde&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/user/index.html.twig&#10;winner&#9;null&#9;null&#10;bas&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/base.html.twig&#10;commentco&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/CommentController.php&#10;show&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/showList.html.twig&#10;projectR&#9;null&#9;null&#10;projectTyp&#9;null&#9;null&#10;userCon&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;p&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;heart&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/HeartRepository.php&#10;login&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/login.html.twig&#10;userCo&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;foot&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/footer.html.twig&#10;userT&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Form/UserType.php&#10;vigne&#9;null&#9;null&#10;main.js&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/js/main.js&#10;contro&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;secr&#9;null&#9;null&#10;sho&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/show.html.twig&#10;voteR&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/VoteRepository.php" />
+    <property name="SearchEverywhereHistoryKey" value="vot&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/VoteController.php&#10;voteC&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/VoteController.php&#10;phpunit.x&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/vendor/phpunit/phpunit/phpunit.xml&#10;base&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/base.html.twig&#10;sec&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/SecurityController.php&#10;secu&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/SecurityController.php&#10;user&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/User.php&#10;main&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;index&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/index.html.twig&#10;project&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;projectC&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;userC&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;vote&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/VoteRepository.php&#10;projec&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/ProjectRepository.php&#10;winnerR&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/WinnerRepository.php&#10;win&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/WinnerController.php&#10;ind&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/index.html.twig&#10;security.en.xlf&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.en.xlf&#10;main.&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/js/main.js&#10;main.css&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;use&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;User&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/User.php&#10;proj&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;pro&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;new&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/new.html.twig&#10;mai&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/css/main.css&#10;footer&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/footer.html.twig&#10;Comment&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Comment.php&#10;proje&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;comment&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/CommentController.php&#10;inde&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/user/index.html.twig&#10;winner&#9;null&#9;null&#10;bas&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/base.html.twig&#10;commentco&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/CommentController.php&#10;show&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/showList.html.twig&#10;projectR&#9;null&#9;null&#10;projectTyp&#9;null&#9;null&#10;userCon&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;p&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Entity/Project.php&#10;heart&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/HeartRepository.php&#10;login&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/login.html.twig&#10;userCo&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/UserController.php&#10;foot&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/footer.html.twig&#10;userT&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Form/UserType.php&#10;vigne&#9;null&#9;null&#10;main.js&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/web/bundles/framework/js/main.js&#10;contro&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Controller/ProjectController.php&#10;secr&#9;null&#9;null&#10;sho&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/app/Resources/views/project/show.html.twig&#10;voteR&#9;FILE&#9;file:///Users/aibeche/Sites/symfony/WebAwards/src/WebAwardsBundle/Repository/VoteRepository.php" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
@@ -406,14 +428,7 @@
       <workItem from="1472925210045" duration="3263000" />
       <workItem from="1472996473114" duration="126124000" />
       <workItem from="1473714674570" duration="87552000" />
-      <workItem from="1474059402064" duration="57923000" />
-    </task>
-    <task id="LOCAL-00013" summary="Création de l'entité Tags">
-      <created>1471607916111</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1471607916111</updated>
+      <workItem from="1474059402064" duration="61994000" />
     </task>
     <task id="LOCAL-00014" summary="Création de l'entité Project">
       <created>1471608175159</created>
@@ -751,11 +766,18 @@
       <option name="project" value="LOCAL" />
       <updated>1474544018508</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Test champs numérique">
+      <created>1474546001279</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1474546001279</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="417741000" />
+    <option name="totallyTimeSpent" value="421812000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -823,7 +845,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="SHOW_FILE_HISTORY_DETAILS" value="false" />
-    <MESSAGE value="Mise en place User Profil / Jury /btnAction" />
     <MESSAGE value="Update nbHeart / Vue-Controller" />
     <MESSAGE value="Update Flash - Notice" />
     <MESSAGE value="Gestion des like" />
@@ -848,22 +869,16 @@
     <MESSAGE value="Fix SensioLabs WIP" />
     <MESSAGE value="Test WIP" />
     <MESSAGE value="Update voteController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update voteController" />
+    <MESSAGE value="Test champs numérique" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test champs numérique" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/comment/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/user/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1007,22 +1022,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/VoteRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-36">
-          <caret line="39" column="26" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnerRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Entity/Project.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -1036,22 +1035,6 @@
         <state relative-caret-position="759">
           <caret line="375" column="5" selection-start-line="330" selection-start-column="4" selection-end-line="375" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/ProjectRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="212" column="62" selection-start-line="212" selection-start-column="8" selection-end-line="212" selection-end-column="62" />
-          <folding>
-            <element signature="e#251#380#0#PHP" expanded="false" />
-            <element signature="e#451#831#0#PHP" expanded="false" />
-            <element signature="e#4391#4656#0#PHP" expanded="false" />
-            <element signature="e#4447#4516#0#PHP" expanded="false" />
-            <element signature="e#4447#4559#0#PHP" expanded="false" />
-            <element signature="e#4662#5006#0#PHP" expanded="false" />
-            <element signature="e#4736#4809#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1248,26 +1231,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/HeartRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/ProjectRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2565">
+          <caret line="212" column="62" selection-start-line="212" selection-start-column="8" selection-end-line="212" selection-end-column="62" />
+          <folding>
+            <element signature="e#251#380#0#PHP" expanded="false" />
+            <element signature="e#451#831#0#PHP" expanded="false" />
+            <element signature="e#4391#4656#0#PHP" expanded="false" />
+            <element signature="e#4447#4516#0#PHP" expanded="false" />
+            <element signature="e#4447#4559#0#PHP" expanded="false" />
+            <element signature="e#4662#5006#0#PHP" expanded="false" />
+            <element signature="e#4736#4809#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/VoteRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="26" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Controller/VoteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
+        <state relative-caret-position="1575">
           <caret line="110" column="65" selection-start-line="110" selection-start-column="22" selection-end-line="110" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Repository/WinnerRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="21" column="36" selection-start-line="20" selection-start-column="8" selection-end-line="21" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/WebAwardsBundle/Util/WebAwardsTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+        <state relative-caret-position="660">
+          <caret line="44" column="84" selection-start-line="44" selection-start-column="84" selection-end-line="44" selection-end-column="84" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WebAwardsBundle/Util/WebAwards.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="1650">
+          <caret line="110" column="17" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
           <folding />
         </state>
       </provider>
