@@ -265,7 +265,8 @@ class ProjectController extends Controller
         $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
 
         //Récupération des commentaires liés au projet
-        $comments = $em->getRepository('WebAwardsBundle:Comment')->findByIdProject($idProject);
+        $nbComment = 1;
+        $comments = $em->getRepository('WebAwardsBundle:Comment')->getCommentsById($idProject, $nbComment);
 
         //Vérifie que l'utilisateur ait déjà like le projet
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
@@ -275,7 +276,6 @@ class ProjectController extends Controller
                 $hasLike = $em->getRepository('WebAwardsBundle:Heart')->verifyHasLike($idProject, $currentUser);
             }
         }
-        
         return $this->render('project/show.html.twig', array(
             'project'   => $project,
             'onemore'   => $oneMore,
@@ -283,6 +283,7 @@ class ProjectController extends Controller
             'nbHeart'   => $nbHeart,
             'vote'      => $vote,
             'hasLike'   => $hasLike,
+            'nbComment'=> $nbComment,
             'comments'  => $comments,
             'delete_form' => $deleteForm->createView(),
             'form'      => $form->createView(),
@@ -654,6 +655,68 @@ class ProjectController extends Controller
             'from'     => $winner
         ));
 
+    }
+
+    /**
+     * Finds and displays a Project entity with x comments ( display with the nbComment params ).
+     *
+     * @Route("/{id}/{nbComment}", name="project_show_comments")
+     * @Method("GET")
+     */
+    public function showActionComment(Project $project, Request $request)
+    {
+        //Vérifie si le projet est "Visible" (Si l'admin l'a validé)
+        if(!($project->getIsVisible())){
+            return $this->redirectToRoute("homepage");
+        }
+
+        //Initialisation des variables
+        $hasLike = 0;
+        $em = $this->getDoctrine()->getManager();
+
+        //die();
+        $deleteForm = $this->createDeleteForm($project);
+        $form = $this->createForm('WebAwardsBundle\Form\VoteType');
+        $formComment = $this->createForm('WebAwardsBundle\Form\CommentType');
+        $user = $project->getIdAuthor();
+        $idUser = $user->getId();
+        $idProject = $project->getId();
+
+        //Récupération du deuxième projet le plus récent
+        $oneMore = $em->getRepository('WebAwardsBundle:Project')->getAnotherProject($idUser, $idProject);
+        //Récupération de l'auteur du projet
+        $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
+
+        //Récupération des votes du projet
+        $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
+        $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
+
+        //Récupération des commentaires liés au projet
+        $nbComment = (int) $request->get('nbComment')+1;
+        $comments = $em->getRepository('WebAwardsBundle:Comment')->getCommentsById($idProject, $nbComment);
+
+        //Vérifie que l'utilisateur ait déjà like le projet
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        if($currentUser != "anon.") {
+            $roles = $currentUser->getRoles();
+            if ($roles[0] != "ROLE_ADMIN") {
+                $hasLike = $em->getRepository('WebAwardsBundle:Heart')->verifyHasLike($idProject, $currentUser);
+            }
+        }
+
+        return $this->render('project/show.html.twig', array(
+            'project'   => $project,
+            'onemore'   => $oneMore,
+            'nbComment' => $nbComment,
+            'user'      => $user,
+            'nbHeart'   => $nbHeart,
+            'vote'      => $vote,
+            'hasLike'   => $hasLike,
+            'comments'  => $comments,
+            'delete_form' => $deleteForm->createView(),
+            'form'      => $form->createView(),
+            'formComment' => $formComment->createView()
+        ));
     }
 
 }

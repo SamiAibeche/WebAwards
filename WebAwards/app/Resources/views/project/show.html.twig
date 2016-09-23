@@ -122,6 +122,11 @@
                     </div>
                 </div>
             {% endfor %}
+            {% if comments|length >= nbComment*5 %}
+                <div class="col-xs-12 blocComments">
+                    <span class="fright seeMoreComment"><a href={{ path('project_show_comments', {'id' : project.id, 'nbComment' : nbComment }) }}><i class="glyphicon glyphicon-triangle-bottom"></i>Voir plus</a></span>
+                </div>
+            {% endif %}
         {% endif %}
     {% endif %}
     </div>

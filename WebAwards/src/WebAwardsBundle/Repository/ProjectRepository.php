@@ -436,7 +436,11 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         }
 
     }
-
+    /**
+     *
+     * Recupère le deuxième projet le plus récent de l'auteur du projet en cours
+     * @return array|bool
+     */
     public function getAnotherProject($idUser, $idProject){
 
         $query = $this->createQueryBuilder('p')

@@ -10,4 +10,23 @@ namespace WebAwardsBundle\Repository;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     *
+     * Retourne le un tableau de commentaire dont la limite est determiner avec le nbComment
+     * @param $idProject
+     * @param $nbComment
+     * @return array
+     */
+    public function getCommentsById($idProject, $nbComment){
+        $nbComment = $nbComment*5;
+        $query = $this->createQueryBuilder('c')
+            ->where('c.idProject = '.$idProject.'')
+            ->setMaxResults($nbComment)
+            ->getQuery();
+
+        $resp = $query->getResult();
+
+        return $resp;
+    }
 }
