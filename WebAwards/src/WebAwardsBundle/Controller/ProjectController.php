@@ -255,7 +255,8 @@ class ProjectController extends Controller
         $idUser = $user->getId();
         $idProject = $project->getId();
 
-
+        //Récupération du deuxième projet le plus récent
+        $oneMore = $em->getRepository('WebAwardsBundle:Project')->getAnotherProject($idUser, $idProject);
         //Récupération de l'auteur du projet
         $user = $em->getRepository('WebAwardsBundle:User')->findById($idUser);
 
@@ -274,9 +275,10 @@ class ProjectController extends Controller
                 $hasLike = $em->getRepository('WebAwardsBundle:Heart')->verifyHasLike($idProject, $currentUser);
             }
         }
-
+        
         return $this->render('project/show.html.twig', array(
             'project'   => $project,
+            'onemore'   => $oneMore,
             'user'      => $user,
             'nbHeart'   => $nbHeart,
             'vote'      => $vote,

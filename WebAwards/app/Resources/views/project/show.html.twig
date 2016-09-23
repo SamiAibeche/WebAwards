@@ -125,7 +125,25 @@
         {% endif %}
     {% endif %}
     </div>
-
+    <div class="col-xs-12 col-sm-12 col-md-6 mr45">
+        {% if onemore  %}
+            <div class="text-center">
+                <h5>Un autre projet de  <a class="linkUser" href="{{ path('user_show', { 'id': user[0].id }) }}">{{ user[0].firstname }} {{ user[0].lastname }}</a></h5>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2  vignetteProject">
+                <a href="{{ path('project_show', { 'id': onemore.id }) }}">
+                    <img class="imgProject" src="{{ asset('uploads/project/' ~ onemore.imgScreen) }}" alt="Image" />
+                </a>
+                <div class="col-xs-12 text-center blocSuggestVote">
+                    {% if date(onemore.dateAdd) < date() and date(onemore.dateAdd) > date('-7days') %}
+                        <div class="SuggestVote">
+                            <h1><a href="{{ path('project_show', { 'id': onemore.id }) }}">VOTER !</a></h1>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <div class="blocBtn">

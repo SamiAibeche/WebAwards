@@ -436,4 +436,23 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         }
 
     }
+
+    public function getAnotherProject($idUser, $idProject){
+
+        $query = $this->createQueryBuilder('p')
+            ->where('p.isVisible = 1')
+            ->andWhere("p.idAuthor = '".$idUser."'")
+            ->andWhere("p.id != '".$idProject."'")
+            ->orderBy('p.dateAdd', 'DESC')
+            ->getQuery();
+
+        $resp =  $query->getResult();
+
+        if(count($resp)>0){
+            $resp = $resp[0];
+        }
+
+        return $resp;
+
+    }
 }
