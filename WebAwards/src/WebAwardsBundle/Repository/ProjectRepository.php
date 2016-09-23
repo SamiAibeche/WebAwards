@@ -118,6 +118,134 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $paginator;
     }
 
+    public function getAllPostsFromOrder($currentPage, $from, $order)
+    {
+        //Conditionne les données reçues afin d'effectuer les requêtes SQL correspondantes
+        if($from=="agency" || $from=="freelance" ){
+            if($order == "desc" || $order == "asc"){
+                $order = strtoupper($order);
+                $query = $this->createQueryBuilder('p')
+                    ->join('p.idAuthor', 'u')
+                    ->where('p.isVisible = 1')
+                    ->andWhere("u.role = '".$from."'")
+                    ->orderBy('p.dateAdd', ''.$order.'')
+                    ->getQuery();
+            } else if($order == "author"){
+                $query = $this->createQueryBuilder('p')
+                    ->join('p.idAuthor', 'u')
+                    ->where('p.isVisible = 1')
+                    ->andWhere("u.role = '".$from."'")
+                    ->orderBy('u.firstname')
+                    ->getQuery();
+            } else  {
+                $query = $this->createQueryBuilder('p')
+                    ->join('p.idAuthor', 'u')
+                    ->where('p.isVisible = 1')
+                    ->andWhere("u.role = '".$from."'")
+                    ->orderBy('p.nbLike', 'DESC')
+                    ->getQuery();
+            }
+
+        } else if($from == "junior"){
+
+            //Get All Users from DB
+            $users = $this->getEntityManager()->getRepository('WebAwardsBundle:User')->findAll();
+
+            //Today
+            $now = time();
+
+            $tabUserId = [];
+
+            //For all user
+            foreach($users as $user){
+                //Get Birthday
+                $birthdayUser = $user->getBirthdayAt()->format("Y-m-d");
+                $time = strtotime($birthdayUser);
+
+                //Diff between 2 dates
+                $diff = abs($now - $time);
+
+                //Set the number of year
+                $nbYear = (int) ($diff / (365*60*60*24));
+
+                //Recup the id of the younger users
+                if($nbYear >= 18 && $nbYear <=25) {
+                    $tabUserId[] = $user->getId();
+                }
+            }
+
+            //Get Project of the user
+            if($order == "desc" || $order == "asc"){
+                $order = strtoupper($order);
+                $query = $this->createQueryBuilder('p')
+                    ->where('p.isVisible = 1')
+                    ->andWhere('p.idAuthor IN (:idUser)')
+                    ->setParameter('idUser', $tabUserId)
+                    ->orderBy('p.dateAdd', $order)
+                    ->getQuery();
+
+            } else if($order == "author"){
+                $query = $this->createQueryBuilder('p')
+                    ->join('p.idAuthor', 'u')
+                    ->where('p.isVisible = 1')
+                    ->andWhere('p.idAuthor IN (:idUser)')
+                    ->setParameter('idUser', $tabUserId)
+                    ->orderBy('u.firstname')
+                    ->getQuery();
+
+            } else {
+                $query = $this->createQueryBuilder('p')
+                    ->where('p.isVisible = 1')
+                    ->andWhere('p.idAuthor IN (:idUser)')
+                    ->setParameter('idUser', $tabUserId)
+                    ->orderBy('p.nbLike', 'DESC')
+                    ->getQuery();
+            }
+
+        } else if($form = "honorable"){
+            if($order == "desc" || $order == "asc"){
+
+                $order = strtoupper($order);
+                $query = $this->createQueryBuilder('p')
+                    ->where('p.isVisible = 1')
+                    ->orderBy('p.dateAdd', $order)
+                    ->getQuery();
+
+            } else if($order == "author"){
+
+                $query = $this->createQueryBuilder('p')
+                    ->join('p.idAuthor', 'u')
+                    ->where('p.isVisible = 1')
+                    ->orderBy('u.firstname')
+                    ->getQuery();
+
+            } else {
+                $query = $this->createQueryBuilder('p')
+                    ->where('p.isVisible = 1')
+                    ->orderBy('p.nbLike', 'DESC')
+                    ->getQuery();
+            }
+
+            $resp = $query->getResult();
+
+            $projects = [];
+            foreach ($resp as $project){
+                $vote = $this->getEntityManager()->getRepository('WebAwardsBundle:Vote')->getAvgVotes($project->getId());
+                if($vote !== null){
+                    if($vote[0]->getNbTotal() > 6){
+                        $projects [] = $project;
+                    }
+                }
+            }
+            return $projects;
+
+        }
+
+        //No need to manually get get the result ($query->getResult())
+        $paginator = $this->paginate($query, $currentPage, 9);
+        return $paginator;
+    }
+
     public function getWinnerProjects($currentPage, $seekWinner){
 
        $seekWinner = ucfirst($seekWinner);

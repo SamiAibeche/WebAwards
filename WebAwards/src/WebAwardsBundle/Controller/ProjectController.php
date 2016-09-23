@@ -467,9 +467,7 @@ class ProjectController extends Controller
         $vote = $em->getRepository('WebAwardsBundle:Vote')->getAvgVotes($idProject);
 
         $nbHeart = $em->getRepository('WebAwardsBundle:Heart')->getNbHeart($idProject);
-        //Get the last project of the Month
 
-        //All Winner of the month
         $hasLike = "";
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         if($currentUser != "anon.") {
@@ -531,6 +529,54 @@ class ProjectController extends Controller
             'maxPages' => $maxPage,
             'thisPage' => $page,
             'from'     => $from
+        ));
+
+
+    }
+
+    /**
+     * Init & show the junior's project.
+     *
+     * @Route("/{from}/orderBy/{order}", name="project_from_order")
+     * @Method({"GET"})
+     */
+    public function getProjectFromByOrderAction(Request $request){
+
+        //Initialisation et récupération des variables
+        $page =$request->query->get('page');
+        $page = (int) $page;
+
+        $page = $request->get('page');
+        $from = $request->get('from');
+        $order = $request->get('order');
+
+        $em = $this->getDoctrine()->getManager();
+
+        //Vérifie que la requête qui sera envoyée aura les bonnes data
+        if( $from == "freelance" || $from == "agency" ||  $from == "junior"  || $from == "honorable") {
+            if($order == "asc" || $order == "desc" || $order == "like" || $order == "author"){
+                //Modifier la fonction SQL et getAllPostsFromOrder
+                //Requete SQL différente si c'est author, join user et order by firstname sinon juste order by
+                $projects = $em->getRepository('WebAwardsBundle:Project')->getAllPostsFromOrder($page, $from, $order);
+            }
+        }
+
+        if($from !== "honorable"){
+            $totalPostsReturned = $projects->getIterator()->count();
+            $totalProjects = $projects->count();
+            $iterator = $projects->getIterator();
+            $maxPage = ceil($totalProjects/9);
+        } else {
+            $totalProjects = count($projects);
+            $maxPage = ceil($totalProjects/9);
+        }
+
+        return $this->render('project/showListOrder.html.twig', array(
+            'projects' => $projects,
+            'maxPages' => $maxPage,
+            'thisPage' => $page,
+            'from'     => $from,
+            'order'    => $order
         ));
 
 
