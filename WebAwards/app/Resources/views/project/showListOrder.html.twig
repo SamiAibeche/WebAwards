@@ -27,9 +27,9 @@
         <div class="container-fluid">
         {% if projects is not empty %}
             {% for project in projects %}
-                <div class="col-xs-12 col-md-4 vignetteProject">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0 col-lg-4 vignetteProject">
                     <a href="{{ path('project_show', { 'id': project.id }) }}">
-                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" alt="Image"/>
+                        <img class="imgProject img-responsive" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" alt="Image"/>
                     </a>
                     <div class="col-xs-12 text-center">
                         <div class="col-xs-12 text-center blocSuggestVote">
