@@ -65,7 +65,7 @@ class VoteController extends Controller
         if(!$hasVote){
             $this->addFlash(
                 'notice',
-                'Un vote a déjà été enregistré pour ce projet.'
+                'Désolé ! Un vote a déjà été enregistré pour ce projet.'
             );
             return $this->redirectToRoute('project_show',  array('id' => $project[0]->getId()));
 
@@ -77,7 +77,7 @@ class VoteController extends Controller
 
             $this->addFlash(
                 'notice',
-                'Le formulaire ne semble pas être valide !'
+                'Désolé ! Le formulaire ne semble pas être valide !'
             );
             return $this->redirectToRoute('project_show',  array('id' => $project[0]->getId()));
         } else {
@@ -128,18 +128,22 @@ class VoteController extends Controller
 
                 $em->persist($vote);
                 $em->flush();
+                $this->addFlash(
+                    'notice',
+                    'Merci ! Votre vote a été enregistré.'
+                );
                 return $this->redirectToRoute('project_show', array('id' => $project[0]->getId()));
 
             } else {
                 $this->addFlash(
                     'notice',
-                    'Le formulaire ne semble pas être valide !'
+                    'Désolé ! Le formulaire ne semble pas être valide !'
                 );
             }
         } else {
             $this->addFlash(
                 'notice',
-                'Vous ne pouvez pas voter pour votre propre projet !'
+                'Désolé ! Vous ne pouvez pas voter pour votre propre projet !'
             );
         }
 

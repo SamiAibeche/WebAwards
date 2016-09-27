@@ -22,7 +22,7 @@
                             <img class="img-responsive center imgProject" src="{{ asset('uploads/project/'~ winner[0].imgScreen) }}" alt="Image : {{ winner[0].name }}"/>
                         </a>
                     </div>
-                    <div  class="col-xs-6 text-left"><a href="{{ path('heart_new', {'idProject' : winner[0].id }) }}"><span class="glyphicon glyphicon-heart {% if (hasLike == 1) or  (hasLike == "") %} blackHeart  {% endif %}"></span></a>{{ nbHeart }}</div>
+                    <div  class="col-xs-6 text-left"><a href="{{ path('heart_new', {'idProject' : winner[0].id }) }}"><span class="glyphicon glyphicon-heart {% if (hasLike == true) %} blackHeart {% else %} yellowHeart {% endif %}"></span></a>{{ nbHeart }}</div>
                     <div  class="col-xs-6 text-right shareIcon">
                         <a class="facebook customer share" href="http://www.facebook.com/sharer.php?u={{ winner[0].url }}" title="Partager sur Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                         <a class="twitter customer share" href="http://twitter.com/share?url={{ winner[0].url }}l&amp;text=Site%20du%20jour&amp;hashtags=webawards" title="Partager sur Twiter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
@@ -33,10 +33,10 @@
                         <img class="img-responsive center imgProjectMobile" src="{{ asset('uploads/project/'~ winner[0].imgMobile) }}" alt="Image"/>
                     </div>
                     <div  class="col-xs-12 col-sm-8 text-center blocInfoUser">
-                        <div class="col-xs-12 col-lg-sm-8 col-md-offset-2"><h2><strong>{{ winner[0].name | upper }}</strong></h2></div>
-                        <div class="col-xs-12 col-lg-sm-8 col-md-offset-2"><h5>De : <a class="linkUser" href="{{ path('user_show', { 'id': user[0].id }) }}">{{ user[0].firstname }} {{ user[0].lastname }}</a></h5></div>
-                        <div class="col-xs-12 col-lg-sm-8 col-lg-sm-8 col-md-offset-2"><h4>{{ winner[0].description }}</h4></div>
-                        <div class="col-xs-12 col-lg-sm-8 col-md-offset-2"><h6>Posté le : {{ winner[0].dateAdd|date("d/m/Y") }}</h6></div>
+                        <div class="col-xs-12 col-lg-sm-8 col-md-offset-1"><h2><strong>{{ winner[0].name | upper }}</strong></h2></div>
+                        <div class="col-xs-12 col-lg-sm-8 col-md-offset-1"><h5>De : <a class="linkUser" href="{{ path('user_show', { 'id': user[0].id }) }}">{{ user[0].firstname }} {{ user[0].lastname }}</a></h5></div>
+                        <div class="col-xs-12 col-lg-sm-8 col-md-offset-1"><h4>{{ winner[0].description }}</h4></div>
+                        <div class="col-xs-12 col-lg-sm-8 col-md-offset-1"><h6>Posté le : {{ winner[0].dateAdd|date("d/m/Y") }}</h6></div>
                     </div>
                     <div  class="col-xs-12">
                         <div class="col-xs-6 col-md-2 borderVoteContainer design"><div></div><span>{{ vote[0].nbDesign }}</span><i>Design</i></div>
@@ -64,7 +64,7 @@
                     <a href="{{ path('project_show', { 'id': project.id }) }}">
                         <img class="imgProject img-responsive" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" alt="Image" />
                     </a>
-                    <div class="col-xs-12 text-center blocSuggestVote">
+                    <div class="hidden-sm hidden-xs col-xs-12 text-center blocSuggestVote">
                         {% if date(project.dateAdd) < date() and date(project.dateAdd) > date('-7days') %}
                             <div class="SuggestVote">
                                 <h1><a href="{{ path('project_show', { 'id': project.id }) }}">VOTER !</a></h1>

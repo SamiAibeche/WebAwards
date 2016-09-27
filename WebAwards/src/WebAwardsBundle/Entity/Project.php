@@ -136,14 +136,7 @@ class Project
      * @ORM\OneToMany(targetEntity="Winner", mappedBy="idProject",cascade={"remove"})
      */
     private $winners;
-
-    /**
-     * @var string
-     *
-     * @ORM\OneToMany(targetEntity="ProjectTag", mappedBy="idProject",cascade={"remove"})
-     */
-    private $idProjects;
-
+    
     /**
      * @var string
      *
