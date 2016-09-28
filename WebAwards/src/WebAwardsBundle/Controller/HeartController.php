@@ -34,7 +34,7 @@ class HeartController extends Controller
         if($currentUser == "anon."){
             $this->addFlash(
                 'notice',
-                'Vous aimez ce projet ? Connectez-vous afin d\'augmenter son score !'
+                'Vous aimez ce projet ? Connectez-vous afin de le faire savoir !'
             );
             return $this->redirectToRoute("homepage");
         }
