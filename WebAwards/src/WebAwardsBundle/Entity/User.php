@@ -514,10 +514,15 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param \DateTime $dateSubscribe
+     *
+     * @return project
+     * 
      */
     public function setDateSubscribe($dateSubscribe)
     {
-        $this->dateSubscribe = new \DateTime($dateSubscribe);
+        $this->dateSubscribe = ($dateSubscribe);
+        
+        return $this;
     }
 
 

@@ -17,7 +17,7 @@
             {% for project in projects %}
                 <div class="col-xs-12 col-md-4 vignetteProject">
                     <a href="{{ path('project_show', { 'id': project.id }) }}">
-                        <img class="imgProject" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" />
+                        <img class="imgProject img-responsive" src="{{ asset('uploads/project/' ~ project.imgScreen) }}" />
                     </a>
                 </div>
             {% endfor %}

@@ -55,7 +55,7 @@
     <div class="row">
         <div class="col-xs-12 text-center">
             <div class="blocBtn">
-                <a class="btn btRetour" href="{{ app.request.headers.get('referer') }}">RETOUR</a>
+                <a class="btn btRetour ml0" href="{{ app.request.headers.get('referer') }}">RETOUR</a>
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <div class="blocBtn">
-                            <a class="btEdit" href="{{ path('project_edit', { 'id': project.id }) }}">MODIFIER</a>
+                            <a class="btEdit ml0" href="{{ path('project_edit', { 'id': project.id }) }}">MODIFIER</a>
                         </div>
                     </div>
                 </div>
