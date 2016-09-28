@@ -27,7 +27,11 @@
                     </div>
                     <div  class="col-xs-6 text-left"><a href="{{ path('heart_new', {'idProject' : project.id }) }}">
                             {% if app.user %}
-                                <span class="glyphicon glyphicon-heart {% if (hasLike == true)  %} blackHeart {%  elseif (hasLike == false) %} yellowHeart {% endif %}"></span>
+                                {% if (app.user.roles[0]) != ('ROLE_ADMIN') %}
+                                    <span class="glyphicon glyphicon-heart {% if (hasLike == true)  %} blackHeart {%  elseif (hasLike == false) %} yellowHeart {% endif %}"></span>
+                                {% else %}
+                                    <span class="glyphicon glyphicon-heart blackHeart"></span>
+                                {% endif %}
                             {% else %}
                                 <span class="glyphicon glyphicon-heart blackHeart"></span>
                             {% endif %}

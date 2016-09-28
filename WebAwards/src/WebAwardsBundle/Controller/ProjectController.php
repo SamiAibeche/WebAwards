@@ -96,6 +96,18 @@ class ProjectController extends Controller
         $form = $this->createForm('WebAwardsBundle\Form\ProjectType', $project);
         $form->handleRequest($request);
 
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        if($currentUser != "anon.") {
+            $roles = $currentUser->getRoles();
+            if ($roles[0] == "ROLE_ADMIN") {
+                $this->addFlash(
+                    'notice',
+                    'Désolé ! L\'administrateur ne peut ajouter de projet avec ce compte !'
+                );
+                return $this->redirectToRoute("homepage");
+            }
+        }
+
         if ($form->isSubmitted() && $form->isValid()) { //Si le form est envoyé
 
             //Recupère le statut de l'utilisateur est abonné ou pas
