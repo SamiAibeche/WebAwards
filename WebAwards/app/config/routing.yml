@@ -8,3 +8,13 @@ web_awards:
     prefix:   /
 logout:
     path: /logout
+condition:
+    path: /condition
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    condition.html.twig
+evaluation:
+    path: /evaluation
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    evaluation.html.twig
